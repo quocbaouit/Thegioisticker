@@ -1,0 +1,62 @@
+.color-setting {
+	color: #b3b7c8;
+}
+.color-setting:hover {
+	color: #b3b7c8 !important;
+}
+.active>.color-setting {
+	color: #b3b7c8 !important;
+}
+.bg-setting {
+	background-color: #b3b7c8 !important;
+}
+.btn-setting {
+	color: #FFF !important;
+	background: #b3b7c8;
+}
+.btn-setting:hover, .btn-setting:focus {
+	color: #b3b7c8 !important;
+	background: #FFF; 
+	outline: 0;
+}
+.btn-setting-2 {
+	color: #b3b7c8 !important;
+}
+.btn-setting-2:hover, .btn-setting-2:focus {
+	color: #FFF !important;
+	background: #b3b7c8; 
+	outline: 0;
+}
+.active>.btn-setting {
+	color: #FFF !important;
+	background: #b3b7c8 !important;
+}
+.bd-color-setting {
+	border-color: #b3b7c8;
+}
+.bd-color-setting:hover {
+	border-color: #b3b7c8 !important;
+}
+.detail-slider .slick-current>.bd-color-setting{
+	border: 1px solid #b3b7c8;
+}
+.bd-color-left-setting {
+	border-color: #b3b7c8 !important;
+}
+.btn-success.active.focus{
+	background-color: #b3b7c8 !important;
+	border-color: #b3b7c8 !important;
+}
+.btn-success.active{
+	background-color: #b3b7c8 !important;
+	border-color: #b3b7c8 !important;
+}
+.slider-price span{
+	background: #b3b7c8 !important;
+}
+.slider-price .ui-widget-header {
+    background: #b3b7c8;
+}
+.btn-shopnow {
+	color: #b3b7c8;
+}

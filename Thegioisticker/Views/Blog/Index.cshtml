@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section ng-app="thegioistickerApp" ng-controller="blogController" class="organic-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="sidebar">
+                        <div class="product-list clearfix">
+                            <h3 class="sidebar-title">Danh Mục In</h3>
+                            <p ng-if="!printingCategory ||printingCategory.length==0">Không có sản phẩm nào vừa xem.</p>
+                            <div ng-repeat="product in printingCategory" class="product">
+                                <div class="media-left product-img">
+                                    <a ng-click="viewDetail(product.seoUrl)" href="javascript:void(0)"><img ng-src="{{product.image}}" alt="{{product.name}}"></a>
+                                </div>
+                                <div class="product-price media-right">
+                                    <h3><a ng-click="viewDetail(product.seoUrl)" href="javascript:void(0)" class="color-setting">{{product.name}}</a></h3>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>                      
+                    </div>
+                </div>
+                <div class="col-md-9">                    
+                    <article ng-repeat="blog in blogs">
+                        <div class="blog-classic">
+                            <div class="our-blogs-item-img">
+                                <img ng-src="{{blog.image}}" alt="" class="img-responsive bd-radius-5" />
+                            </div>
+                            <div class="classic-tags">
+                                <p class="blog"><a class="color-setting">{{blog.author}}</a> {{blog.dateCreated | date:'dd/MM/yyyy'}} </p>
+                            </div>
+                        </div>
+                        <div class="blog-content our-blogs-big">
+                            <h3 class="our-blogs-title">
+                                <a href="javascript:void(0)" data-ng-click="viewDetailBlog(blog.id)" class="color-setting">{{blog.title}}</a>
+                            </h3>
+                            <p class="our-blogs-desc">{{blog.description}}</p>
+                            <div class="readmore">
+                                <a href="javascript:void(0)" data-ng-click="viewDetailBlog(blog.seoUrl)" class="color-setting">xem thêm <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </article>                   
+                    <!-- PAGES NUMBER -->
+                    <div class="shop-bottom">
+                        <p class="shop-number pull-right">Tất cả có {{totalBlogs}} bài viết</p>
+                        <pagination num-pages="noOfPages" current-page="currentPage" class="pagination-small"></pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

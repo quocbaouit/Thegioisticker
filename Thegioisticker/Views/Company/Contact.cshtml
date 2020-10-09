@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Về Chúng tôi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section ng-app="thegioistickerApp" ng-controller="companyController" class="organic-content">
+    <div class="container">
+        <div class="contact-02">
+            <div class="row contact-02-gird">
+                <div class="col-md-7">
+                    @*<div id="map" class="map-style1"></div>*@
+                    <iframe src="https://www.google.com/maps/d/embed?mid=1JpnGKlsElhLp0DKOwpsNDsBBashy5nYl" width="640" height="480"></iframe>
+                </div>
+                <form id='f11'>
+                    <div  class="col-md-5 contact-half">
+                        <h3>Hãy kết nối với chúng tôi !</h3>
+                        <div id='f11-step1' class="address-half">
+                            <div class="address-inside1">
+                                <input type="text" class="address-border1 bd-radius-5" name="name" placeholder="Tên*">
+                            </div>
+                            <div class="address-inside1">
+                                <input type="text" class="address-border1 bd-radius-5" name="email" placeholder="Email">
+                            </div>
+                            <div class="address-inside1">
+                                <textarea class="address-border1 bd-radius-5" name="msg" placeholder="Tin nhắn"></textarea>
+                            </div>
+                        </div>
+                        <div class="send-messages1">
+                            <button ng-click="sendContact()" class="button bd-radius-50 btn-setting bd-color-setting ">gởi Tin Nhắn</button>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="address-info">
+                        <h3>Công ty TNHH Thương Mại Quảng Cáo PDCA</h3>
+                        <p>Địa chỉ: 118/15 Bàu Cát 2, P.12, Q.Tân Bình, Tp.HCM</p>
+                        <p>Email: thegioiinan.today@gmail.com</p>
+                        <p>Điện thoại: 0909 371 586</p>
+                        <p>Hotline: 091 346 1539 – 0909 371 586</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- MAP JAVASCRIPT -->
+<script>
+        var map;
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+              center: new google.maps.LatLng(10.798415, 106.643494),
+            mapTypeId: 'roadmap',
+            disableDefaultUI: true
+          });
+          var icons = {
+            parking: {
+              icon:'images/Contact1-Recovered.png'
+            }
+          };
+
+          var features = [
+            {
+                position: new google.maps.LatLng(11.103092, 106.56668),
+              type: 'parking'
+            }
+          ];
+
+          // Create markers.
+          features.forEach(function(feature) {
+            var marker = new google.maps.Marker({
+              position: feature.position,
+              icon: icons[feature.type].icon,
+              map: map
+            });
+
+            var contentString = '<div id="content-gg">'+
+              '<h3 id="firstHeading" class="firstHeading">Thế giới sticker</h3>'+
+              '<p>Bến Cát, Bình Dương</p>'+
+              '</div>'
+              ;
+
+          var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                maxWidth: 300
+              });
+              marker.addListener('mouseover', function() {
+                infowindow.open(map, marker);
+              });
+          });
+
+        }
+</script>
+@*<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW-CwBhzyV2zZ1DcG1oBJtAoDW_LMQT70&callback=initMap"></script>*@

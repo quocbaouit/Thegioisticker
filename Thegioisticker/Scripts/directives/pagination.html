@@ -1,0 +1,7 @@
+﻿<div class="page-numbers pull-left">
+    <ul class="pagination">
+        <li class="page-item" ng-class="{disabled: noPrevious()}"><a class="color-setting" href="javascript:void(0)" ng-click="selectPrevious()">Previous</a></li>
+        <li class="page-item" ng-repeat="page in pages" ng-class="{active: isActive(page)}"><a class="color-setting" href="javascript:void(0)" ng-click="selectPage(page)">{{page}}</a></li>
+        <li class="page-item" ng-class="{disabled: noNext()}"><a class="color-setting" href="javascript:void(0)" ng-click="selectNext()">Next</a></li>
+    </ul>
+</div>

@@ -1,0 +1,97 @@
+﻿
+<div id="e-commerce-products" class="page-layout carded full-width">
+    <div class="top-bg bg-secondary"></div>
+    <!-- CONTENT -->
+    <div class="page-content">
+        <!-- HEADER -->
+        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+            <!-- APP TITLE -->
+            <div class="col-12 col-sm">
+                <div class="logo row no-gutters align-items-start">
+                    <div class="logo-icon mr-3 mt-1">
+                        <i class="icon-cube-outline s-6"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="h4">Cấu Hình Công Ty</div>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+            <!-- SEARCH -->
+            <div class="col search-wrapper px-2">
+                <div class="input-group">
+                    <input id="faqs-search-input" type="text" class="form-control" placeholder="Tìm Kiếm"
+                           aria-label="Search" />
+                </div>
+            </div>
+            <!-- / SEARCH -->
+        </div>
+        <!-- / HEADER -->
+        <div class="page-content-card">
+            <table id="infopage-table" class="table dataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">ID</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Tên</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Giá Trị</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Sửa</span>
+                            </div>
+                        </th>
+                        <!--<th>
+                            <div class="table-header">
+                                <span class="column-title">Xóa</span>
+                            </div>
+                        </th>-->
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+    <div id="modal-infopage" class="modal fade" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Nội Dung</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="info-form">
+                        <div class="form-group">
+                            <input ng-disabled="true" ng-model="faq.name" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                            <label>Tên</label>
+                        </div>
+                        <div id="validate-info" class="form-group">
+                            <textarea name="values" ng-model="faq.settingValue" class="form-control md-has-value" aria-describedby="product description" rows="5"></textarea>
+                            <label>Giá Trị</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button data-ng-click="saveInfo()" type="button" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

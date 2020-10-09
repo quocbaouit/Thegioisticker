@@ -1,0 +1,15 @@
+E:\Thegioisticker\Thegioisticker.Model\bin\Debug\Thegioisticker.Model.dll.config
+E:\Thegioisticker\Thegioisticker.Model\bin\Debug\Thegioisticker.Model.dll
+E:\Thegioisticker\Thegioisticker.Model\bin\Debug\Thegioisticker.Model.pdb
+E:\Thegioisticker\Thegioisticker.Model\bin\Debug\EntityFramework.dll
+E:\Thegioisticker\Thegioisticker.Model\bin\Debug\EntityFramework.SqlServer.dll
+E:\Thegioisticker\Thegioisticker.Model\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\Thegioisticker\Thegioisticker.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Thegioisticker\Thegioisticker.Model\bin\Debug\EntityFramework.xml
+E:\Thegioisticker\Thegioisticker.Model\bin\Debug\EntityFramework.SqlServer.xml
+E:\Thegioisticker\Thegioisticker.Model\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\Thegioisticker\Thegioisticker.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Thegioisticker\Thegioisticker.Model\obj\Debug\Thegioisticker.Model.csproj.CoreCompileInputs.cache
+E:\Thegioisticker\Thegioisticker.Model\obj\Debug\Thegioisticker.Model.csproj.CopyComplete
+E:\Thegioisticker\Thegioisticker.Model\obj\Debug\Thegioisticker.Model.dll
+E:\Thegioisticker\Thegioisticker.Model\obj\Debug\Thegioisticker.Model.pdb

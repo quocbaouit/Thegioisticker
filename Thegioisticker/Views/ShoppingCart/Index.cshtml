@@ -1,0 +1,222 @@
+﻿@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <style>
+        .detail-slider img {
+            margin: 0 auto;
+            width: 100%;
+            min-height: 120px;
+        }
+
+        .modal-body {
+            min-height: 400px;
+        }
+
+        textarea {
+            width: 100%;
+        }
+
+        .textwrapper {
+            border: 1px solid #999999;
+            margin: 5px 0;
+            padding: 3px;
+        }
+    </style>
+}
+<section ng-app="thegioistickerApp" ng-controller="shoppingCartController" class="organic-content">
+    <div class="container">
+        <div class="step-buy clearfix">
+            <div class="col-xs-4 step-shopping active">
+                <h3 class="step-number bg-setting bd-radius-100">01</h3>
+                <a href="javascript:void(0)" class="color-setting">GIỎ HÀNG</a>
+                <div class="step-hr-right bg-setting"></div>
+            </div>
+            <div class="col-xs-4 step-shopping">
+                <h3 class="step-number bd-radius-100">02</h3>
+                <a href="javascript:void(0)">THANH TOÁN</a>
+                <div class="step-hr-left bg-setting"></div>
+                <div class="step-hr-right"></div>
+            </div>
+            <div class="col-xs-4 step-shopping">
+                <h3 class="step-number bd-radius-100">03</h3>
+                <a href="javascript:void(0)">HOÀN TẤT ĐƠN HÀNG</a>
+                <div class="step-hr-left"></div>
+            </div>
+        </div>
+        <div class="shopping-cart">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart-product">
+                        <th>Sản Phẩm</th>
+                        <th>Số Lượng In</th>
+                        <th>Đơn Giá(VND)</th>
+                        <th>File In</th>
+                        <th>Thành Tiền(VND)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="text-align:end" ng-if="shoppingCart.length==0"><td>Không có sản phẩm nào trong giỏ hàng</td></tr>
+                    <tr ng-if="shoppingCart.length!=0" ng-repeat="product in shoppingCart" class="cart-product">
+                        <td ng-if="product.id==19" class="cart-product-one">{{product.name}}</td>
+                        <td ng-if="product.id!=19" class="cart-product-one">{{product.name}}({{product.width}}mmX{{product.height}}mm)<br /><span>{{product.machining}}</span><br /><span>{{product.cut}}</span></td>
+                        <td class="color-setting price-size"><span class="color-setting price-size">{{product.quantity | number}}</span></td>
+                        <td class="color-setting price-size"><span class="color-setting price-size">{{product.price | number}}</span></td>
+                        <td style="cursor:pointer" ng-if="product.id!=19" ng-click="showFilePopup(product)" class="color-setting price-size"><span class="color-setting price-size">Thông tin file in</span></td>
+                        <td ng-if="product.id==19" class="color-setting price-size"><span class="color-setting price-size"></span></td>
+                        <td><span class="color-setting price-size">{{product.subTotal | number}}</span></td>
+                        <td><a ng-hide="product.id==19" ng-click="removeShopping(product)" href="javascript:void(0)"><i class="fa fa-times"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row form-table">
+                <div class="col-lg-4" style="float:right">
+                    <div class="form-tax">
+                        <h4>Giỏ Hàng</h4>
+                        <div class="cart-total">
+                            <div class="form-total">
+                                <h5>Tổng Cộng(VND):</h5>
+                                <span class="color-setting price-size">{{subTotal | number}}</span>
+                            </div>
+                            <div class="form-button-one">
+                                <button ng-disabled="shoppingCart.length==0" onclick="window.location.href='/thanh-toan'" class="button btn-light bd-color-dark bd-radius-50">Thanh Toán</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-cart clearfix">
+                <button onclick="window.location.href='/thu-vien-decal'" class="button bd-radius-50 btn-setting bd-color-setting pull-right shopping-cart-update">Tiếp Tục Mua Hàng</button>
+            </div>
+        </div>
+    </div>
+    <!-- SAMPLE DETAIL PUPUP -->
+    <div id="shopping-review-popup" data-backdrop="static" style="z-index:1150" class="modal fade" role="dialog">
+        <div class="modal-dialog dialog-full">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mẫu File In</h5>
+                    <button ng-click="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="shopgird-detai-img">
+                            <div class="detail-slider">
+                                <div class="img-outline">
+                                    <img style="width:60%;margin-top:50px" ng-src="{{selectedProduct.image}}" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                        <form id='shopping-review-form'>
+                            <div class="mid-product-content media-body">
+                                <div class="form-tax" style="border:unset">
+                                    <div id="sample-info" class="billing-address">
+                                        <div ng-repeat="field in fields" class="form-group">
+                                            <div class="billing-category">
+                                                <label>{{field.text}}</label>
+                                            </div>
+                                            <div class="billing-select">
+                                                <label>{{field.value}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SAMPLE DETAIL PUPUP -->
+    <!-- DESIGN PUPUP -->
+    <div id="design-review-popup" data-backdrop="static" class="modal fade" role="dialog">
+        <div class="modal-dialog dialog-full">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<h5 class="modal-title">Modal title</h5>*@
+                    <button ng-click="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div style="padding: 20px;" class="modal-body">
+                    <div>
+                        <div class="shopgird-detai-img">
+                            <div class="detail-slider">
+                                <div class="img-outline">
+                                    <img style="max-height:400px" src="~/images/design.jpg" class="img-responsive" />
+                                </div>
+                            </div>
+                        </div>
+                        <form id='design-review-form'>
+                            <div class="mid-product-content media-body">
+                                <h3>Thiết Kế Theo Yêu Cầu </h3>
+                                <div class="product-price-one price-mid">
+                                    <span style="color:blue;font-size:20px" class="color-setting">100,000 VND</span>
+                                </div>
+                                <p>THÔNG SỐ CƠ BẢN.</p>
+                                <div class="service">
+                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Thiết kế mới độc quyền</p>
+                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Tư liệu khách hàng cung cấp</p>
+                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Số lần chỉnh sửa: 2 lần</p>
+                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Thời gian thiết kế: 4 giờ</p>
+                                </div>
+                                <h3>Thông Tin Thiết Kế.</h3>
+                                <div class="form-tax" style="border:unset">
+                                    <textarea disabled="disabled" ng-model="selectedProduct.fileDescription" name="fileDescription" rows="4" cols="100"></textarea>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End DESIGN PUPUP -->
+    <!-- UPLOAD PUPUP -->
+    <div id="upload-review-popup" data-backdrop="static" class="modal fade" role="dialog">
+        <div class="modal-dialog dialog-full">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<h5 class="modal-title">Modal title</h5>*@
+                    <button ng-click="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div style="padding: 20px;" class="modal-body">
+                    <div>
+                        <div class="shopgird-detai-img">
+                            <div class="detail-slider">
+                                <div class="img-outline">
+                                    <img src="~/images/upanh.png" class="img-responsive" />
+                                </div>
+                            </div>
+                        </div>
+                        <form id='upload-review-form'>
+                            <div class="mid-product-content media-body">
+                                <h3>file in </h3>
+                                <div data-provides="fileinput" class="form-group billing-country">
+                                    <div ng-repeat="url in selectedProduct.imageUrls ">
+                                        <a href="{{url}}">{{url}}</a>
+                                        <br />
+                                    </div>
+                                </div>
+                                <h3>Ghi chú.</h3>
+                                <div class="form-tax" style="border:unset">
+                                    <textarea disabled="disabled" ng-model="selectedProduct.fileDescription" name="fileDescription" rows="4" cols="100"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End UPLOAD PUPUP -->
+</section>

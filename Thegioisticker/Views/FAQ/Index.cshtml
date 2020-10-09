@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Câu hỏi thường gặp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    div[data-toggle="collapse"]{
+  cursor:pointer;
+}
+</style>
+<section ng-app="thegioistickerApp" ng-controller="faqController" class="organic-content">
+    <div class="container">
+        <div class="panel-group" id="faqAccordion">
+            <div ng-repeat="faq in faqs" class="panel panel-default faq-coat">
+                <div class="panel-heading faq-head bd-color-left-setting" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question{{$index}}">
+                    <h4 class="panel-title">
+                        {{faq.question}}
+                    </h4>
+                    <span class="accordion-toggle question-toggle collapsed"><i class="fa fa-plus color-setting" aria-hidden="true"></i></span>
+                </div>
+                <div id="question{{$index}}" class="panel-collapse collapse">
+                    <div class="panel-body faq-text">
+                        <p>
+                            {{faq.answer}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

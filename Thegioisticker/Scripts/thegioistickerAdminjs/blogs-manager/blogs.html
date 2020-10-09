@@ -1,0 +1,164 @@
+﻿
+<div id="e-commerce-products" class="page-layout carded full-width">
+    <div class="top-bg bg-secondary"></div>
+    <!-- CONTENT -->
+    <div class="page-content">
+        <!-- HEADER -->
+        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+            <!-- APP TITLE -->
+            <div class="col-12 col-sm">
+                <div class="logo row no-gutters align-items-start">
+                    <div class="logo-icon mr-3 mt-1">
+                        <i class="icon-cube-outline s-6"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="h4">Quản Lý Tin Tức</div>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+            <!-- SEARCH -->
+            <div class="col search-wrapper px-2">
+                <div class="input-group">
+                    <input id="blogs-search-input" type="text" class="form-control" placeholder="Tìm Kiếm"
+                           aria-label="Search" />
+                </div>
+            </div>
+            <!-- / SEARCH -->
+            <div class="col-auto">
+                <a href="javascript:void(0)" data-ng-click="createBlog()" class="btn btn-secondary">Thêm Mới</a>
+            </div>
+        </div>
+        <!-- / HEADER -->
+        <div class="page-content-card">
+            <table id="blog-table" class="table dataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">ID</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Tiêu Đề</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Tác Giả</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Ảnh Đại Diện</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Mô Tả</span>
+                            </div>
+                        </th>
+                        <!--<th>
+                            <div class="table-header">
+                                <span class="column-title">Trên Trang Chủ</span>
+                            </div>
+                        </th>-->
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Nội Dung</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Sửa</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Xóa</span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+    <div id="modal-blog" class="modal fade" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Nội Dung</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="container-fluid">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <input ng-model="blog.title" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                <label>Tiêu Đề</label>
+                            </div>
+                            <div class="form-group col-md-6 col-md-offset-6">
+                                <input ng-model="blog.author" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                <label>Tác Giả</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--<div class="form-group col-md-6">
+                                <img ng-src="blog.image"  class="md-has-value" aria-describedby="product name" />
+                                <label>Hình</label>
+                            </div>-->
+                            <div class="form-group col-md-6">
+                                <label for="repeatSelect">Hiển Thị Trên Trang Chủ</label>
+                                <select name="repeatSelect" id="repeatSelect" ng-model="blog.isInHomePage" class="form-control"
+                                        ng-options="o.v as o.n for o in [{ n: 'Không', v: false }, { n: 'Có', v: true }]"></select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <textarea rows="5" ng-model="blog.description" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                <label>Mô Tả</label>
+                            </div>
+                        </div>
+                        <!--<div class="row">
+                            <div id="summernote"></div>
+                        </div>-->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button data-ng-click="saveBlog()" type="button" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-lg-content" class="modal fade" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Nội Dung</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="container-fluid">
+                    <div style="margin:2px 2px 2px 2px" id="view-content" class="row">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

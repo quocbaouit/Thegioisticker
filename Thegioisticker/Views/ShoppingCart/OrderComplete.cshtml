@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Hoàn Tất Đơn Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section ng-app="thegioistickerApp" ng-controller="companyController" class="organic-content">
+    <div class="container">
+        <div class="step-buy clearfix">
+            <div class="col-xs-4 step-shopping active">
+                <h3 class="step-number bg-setting bd-radius-100">01</h3>
+                <a href="javascript:void(0)" class="color-setting">Giỏ Hàng</a>
+                <div class="step-hr-right bg-setting"></div>
+            </div>
+            <div class="col-xs-4 step-shopping active">
+                <h3 class="step-number bg-setting bd-radius-100">02</h3>
+                <a href="javascript:void(0)" class="color-setting">Thanh Toán</a>
+                <div class="step-hr-left bg-setting"></div>
+                <div class="step-hr-right bg-setting"></div>
+            </div>
+            <div class="col-xs-4 step-shopping active">
+                <h3 class="step-number bg-setting bd-radius-100">03</h3>
+                <a href="javascript:void(0)" class="color-setting">Hoàn Tất Đơn Hàng</a>
+                <div class="step-hr-left bg-setting"></div>
+            </div>
+        </div>
+        <div class="headding">
+            <p class="congratulations">Mã đơn hàng của @Model.customerName là<span style="color:red"> @Model.orderId </span>. Vui lòng cung cấp tên và mã đơn hàng vào nội dung khi thanh toán chuyển khoản.</p>
+        </div>
+        <div id="thanhtoangiaohang">
+        </div>        
+    </div>
+   </section>

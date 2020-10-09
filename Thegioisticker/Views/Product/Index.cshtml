@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Sản Phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section ng-app="thegioistickerApp" ng-controller="productController" class="organic-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <div class="categories">
+                        <h3 class="sidebar-title">Danh Mục</h3>
+                        <ul>
+                            <li ng-class='{active:$first}' ng-repeat="category in categories" class="categories-list">
+                                <a href="javascript:void(0)" data-ng-click="searchByCategory(category.id)" class="color-setting">{{category.name}}<span>({{category.numberProduct}})</span></a>
+                            </li>
+                            <li class="categories-list"><a href="javascript:void(0)" class="color-setting" onclick="location.href = '/thu-vien-decal';">Vào Thư Viện Decal</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-theme text-center bg-setting">
+                        <h3>Báo giá nhanh</h3>
+                        <p class="color-white">Báo giá nhanh các sản phẩm in ấn của thế giới sticker.</p>
+                        <button onclick="location.href = '/bao-gia-nhanh';" class="button btn-shopnow bd-radius-50">Vào Báo Giá</button>
+                    </div>
+                    <div class="product-list clearfix">
+                        <h3 class="sidebar-title">Danh Mục In</h3>
+                        <p ng-if="!recentProducts ||recentProducts.length==0">Không có sản phẩm nào vừa xem.</p>
+                        <div ng-repeat="product in recentProducts" class="product">
+                            <div class="media-left product-img">
+                                <a ng-click="viewDetail(product.seoUrl)" href="javascript:void(0)"><img ng-src="{{product.image}}" alt="{{product.name}}"></a>
+                            </div>
+                            <div class="product-price media-right">
+                                <h3><a ng-click="viewDetail(product.seoUrl)" href="javascript:void(0)" class="color-setting">{{product.name}}</a></h3>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="content-product">
+                    <div class="row">
+                        <div ng-if="products" style="min-width:260px" ng-repeat="product in products" class="col-xs-6 col-sm-4 animated fadeInDown">
+                            <div class="product-item bd-color-setting">
+                                <div class="product-image item">
+                                    <img ng-src="{{product.image}}" alt="our product">
+                                    @*<div class="quick-action">
+                                        <a class="btn button btn-setting bd-color-setting bd-radius-5 cart" ng-click="viewDetail(product.id)" href="javascript:void(0)">Chi Tiết</a>
+                                        <a class="btn button btn-setting bd-color-setting bd-radius-5 like add-to-cart" href="javascript:void(0)" data-ng-click="addToshoppingCart(product)">Mua Hàng</a>                                  
+                                    </div>*@
+                                </div>
+                                <div class="product-text">
+                                    <div class="product-name">
+                                        <h3 class="product-title">
+                                            <a ng-click="viewDetail(product.id)" href="javascript:void(0)" class="color-setting">{{product.name}}</a>
+                                        </h3>
+                                    </div>
+                                    @*<div class="product-price">
+                                        <span class="price color-setting">{{product.price | number}} VND/KG</span>
+                                    </div>*@
+                                </div>
+                            </div>
+                        </div> <!-- /product-item -->
+                    </div>
+                </div>
+                <!-- PAGES NUMBER -->
+                <div class="shop-bottom">
+                    <p class="shop-number pull-right">Tất cả có {{totalProduct}} sản phẩm</p>
+                    <pagination num-pages="noOfPages" current-page="currentPage" class="pagination-small"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,388 @@
+﻿@{
+    ViewBag.Title = "Tài Khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Scripts/assets/vendor/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+<style>
+    div[data-toggle="collapse"] {
+        cursor: pointer;
+    }
+    .modal-body {
+        min-height: 400px;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    .textwrapper {
+        border: 1px solid #999999;
+        margin: 5px 0;
+        padding: 3px;
+    }
+</style>
+<section ng-app="thegioistickerApp" ng-controller="userController" class="organic-content">
+    <div data-ng-hide="!authentication.isAuth" class="container">
+        <form id='f1'>
+            <div class="check-out">
+
+                <div data-ng-hide="!authentication.isAuth" class="row">
+                    <div id='f1-step1' class="col-md-12 col-lg-12">
+                        <div class="form-tax">
+                            <h4>Thông Tin Cá Nhân</h4>
+                            <div class="billing-address">
+                                <div class="form-group billing-country">
+                                    <div class="billing-category">
+                                        <label>Họ Và Tên *</label>
+                                    </div>
+                                    <div class="billing-select">
+                                        <input name="fullName" ng-model="customer.fullName" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group billing-country">
+                                    <div class="billing-category">
+                                        <label>Địa Chỉ *</label>
+                                    </div>
+                                    <div class="billing-select">
+                                        <input name="address" ng-model="customer.address" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group billing-country">
+                                    <div class="billing-category">
+                                        <label>Email *</label>
+                                    </div>
+                                    <div class="billing-select">
+                                        <input name="email" ng-model="customer.email" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group billing-country">
+                                    <div class="billing-category">
+                                        <label>Số Điện Thoại *</label>
+                                    </div>
+                                    <div class="billing-select">
+                                        <input name="phoneNumber" ng-model="customer.phoneNumber" type="text">
+                                    </div>
+                                </div>
+                                <button style="min-width:250px" ng-click="updateCustomer()" class="button  bd-radius-50 btn-setting bd-color-setting">Cật Nhật Thông Tin</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="check-out">
+                <div data-ng-hide="!authentication.isAuth" class="row">
+                    <div id='f1-step2' class="col-md-12 col-lg-12">
+                        <div class="form-tax">
+                            <h4>Đổi Mật Khẩu</h4>
+                            <div class="billing-address">
+                                <div class="form-group billing-country">
+                                    <div class="billing-category">
+                                        <label>Mật Khẩu Cũ *</label>
+                                    </div>
+                                    <div class="billing-select">
+                                        <input name="currentPassworld" ng-model="changePassWord.curentPassWord" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-group billing-country">
+                                    <div class="billing-category">
+                                        <label>Mật Khẩu Mới *</label>
+                                    </div>
+                                    <div class="billing-select">
+                                        <input name="newPassword" ng-model="changePassWord.newPassword" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-group billing-country">
+                                    <div class="billing-category">
+                                        <label>Xác Nhận Mật Khẩu Mới *</label>
+                                    </div>
+                                    <div class="billing-select">
+                                        <input name="confirmNewpasword" ng-model="changePassWord.confirmNewPassword" type="password">
+                                    </div>
+                                </div>
+                                <button style="min-width:250px" ng-click="changePassword()" class="button  bd-radius-50 btn-setting bd-color-setting">Đổi Mật Khẩu</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <table id="order-table" class="table dataTable">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">ID</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">Tên Khách Hàng</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">Mã Giảm Giá</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">Loại Giã</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">Giá trị</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">Tổng Cộng(VND)</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">Hình Thức Thanh Toán</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">Trạng Thái</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">Ghi Chú</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">Ngày Đặt Hàng</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">Ngày Giao</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="table-header">
+                            <span class="column-title">Chi Tiết</span>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="modal-lg" class="modal fade" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Mã Đơn Hàng {{order.id}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label>Khách Hàng</label>
+                                    <input disabled="disabled" ng-model="order.customerName" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Tổng Tiền</label>
+                                    <input number-input disabled="disabled" ng-model="order.total" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="formControlSelect1">Hình Thức Thanh Toán</label>
+                                    <select disabled="disabled" ng-model="order.payMentMethol" ng-options="o for o in DeleveryOptions track by o" class="form-control" id="formControlSelect1"></select>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="repeatSelect"> Trạng Thái Đơn Hàng </label>
+                                    <select disabled="disabled" name="repeatSelect" id="repeatSelect" ng-model="order.orderStatus" class="form-control">
+                                        <option ng-repeat="option in availableOptions track by option.id" value="{{option.id}}">{{option.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label>Ghi Chú</label>
+                                    <input disabled="disabled" ng-model="order.note" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Ngày Giao</label>
+                                    <input disabled="disabled" ng-model="order.deliveryDate" type="datetime-local" class="form-control md-has-value" aria-describedby="product name" />
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <h5>Chi Tiết Đơn Hàng</h5>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên Sản Phẩm</th>
+                                            <th>Số Lượng</th>
+                                            <th>Đơn Giá(VND)</th>
+                                            <th>Thành Tiền(VND)</th>
+                                            <th>File In</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="detail in orderDetail">
+                                            <td ng-if="detail.productId!=19">{{detail.productName}}({{detail.width}}mmX{{detail.height}}mm)<br /><span>{{detail.machining}}</span><br /><span>{{detail.cut}} &nbsp;{{detail.cutType}} </span></td>
+                                            <td ng-if="detail.productId==19">{{detail.productName}}</td>
+                                            <td>{{detail.quantity}}</td>
+                                            <td>{{detail.price | number}}</td>
+                                            <td>{{detail.subTotal |number}}</td>
+                                            <td style="cursor:pointer" ng-if="detail.id!=19" ng-click="showFilePopup(detail)" class="color-setting price-size"><span class="color-setting price-size">Thông tin file in</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SAMPLE DETAIL PUPUP -->
+    <div id="shopping-review-popup" data-backdrop="static" style="z-index:1150" class="modal fade" role="dialog">
+        <div class="modal-dialog dialog-full">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mẫu File In</h5>
+                    <button ng-click="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="shopgird-detai-img">
+                            <div class="detail-slider">
+                                <div class="img-outline">
+                                    <img style="width:60%;margin-top:50px" ng-src="{{selectedProduct.image}}" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                        <form id='shopping-review-form'>
+                            <div class="mid-product-content media-body">
+                                <div class="form-tax" style="border:unset">
+                                    <div id="sample-info" class="billing-address">
+                                        <div ng-repeat="field in fields" class="form-group">
+                                            <div class="billing-category">
+                                                <label>{{field.text}}</label>
+                                            </div>
+                                            <div class="billing-select">
+                                                <label>{{field.value}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SAMPLE DETAIL PUPUP -->
+    <!-- DESIGN PUPUP -->
+    <div id="design-review-popup" data-backdrop="static" class="modal fade" role="dialog">
+        <div class="modal-dialog dialog-full">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<h5 class="modal-title">Modal title</h5>*@
+                    <button ng-click="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div style="padding: 20px;" class="modal-body">
+                    <div>
+                        <div class="shopgird-detai-img">
+                            <div class="detail-slider">
+                                <div class="img-outline">
+                                    <img style="max-height:400px" src="~/images/design.jpg" class="img-responsive" />
+                                </div>
+                            </div>
+                        </div>
+                        <form id='design-review-form'>
+                            <div class="mid-product-content media-body">
+                                <h3>Thiết Kế Theo Yêu Cầu </h3>
+                                <div class="product-price-one price-mid">
+                                    <span style="color:blue;font-size:20px" class="color-setting">100,000 VND</span>
+                                </div>
+                                <p>THÔNG SỐ CƠ BẢN.</p>
+                                <div class="service">
+                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Thiết kế mới độc quyền</p>
+                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Tư liệu khách hàng cung cấp</p>
+                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Số lần chỉnh sửa: 2 lần</p>
+                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Thời gian thiết kế: 4 giờ</p>
+                                </div>
+                                <h3>Thông Tin Thiết Kế.</h3>
+                                <div class="form-tax" style="border:unset">
+                                    <textarea disabled="disabled" ng-model="selectedProduct.fileDescription" name="fileDescription" rows="4" cols="100"></textarea>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End DESIGN PUPUP -->
+    <!-- UPLOAD PUPUP -->
+    <div id="upload-review-popup" data-backdrop="static" class="modal fade" role="dialog">
+        <div class="modal-dialog dialog-full">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<h5 class="modal-title">Modal title</h5>*@
+                    <button ng-click="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div style="padding: 20px;" class="modal-body">
+                    <div>
+                        <div class="shopgird-detai-img">
+                            <div class="detail-slider">
+                                <div class="img-outline">
+                                    <img src="~/images/upanh.png" class="img-responsive" />
+                                </div>
+                            </div>
+                        </div>
+                        <form id='upload-review-form'>
+                            <div class="mid-product-content media-body">
+                                <h3>file in </h3>
+                                <div data-provides="fileinput" class="form-group billing-country">
+                                    <div ng-repeat="url in selectedProduct.imageUrls ">
+                                        <a target="_blank" href="{{url}}">{{url}}</a>
+                                        <br />
+                                    </div>
+                                </div>
+                                <h3>Ghi chú.</h3>
+                                <div class="form-tax" style="border:unset">
+                                    <textarea disabled="disabled" ng-model="selectedProduct.fileDescription" name="fileDescription" rows="4" cols="100"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End UPLOAD PUPUP -->
+</section>

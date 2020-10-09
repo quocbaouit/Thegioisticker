@@ -1,0 +1,291 @@
+﻿
+<div id="e-commerce-products" class="page-layout carded full-width">
+    <div class="top-bg bg-secondary"></div>
+    <!-- CONTENT -->
+    <div class="page-content">
+        <!-- HEADER -->
+        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+            <!-- APP TITLE -->
+            <div class="col-12 col-sm">
+                <div class="logo row no-gutters align-items-start">
+                    <div class="logo-icon mr-3 mt-1">
+                        <i class="icon-cube-outline s-6"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="h4">Quản Lý Đơn Hàng</div>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+            <!-- SEARCH -->
+            <div class="col search-wrapper px-2">
+                <div class="input-group">
+                    <input id="orders-search-input" type="text" class="form-control" placeholder="Tìm Kiếm"
+                           aria-label="Search" />
+                </div>
+            </div>
+            <!-- / SEARCH -->
+            <!--<div class="col-auto">
+                <a href="javascript:void(0)" data-ng-click="createOrder()" class="btn btn-secondary">Thêm Mới</a>
+            </div>-->
+        </div>
+        <!-- / HEADER -->
+        <div class="page-content-card">
+            <table id="order-table" class="table dataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">ID</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Tên Khách Hàng</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Tổng Cộng(VND)</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Hình Thức Thanh Toán</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Trạng Thái</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Ghi Chú</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Ngày Đặt Hàng</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Ngày Giao</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Chi Tiết</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Xóa</span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+    <div id="modal-orderpage" class="modal fade" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Mã Đơn Hàng {{order.id}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <input ng-model="order.customerName" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                    <label>Khách Hàng</label>
+                                </div>
+                                <div class="form-group col-md-6 col-md-offset-6">
+                                    <input ng-model="order.total" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                    <label>Tổng Tiền</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="formControlSelect1">Hình Thức Thanh Toán</label>
+                                    <select ng-model="order.payMentMethol" ng-options="o for o in DeleveryOptions track by o" class="form-control" id="formControlSelect1">                                     
+                                    </select>                                   
+                                </div>
+                                <div class="form-group col-md-6 col-md-offset-6">
+                                    <label for="repeatSelect"> Trạng Thái Đơn Hàng </label>
+                                    <select name="repeatSelect" id="repeatSelect" ng-model="order.orderStatus" class="form-control">
+                                        <option ng-repeat="option in availableOptions track by option.id" value="{{option.id}}">{{option.name}}</option>
+                                    </select>                         
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <input ng-model="order.note" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                    <label>Ghi Chú</label>
+                                </div>
+                                <div class="form-group col-md-6 col-md-offset-6">
+                                    <input ng-model="order.deliveryDate" type="datetime-local" class="form-control md-has-value" aria-describedby="product name" />
+                                    <label>Ngày Giao</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <h5>Chi Tiết Đơn Hàng</h5>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên Sản Phẩm</th>
+                                            <th>Số Lượng</th>
+                                            <th>Đơn Giá</th>
+                                            <th>Thành Tiền</th>
+                                            <th>Sửa</th>
+                                            <th>Xóa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="detail in orderDetail">
+                                            <td>{{detail.productName}}</td>
+                                            <td>{{detail.quantity}}</td>
+                                            <td>{{detail.price}}</td>
+                                            <td>{{detail.subTotal}}</td> 
+                                            <td><button data-ng-click="editDetail(detail)" type="button" class="btn btn-icon" aria-label="Product details"><i class="icon icon-eye-outline s-4"></i></button></td>
+                                            <td><button data-ng-click="deleteDetail(detail)" type="button" class="btn btn-icon" aria-label="Product details"><i class="icon icon-delete-circle s-4"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button data-ng-click="saveOrder()" type="button" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-lg-detail" class="modal fade" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Chỉnh Sửa Chi Tiết Đơn Hàng</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <input ng-model="detail.productName" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                    <label>Tên Sản Phẩm</label>
+                                </div>
+                                <div class="form-group col-md-6 col-md-offset-6">
+                                    <input ng-model="detail.quantity" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                    <label>Số Lượng</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <input ng-model="detail.price" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                    <label>Đơn Giá</label>
+                                </div>
+                                <div class="form-group col-md-6 col-md-offset-6">
+                                    <input ng-model="detail.subTotal" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                    <label>Thành Tiền</label>
+                                </div>
+                            </div>
+                            <div ng-if="detail.fileType==1" class="row">
+                                <div class="form-group col-md-12">
+                                    <label>Chọn mẫu từ thư viện</label>
+                                    <a target="_blank" href="{{detail.image}}">hình mẫu</a>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Ghi chú</label>
+                                    <p>{{detail.fileDescription}}</p>
+                                    <div ng-repeat="field in fields" class="form-group">
+                                        <label>{{field.text}}</label>
+                                        <label>{{field.value}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="detail.fileType==2" class="row">
+                                <div class="form-group col-md-12">
+                                    <label>Thiết kế theo yêu cầu</label>
+                                    <p>Ghi chú:&nbsp; {{detail.fileDescription}}</p>
+                                </div>
+                            </div>
+                            <div ng-if="detail.fileType==3" class="row">
+                                <div ng-repeat="imageUrl in imageUrls" class="form-group col-md-12">
+                                    <label>File được tải lên</label>
+                                    <a target="_blank" href="{{imageUrl}}">{{imageUrl}}</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đồng Ý</button>
+                    <!--<button data-ng-click="saveOrderDetail()" type="button" class="btn btn-primary">Lưu</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-lg-customer" class="modal fade" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Nội Dung</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input ng-model="customer.fullName" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                            <label>Họ Và Tên</label>
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="customer.email" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                            <label>Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea ng-model="customer.address" class="form-control md-has-value" aria-describedby="product description" rows="5"></textarea>
+                            <label>Địa Chỉ</label>
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="customer.phoneNumber" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                            <label>Số Điện Thoại</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button data-ng-click="saveCustomer()" type="button" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

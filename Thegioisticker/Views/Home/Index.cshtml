@@ -1,0 +1,355 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+        /*       border: groove;*/
+        border-color: cornflowerblue;
+    }
+
+    .our-blogs-title {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+        width: 280px;
+    }
+
+    .dropdown-menu {
+        position: unset !important;
+    }
+
+    .nav-tabs > li {
+        width: 14%;
+        min-width: 30px;
+        /*width: 6%;
+        min-width: 80px;*/
+    }
+
+    .nav > li > a > img {
+        width: 100%;
+    }
+
+    .nav > li > a {
+        position: relative;
+        display: block;
+        padding: 2px 5px;
+    }
+
+    .nav-tabs {
+        border-bottom: unset;
+    }
+
+    .product-name {
+        margin-bottom: unset;
+    }
+
+        .product-name:hover {
+            background: deeppink;
+        }
+
+            .product-name:hover a {
+                color: white;
+            }
+
+    .product-title:hover a {
+        color: white;
+    }
+
+    .product-image {
+        margin-bottom: unset;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    .textwrapper {
+        border: 1px solid #999999;
+        margin: 5px 0;
+        padding: 3px;
+    }
+
+    .modal-body {
+        min-height: 400px;
+    }
+
+  /*  .billing-category {
+        padding-top: 10px;
+    }*/
+</style>
+<div ng-app="thegioistickerApp" ng-controller="homeController">
+    <!-- Start Banner -->
+    <section id="deal-of-week" class="deal-of-week-home01">
+        <div class="container">
+            <div style="padding-top:50px;padding-bottom:unset; text-decoration:underline;text-decoration-color:deeppink" class="headding">
+                <h2 class="title">Báo Giá Nhanh</h2>
+            </div>
+            <div class="row">
+                <div class="deal-of-week-gird clearfix">
+                    <div class="col-md-6 col-lg-7">
+                        <div class="row">
+                            <div style="width:100%" class="shopgird-detai-img">
+                                <div class="detail-slider">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <ul class="nav nav-tabs">
+                                <li ng-repeat="shape in shapes">
+                                    <a ng-click="searchByCategory($event,shape.id)" data-toggle="tab" href="javascript:void(0)">
+                                        <img ng-src="{{shape.image}}" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+           
+                         
+
+                    </div>
+                    <div class="col-md-6 col-lg-5 deal-of-week-content">
+                        <form id='f1'>
+                            <div id='f1-step1' class="mid-product-content media-body">
+                                <div class="form-tax">
+                                    <h4>{{product.name}}</h4>
+                                    <div class="billing-address">
+                                        <div class="form-group">
+                                            <div class="billing-category">
+                                                <label>Kính thước *</label>
+                                            </div>
+                                            <div class="billing-select">
+                                                <input maxlength="4" ng-model="shoppingCart.width" number-input style="width:43%;float:left;margin-right:25px" placeholder="ngang(mm)" name="width" type="text">
+                                                <input maxlength="4" ng-model="shoppingCart.height" number-input style="width:43%;float:left;" placeholder="cao(mm)" name="height" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="billing-category">
+                                                <label>Số lượng cần in *</label>
+                                            </div>
+                                            <div class="billing-select">
+                                                <input maxlength="7" interger-input ng-model="shoppingCart.quantity" num-only name="quantity" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="billing-category">
+                                                <label>Loại decal</label>
+                                            </div>
+                                            <div class="billing-select">
+                                                <select ng-model="shoppingCart.material"
+                                                        ng-options="opt as opt.name for opt in options track by opt.code">
+                                                </select>
+                                                @*<p ng-if="invoicePrintPrice>0">{{invoicePrintPrice|number}} (VND)</p>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="billing-category">
+                                                <label>Cán màng</label>
+                                            </div>
+                                            <div class="billing-select">
+                                                <select ng-model="shoppingCart.machining"
+                                                        ng-options="opt as opt.label for opt in machinings">
+                                                </select>
+                                                @*<p ng-if="invoiceMachining>0">{{invoiceMachining|number}} (VND)</p>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="billing-category">
+                                                <label>Bế</label>
+                                            </div>
+                                            <div class="billing-select">
+                                                <select ng-model="shoppingCart.cut"
+                                                        ng-options="opt as opt.label for opt in cuts">
+                                                </select>
+                                                @*<p ng-if="invoiceCut>0">{{invoiceCut|number}} (VND)</p>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="billing-category">
+                                                <label>Đơn Giá</label>
+                                            </div>
+                                            <div class="billing-select">
+                                                <p>{{price |number}}(VND)</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="billing-category">
+                                                <label>Thành Tiền</label>
+                                            </div>
+                                            <div class="billing-select">
+                                                <p>{{subTotal |number}}(VND)</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="radio-inline">
+                                                <input ng-model="fileType.name" value="design" type="radio" name="fileradio">Thiết Kế Theo Yêu Cầu
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input ng-model="fileType.name" value="sample" type="radio" name="fileradio">Chọn Mẫu
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input ng-model="fileType.name" value="upload" type="radio" name="fileradio" >Upload File
+                                            </label>
+                                        </div>
+
+                                        <button data-ng-click="shopNow()" class="button  bd-radius-50 btn-setting bd-color-setting ">Đặt In Ngay</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="baner" style="margin-top:50px">
+        <div class="container">
+            <img src="~/images/in-nhanh-gia-re-01.png" />
+        </div>
+    </section>
+    <!-- Our Product -->
+    <section id="our-product">
+        <div class="container">
+            <div class="headding">
+                <h2 class="title" style="text-decoration:underline;text-decoration-color:deeppink">
+                    DANH MỤC IN
+                </h2>
+            </div>
+            <div class="our-product-gird tab-content">
+                <div class="tab-pane fade in active" id="all-product">
+                    <div class="row">
+                        <div ng-repeat="product in regularProducts" class="col-xs-6 col-sm-4 col-md-3">
+                            <div class="product-item bd-color-setting">
+                                <div class="product-image">
+                                    <img ng-src="{{product.image}}" alt="{{product.name}}">
+                                </div>
+                                <div class="product-text">
+                                    <div class="product-name">
+                                        <h3 class="product-title">
+                                            <a ng-click="viewDetail(product.seoUrl)" href="javascript:void(0)">{{product.name}}</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Our Product -->
+    <!-- TESTIMONIAL -->
+    <div class="headding">
+        <h2 class="title" style="text-decoration:underline;text-decoration-color:deeppink">
+            CẢM NHẬN KHÁCH HÀNG
+        </h2>
+    </div>
+    <section id="testimonial">
+
+        <div class="container">
+
+            <div class="testimonial-slide owl-carousel owl-theme">
+                <div ng-repeat="testimonial in testimonials" class="testimonial-item bd-radius-5">
+                    <div class="testimonial-text">
+                        <img ng-src="{{testimonial.image}}" src="~/images/home01/author1.png" alt="testimonial" />
+                        <h3 class="testimonial-name">
+                            <a href="javascript:void(0)" class="color-setting">{{testimonial.name}}</a>
+                        </h3>
+                        <div class="testimonial-job color-setting">{{testimonial.job}}</div>
+                    </div>
+                    <div class="testimonial-desc"><q>{{testimonial.testimonial}}</q></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End TESTIMONIAL -->
+    <!-- OUR BLOGS -->
+    <section id="our-blogs">
+        <div class="container">
+            <div class="headding">
+                <h2 class="title" style="text-decoration:underline;text-decoration-color:deeppink">Tin Tức</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="our-blogs-item our-blogs-big">
+                        @*<div class="our-blogs-item-img">
+            <iframe style="width:100%"height="400" src="https://www.youtube.com/embed/BAHwF6aXnY4">
+            </iframe>
+        </div>*@
+                        <div class="our-blogs-item-img">
+                            <video style="width:100%" class="img-responsive" controls="controls">
+                                <source src="~/Uploads/phim.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                        <h3 class="our-blogs-title">
+                            Quy Trình In Ấn Tại Thế Giới Sticker.
+                        </h3>
+                        <p class="our-blogs-desc">
+                            -Tư vấn thiết kế và in thử miễn phí.<br />
+                            -In nhanh và in 24/24 cho khách cần gấp .<br />
+                            -Giá góc tận xưởng sản xuất.<br />
+                            -Đặt hàng ngay nhận ưu đãi.<br />
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="our-blogs-item">
+                        <div class="our-blogs-item-img">
+                            <img ng-src="{{blog1.image}}" class="img-responsive" />
+                        </div>
+                        <div class="our-blogs-time">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <span> {{blog1.dateCreated | date:"dd/MM/yyyy"}}</span>
+                        </div>
+                        <h3 class="our-blogs-title">
+                            <a href="/thong-tin-chi-tiet/{{blog1.seoUrl}}" class="color-setting">{{blog1.title}}</a>
+                        </h3>
+                        <div class="readmore">
+                            <a href="/thong-tin-chi-tiet/{{blog1.seoUrl}}" class="color-setting">xem thêm. <i class="fa fa-angle-double-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="our-blogs-item">
+                        <div class="our-blogs-item-img">
+                            <img ng-src="{{blog2.image}}" class="img-responsive" />
+                        </div>
+                        <div class="our-blogs-time">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <span> {{blog2.dateCreated | date:"dd/MM/yyyy"}}</span>
+                        </div>
+                        <h3 class="our-blogs-title">
+                            <a href="/thong-tin-chi-tiet/{{blog2.seoUrl}}" class="color-setting">{{blog2.title}}</a>
+                        </h3>
+                        <div class="readmore">
+                            <a href="/thong-tin-chi-tiet/{{blog2.seoUrl}}" class="color-setting">xem thêm <i class="fa fa-angle-double-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End OUR BLOGS -->
+    <!-- Subscribe -->
+    <section id="newletter" class="newletter-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 newletter-text">
+                    <h4 class="newletter-title color-setting">Đăng Ký Để Nhận Tin Khuyến Mãi</h4>
+                </div>
+                <div class="col-md-4">
+                    <div class="newletter-input bd-radius-50">
+                        <input ng-model="newLetterText" type="text" name="search" class="ip-newletter" placeholder="Nhập email của bạn...">
+                        <button ng-click="newLetter()" class="btn button btn-setting btn-newletter">Đăng Ký</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Subscribe -->
+
+</div>
+
+

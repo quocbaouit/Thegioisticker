@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Thư Viện Ảnh Decal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+        /*       border: groove;*/
+        border-color: cornflowerblue;
+    }
+
+    .nav-tabs > li {
+        min-width: 80px;
+        max-width: 130px;
+    }
+    .modal-body {
+        min-height: 400px;
+    }
+</style>
+<section ng-app="thegioistickerApp" ng-controller="galleryController" class="organic-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="sidebar">
+                    <div class="product-list clearfix">
+                        <h3 class="sidebar-title">Danh Mục In</h3>
+                        <p ng-if="!printingCategory ||printingCategory.length==0">Không có sản phẩm nào vừa xem.</p>
+                        <div ng-repeat="product in printingCategory" class="product">
+                            <div class="media-left product-img">
+                                <a ng-click="viewDetail(product.seoUrl)" href="javascript:void(0)"><img ng-src="{{product.image}}" alt="{{product.name}}"></a>
+                            </div>
+                            <div class="product-price media-right">
+                                <h3><a ng-click="viewDetail(product.seoUrl)" href="javascript:void(0)" class="color-setting">{{product.name}}</a></h3>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <ul class="nav nav-pills nav-justified">
+                    <li class="active"><a style="height: 50px; line-height: 50px; padding-top: 0; padding-bottom: 0; border-radius: 0; background: #eceff6; color: #232530; font-weight: 500;" data-toggle="pill" href="#descrition" class="btn-setting">Theo Kiểu Bế</a></li>
+                    <li><a style="height: 50px; line-height: 50px; padding-top: 0; padding-bottom: 0; border-radius: 0; background: #eceff6; color: #232530; font-weight: 500;" data-toggle="pill" href="#additional" class="btn-setting">Theo Chất Liệu In</a></li>
+                </ul>
+                <div class="tab-content detail-tab">
+                    <div id="descrition" class="tab-pane fade in active">
+                        <ul class="nav nav-tabs">
+                            <li ng-repeat="shape in shapes">
+                                <a ng-click="searchByCategory(shape.id)" data-toggle="tab" href="javascript:void(0)">
+                                    <img ng-src="{{shape.image}}" />
+                                </a>
+                            </li>
+                        </ul>
+                        <br /><br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="content-product">
+                                    <div class="row">
+
+                                        <div ng-if="products" style="min-width:260px" ng-repeat="product in products" class="col-xs-6 col-sm-3 animated fadeInDown">
+                                            <div class="product-item bd-color-setting">
+                                                <div class="product-image item">
+                                                    <img ng-src="{{product.image}}" alt="our product">
+                                                    <div class="quick-action">
+                                                        <a class="btn button btn-setting bd-color-setting bd-radius-5 cart" ng-click="showLibrary(product.id)" href="javascript:void(0)">Dùng Mẫu Này</a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-text">
+                                                    <div class="product-name">
+                                                        <h3 class="product-title">
+                                                            <a ng-click="viewDetail(product.id)" href="javascript:void(0)" class="color-setting">{{product.name}}</a>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- /product-item -->
+                                    </div>
+                                </div>
+
+                                <!-- PAGES NUMBER -->
+                                <div class="shop-bottom">
+                                    <p class="shop-number pull-right">Tất cả có {{totalProduct}} sản phẩm</p>
+                                    <pagination num-pages="noOfPages" current-page="currentPage" class="pagination-small"></pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="additional" class="tab-pane fade">
+                        <p>test</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

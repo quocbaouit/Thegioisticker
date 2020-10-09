@@ -1,0 +1,258 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Thế giới sticker</title>
+    <!-- STYLESHEETS -->
+    <style type="text/css">
+        [fuse-cloak],
+        .fuse-cloak {
+            display: none !important;
+        }
+
+        .help-block {
+            color: red;
+        }
+    </style>
+    <link href="~/Content/thegioistickerAdmin.min.css" rel="stylesheet" />
+    <link href="~/Content/css/css-loader.css" rel="stylesheet" />
+    <link href="~/Scripts/assets/vendor/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
+    <link href="~/Content/formValidation.min.css" rel="stylesheet" />
+    <!-- / STYLESHEETS -->
+</head>
+<body ng-app="thegioistickerAdmin" ng-controller="RootController" class="layout layout-vertical layout-left-navigation layout-above-toolbar">
+    <div class="cssload-container">
+        <div class="cssload-whirlpool"></div>
+    </div>
+    <nav id="toolbar" class="fixed-top bg-white">
+        <div class="row no-gutters align-items-center flex-nowrap">
+            <div class="col">
+                <div class="row no-gutters align-items-center flex-nowrap">
+
+                    <button type="button" class="toggle-aside-button btn btn-icon d-block d-lg-none"
+                            data-fuse-bar-toggle="aside">
+                        <i class="icon icon-menu"></i>
+                    </button>
+                    <div class="toolbar-separator d-block d-lg-none"></div>
+
+
+                    <div class="shortcuts-wrapper row no-gutters align-items-center px-0 px-sm-2">
+                        <div class="shortcuts row no-gutters align-items-center d-none d-md-flex">
+                            <a href="/" target="_self" class="shortcut-button btn btn-icon mx-1">
+                                <i class="icon icon-home"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="toolbar-separator"></div>
+                </div>
+            </div>
+            <div data-ng-hide="!authentication.isAuth" class="col-auto">
+                <div class="row no-gutters align-items-center justify-content-end">
+                    <div class="user-menu-button dropdown">
+                        <div class="dropdown-toggle ripple row align-items-center no-gutters px-2 px-sm-4" role="button"
+                             id="dropdownUserMenu"
+                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="avatar-wrapper">
+                                <img class="avatar" src="~/images/avatars/profile.jpg">
+                                <i class="status text-green icon-checkbox-marked-circle s-4"></i>
+                            </div>
+                            <span class="username mx-3 d-none d-md-block">{{authentication.fullName}}</span>
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="dropdownUserMenu">
+                            <a class="dropdown-item" ui-sref="@("admin" + ".profile")">
+                                <div class="row no-gutters align-items-center flex-nowrap">
+                                    <i class="icon-account"></i>
+                                    <span class="px-3">Tài Khoản</span>
+                                </div>
+                            </a>
+                            <a class="dropdown-item" ui-sref="@("admin" + ".changepassword")">
+                                <div class="row no-gutters align-items-center flex-nowrap">
+                                    <i class="icon-key"></i>
+                                    <span class="px-3">Đổi Mật Khẩu</span>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void(0)" ng-click="logOut()">
+                                <div class="row no-gutters align-items-center flex-nowrap">
+                                    <i class="icon-logout"></i>
+                                    <span class="px-3">Đăng Xuất</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="wrapper">
+        <aside data-ng-hide="!authentication.isAuth" id="aside" class="aside aside-left"
+               data-fuse-bar="aside" data-fuse-bar-media-step="md"
+               data-fuse-bar-position="left">
+            <div class="aside-content-wrapper">
+                <div class="aside-content bg-primary-500 text-auto">
+                    <div class="aside-toolbar">
+                        <div class="logo">
+                            <span class="logo-icon">PDCA</span>
+                            <span class="logo-text">Thế Giới Sticker</span>
+                        </div>
+                        <button id="toggle-fold-aside-button" type="button" class="btn btn-icon d-none d-lg-block"
+                                data-fuse-aside-toggle-fold>
+                            <i class="icon icon-backburger"></i>
+                        </button>
+                    </div>
+                    <ul class="nav flex-column custom-scrollbar" id="sidenav" data-children=".nav-item">
+                        <li ng-show="authentication.role=='admin'" ui-sref-active="active" class="nav-item">
+                            <a ng-class="{'active': ('admin.products' | includedByState)}" ui-sref="@("admin" + ".products")" class="nav-link ripple">
+                                <i class="icon s-4 icon-content-copy"></i>
+                                <span>Danh Mục In</span>
+                            </a>
+                        </li>
+                        <li ng-show="authentication.role=='admin'" ui-sref-active="active" class="nav-item">
+                            <a ng-class="{'active': ('admin.shapes' | includedByState)}" ui-sref="@("admin" + ".shapes")" class="nav-link ripple">
+                                <i class="icon s-4 icon-calendar-today"></i>
+                                <span>Mẫu Khuôn Bế</span>
+                            </a>
+                        </li>
+                        <li ng-show="authentication.role=='admin'" ui-sref-active="active" class="nav-item">
+                            <a ng-class="{'active': ('admin.samples' | includedByState)}" ui-sref="@("admin" + ".samples")" class="nav-link ripple">
+                                <i class="icon s-4 icon-calendar-today"></i>
+                                <span>Danh Mục Sản Phẩm</span>
+                            </a>
+                        </li>
+                        <li ng-show="authentication.role=='admin'" ui-sref-active="active" class="nav-item">
+                            <a ng-class="{'active': ('admin.costs' | includedByState)}" ui-sref="@("admin" + ".costs")" class="nav-link ripple">
+                                <i class="icon s-4 icon-cash-usd"></i>
+                                <span>Chi Phí In-Bế-Gia Công</span>
+                            </a>
+                        </li>
+                        <li ng-show="authentication.role=='admin' || authentication.role=='business'" ui-sref-active="active" class="nav-item">
+                            <a ng-class="{'active': ('admin.order' | includedByState)}" ui-sref="@("admin" + ".order")" class="nav-link ripple">
+                                <i class="icon s-4 icon-arrange-send-backward"></i>
+                                <span>Quản Lý Đơn Hàng</span>
+                            </a>
+                        </li>
+                        <li ng-show="authentication.role=='admin'" ui-sref-active="active" class="nav-item">
+                            <a ng-class="{'active': ('admin.customer' | includedByState)}" ui-sref="@("admin" + ".customer")" class="nav-link ripple">
+                                <i class="icon s-4 icon-folder-account"></i>
+                                <span>Quản Lý Khách Hàng</span>
+                            </a>
+                        </li>
+                        <li ng-show="authentication.role=='admin'" ui-sref-active="active" class="nav-item">
+                            <a ng-class="{'active': ('admin.employee' | includedByState)}" ui-sref="@("admin" + ".employee")" class="nav-link ripple">
+                                <i class="icon s-4 icon-account-multiple"></i>
+                                <span>Quản Lý Nhân Viên</span>
+                            </a>
+                        </li>
+                        <li ng-show="authentication.role=='admin' || authentication.role=='contentWriter'" ui-sref-active="active" class="nav-item">
+                            <a ng-class="{'active': ('admin.blogs' | includedByState)}" ui-sref="@("admin" + ".blogs")" class="nav-link ripple">
+                                <i class="icon s-4 icon-document"></i>
+                                <span>Quản Lý Tin Tức</span>
+                            </a>
+                        </li>
+                        <li ng-show="authentication.role=='admin'" ui-sref-active="active" class="nav-item">
+                            <a ng-class="{'active': ('admin.coupons' | includedByState)}" ui-sref="@("admin" + ".coupons")" class="nav-link ripple">
+                                <i class="icon s-4 icon-calendar-today"></i>
+                                <span>Mã Giảm Giá</span>
+                            </a>
+                        </li>
+                        <li ng-show="authentication.role=='admin'" ui-sref-active="active" class="nav-item">
+                            <a ng-class="{'active': ('admin.info' | includedByState)}" ui-sref="@("admin" + ".info")" class="nav-link ripple">
+                                <i class="icon s-4 icon-information"></i>
+                                <span>Cấu Hình Công Ty</span>
+                            </a>
+                        </li>
+                        <li ng-show="authentication.role=='admin'" ui-sref-active="active" class="nav-item">
+                            <a ng-class="{'active': ('admin.contentpages' | includedByState)}" ui-sref="@("admin" + ".contentpages")" class="nav-link ripple">
+                                <i class="icon s-4 icon-monitor"></i>
+                                <span>Trang Thông Tin</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <div class="content-wrapper">
+            <div class="content" ui-view>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<!-- JAVASCRIPT -->
+<script src="~/Scripts/thegioistickerAdmin.min.js?ver=2.2"></script>
+
+<!-- / JAVASCRIPT -->
+<script src="~/Scripts/thegioistickerAdminjs/app.js?ver=2.2"></script>
+<script src="~/Scripts/directives/numberInput1.js?ver=2.2"></script>
+<script src="~/Scripts/formValidation.min.js"></script>
+<script src="~/Scripts/framework/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.19/dataRender/datetime.js?ver=2.2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js?ver=2.2"></script>
+<!-- Load services -->
+<script src="~/Scripts/thegioistickerAdminjs/services/authInterceptorService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/authService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/productService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/faqService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/customerService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/ordersService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/blogService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/companyService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/costService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/sampleService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/shapeService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/settingService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/employeeService.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/services/couponService.js?ver=2.2"></script>
+
+    <script src="~/Scripts/thegioistickerAdminjs/dashboard/dashboardController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/homepage-manager/homepageController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/products-manager/productsController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/samples-manager/samplesController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/order-manager/orderController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/customer-manager/customerController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/faqs-manager/faqsController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/coupons-manager/couponsController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/blogs-manager/blogsController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/blogs-manager/blog-editController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/info-manager/infoController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/content-pages/content-pagesController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/content-pages/content-editController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/employee-manager/employeeController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/shapes-manager/shapesController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/costs-manager/costsController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/products-manager/product-descriptionController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/products-manager/select-samplesController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/profile-manager/profileController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/profile-manager/change-passwordController.js?ver=2.2"></script>
+
+    <script src="~/Scripts/thegioistickerAdminjs/login/loginController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/controllers/root.controller.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/register/registerController.js?ver=2.2"></script>
+    <script src="~/Scripts/thegioistickerAdminjs/forgot-password/forgot-passwordController.js?ver=2.2"></script>
+<script>
+    var resource = document.createElement('script');
+    resource.async = "true";
+    resource.src = "/Scripts/assets/vendor/fuse-html/fuse-html.min.js";
+    var script = document.getElementsByTagName('script')[0];
+    script.parentNode.insertBefore(resource, script);
+    function showLoading() {
+        $('.cssload-container').addClass('is-active');
+        $(".cssload-container").css("z-index", "1500");
+
+    }
+    function hideLoading() {
+        $(".cssload-container").css("z-index", "0");
+        $('.cssload-container').removeClass('is-active');
+    }
+</script>

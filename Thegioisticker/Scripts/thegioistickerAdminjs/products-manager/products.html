@@ -1,0 +1,154 @@
+﻿
+<div id="e-commerce-products" class="page-layout carded full-width">
+    <div class="top-bg bg-secondary"></div>
+    <!-- CONTENT -->
+    <div class="page-content">
+        <!-- HEADER -->
+        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+            <!-- APP TITLE -->
+            <div class="col-12 col-sm">
+                <div class="logo row no-gutters align-items-start">
+                    <div class="logo-icon mr-3 mt-1">
+                        <i class="icon-cube-outline s-6"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="h4">Danh Mục In</div>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+            <!-- SEARCH -->
+            <div class="col search-wrapper px-2">
+                <div class="input-group">
+                    <input id="products-search-input" type="text" class="form-control" placeholder="Tìm Kiếm"
+                           aria-label="Search" />
+                </div>
+            </div>
+            <!-- / SEARCH -->
+            <div class="col-auto">
+                <a href="javascript:void(0)" data-ng-click="createProduct()" class="btn btn-secondary">Thêm Mới</a>
+            </div>
+        </div>
+        <!-- / HEADER -->
+        <div class="page-content-card">
+            <table id="product-table" class="table dataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">ID</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Hình</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Tên</span>
+                            </div>
+                        </th>
+
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Giá Decal/A4</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Hoạt Động</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Mô Tả</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Chọn Mẫu</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Sửa</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Xóa</span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <!-- / CONTENT -->
+    <div id="modal-product" class="modal fade" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Nội Dung</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id='product-form'>
+                        <div id='validate-product'>
+                            <div class="form-group">
+                                <input name="name" ng-model="product.name" type="text" class="form-control" aria-describedby="product name" />
+                                <label>Tên</label>
+                            </div>
+                            <div class="form-group">
+                                <input number-input name="price" ng-model="product.price" class="form-control" aria-describedby="product description" />
+                                <label>Giá Decal/A4</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="repeatSelect"> Trạng Thái </label>
+                                <select name="repeatSelect" id="repeatSelect" ng-model="product.isActive" class="form-control"
+                                        ng-options="o.v as o.n for o in [{ n: 'Không Hoạt Động', v: false }, { n: 'Đang Hoạt Động', v: true }]"></select>
+                            </div>
+                            <div class="form-group ">
+                                <label>Seo Url</label>
+                                <input name="seoUrl"  ng-model="product.seoUrl" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                            </div>
+                            <div class="form-group">
+                                <label>Seo Meta Title</label>
+                                <input name="metaTitle"  ng-model="product.metaTitle" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                            </div>
+                            <div class="form-group">
+                                <textarea name="metaDescription"  rows="3" ng-model="product.metaDescription" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                <label>Seo Meta Description</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Ảnh Danh Mục</label>
+                                <img name="file" id="picture" style="max-width:300px;min-width:300px" ng-src="{{product.image}}" />
+                                <div data-provides="fileinput" class="form-group billing-country">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span style="width:100%" class="btn btn-primary btn-file">
+                                                <input id="imgInp" type="file" my-directory="getFiles(file)" accept=".png,.jpg,.tif,.gif,.tiff,.bmp,.pdf" ng-disabled="uploading" />
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button ng-hide="!hasUpload" type="button" class="btn btn-primary" ng-click="uploadFiles()">Lưu</button>
+                    <button ng-hide="hasUpload" data-ng-click="saveProduct()" type="button" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

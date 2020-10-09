@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeadMeta
+{
+    <title>@ViewBag.MetaTitle</title>
+    <meta name="description" content="@ViewBag.MetaDescription">
+}
+<section ng-app="thegioistickerApp" ng-controller="blogDetailController" class="organic-content">
+    <div class="container">
+        <div class="blog-detail-fullwidth blog-detail">
+            @Html.Raw(ViewBag.Content)
+        </div>
+    </div>
+</section>
