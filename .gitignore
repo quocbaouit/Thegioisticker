@@ -18,3 +18,6 @@
 /Thegioisticker/Content/thegioistickerAdmin.min.css
 /.vs
 /packages
+/Thegioisticker/Web.config
+/Thegioisticker/Web.Debug.config
+/Thegioisticker/Web.Release.config
