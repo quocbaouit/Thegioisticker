@@ -19,7 +19,16 @@
             color: red;
         }
     </style>
-    <link href="~/Content/thegioistickerAdmin.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/icons/fuse-icon-font/style.css" rel="stylesheet" />
+    <link href="~/Content/assets/vendor/animate.css/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/vendor/pnotify/pnotify.custom.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/vendor/nvd3/build/nv.d3.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/vendor/fuse-html/fuse-html.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/main.css" rel="stylesheet" />
+    <link href="~/Content/css/angular-ui-notification.min.css" rel="stylesheet" />
+
+    @*<link href="~/Content/thegioistickerAdmin.min.css" rel="stylesheet" />*@
     <link href="~/Content/css/css-loader.css" rel="stylesheet" />
     <link href="~/Scripts/assets/vendor/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -190,7 +199,27 @@
 </body>
 </html>
 <!-- JAVASCRIPT -->
-<script src="~/Scripts/thegioistickerAdmin.min.js?ver=2.2"></script>
+<script src="~/Scripts/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/assets/vendor/mobile-detect/mobile-detect.min.js"></script>
+<script src="~/Scripts/assets/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="~/Scripts/assets/vendor/popper.js/index.js"></script>
+<script src="~/Scripts/assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="~/Scripts/assets/vendor/d3/d3.min.js"></script>
+<script src="~/Scripts/assets/vendor/nvd3/build/nv.d3.min.js"></script>
+<script src="~/Scripts/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/assets/vendor/datatables-responsive/js/dataTables.responsive.js"></script>
+<script src="~/Scripts/assets/vendor/pnotify/pnotify.custom.min.js"></script>
+<script src="~/Scripts/assets/js/main.js"></script>
+<script src="~/Scripts/vendor/angular/angular.min.js"></script>
+<script src="~/Scripts/vendor/angular/angular-ui-router.min.js"></script>
+<script src="~/Scripts/vendor/angular/angular-messages.min.js"></script>
+<script src="~/Scripts/vendor/angular/angular-animate.min.js"></script>
+<script src="~/Scripts/vendor/angular/angular-ui-notification.min.js"></script>
+<script src="~/Scripts/vendor/angular/angular-local-storage.min.js"></script>
+<script src="~/Scripts/assets/js/apps/dashboard/project.js"></script>
+<script src="~/Scripts/assets/vendor/moment/min/moment.min.js"></script>
+<script src="~/Scripts/assets/vendor/fullcalendar/dist/fullcalendar.min.js"></script>
+@*<script src="~/Scripts/thegioistickerAdmin.min.js?ver=2.2"></script>*@
 
 <!-- / JAVASCRIPT -->
 <script src="~/Scripts/thegioistickerAdminjs/app.js?ver=2.2"></script>
@@ -201,45 +230,45 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js?ver=2.2"></script>
 <!-- Load services -->
 <script src="~/Scripts/thegioistickerAdminjs/services/authInterceptorService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/authService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/productService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/faqService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/customerService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/ordersService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/blogService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/companyService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/costService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/sampleService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/shapeService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/settingService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/employeeService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/services/couponService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/authService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/productService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/faqService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/customerService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/ordersService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/blogService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/companyService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/costService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/sampleService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/shapeService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/settingService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/employeeService.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/services/couponService.js?ver=2.2"></script>
 
-    <script src="~/Scripts/thegioistickerAdminjs/dashboard/dashboardController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/homepage-manager/homepageController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/products-manager/productsController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/samples-manager/samplesController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/order-manager/orderController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/customer-manager/customerController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/faqs-manager/faqsController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/coupons-manager/couponsController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/blogs-manager/blogsController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/blogs-manager/blog-editController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/info-manager/infoController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/content-pages/content-pagesController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/content-pages/content-editController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/employee-manager/employeeController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/shapes-manager/shapesController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/costs-manager/costsController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/products-manager/product-descriptionController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/products-manager/select-samplesController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/profile-manager/profileController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/profile-manager/change-passwordController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/dashboard/dashboardController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/homepage-manager/homepageController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/products-manager/productsController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/samples-manager/samplesController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/order-manager/orderController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/customer-manager/customerController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/faqs-manager/faqsController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/coupons-manager/couponsController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/blogs-manager/blogsController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/blogs-manager/blog-editController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/info-manager/infoController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/content-pages/content-pagesController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/content-pages/content-editController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/employee-manager/employeeController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/shapes-manager/shapesController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/costs-manager/costsController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/products-manager/product-descriptionController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/products-manager/select-samplesController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/profile-manager/profileController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/profile-manager/change-passwordController.js?ver=2.2"></script>
 
-    <script src="~/Scripts/thegioistickerAdminjs/login/loginController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/controllers/root.controller.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/register/registerController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerAdminjs/forgot-password/forgot-passwordController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/login/loginController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/controllers/root.controller.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/register/registerController.js?ver=2.2"></script>
+<script src="~/Scripts/thegioistickerAdminjs/forgot-password/forgot-passwordController.js?ver=2.2"></script>
 <script>
     var resource = document.createElement('script');
     resource.async = "true";
