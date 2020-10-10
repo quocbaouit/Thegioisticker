@@ -49,6 +49,11 @@ namespace Thegioisticker.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
+                "Static Routes",
+                "",
+                new { controller = "Home", action = "Index" }
+                );
+            routes.MapRoute(
                 name: "Product",
                 url: "san-pham",
                 defaults: new { controller = "Product", action = "Index" }
@@ -147,6 +152,11 @@ namespace Thegioisticker.Web
                 name: "CampanyContact",
                 url: "lien-he",
                 defaults: new { controller = "Company", action = "Contact" }
+               );
+            routes.MapRoute(
+                name: "Home",
+                url: "",
+                defaults: new { controller = "Home", action = "Index" }
                );
             routes.MapRoute(
                 name: "Default",

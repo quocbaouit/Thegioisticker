@@ -15,11 +15,11 @@ var serviceBase = '';
 if (window.location.port == '') {
     serviceBase = 'https://vinasticker.com/';
 } else {
-    serviceBase = 'https://localhost:44336/';
+    serviceBase = 'https://vinasticker.com/';
 }
 thegioistickerApp.constant('ngAuthSettings', {
 	apiServiceBaseUri: serviceBase,
-    clientId: 'thegioistickerApp'
+    clientId: 'sieuvietApp'
 });
 thegioistickerApp.config(function ($httpProvider) {
 	$httpProvider.interceptors.push('authInterceptorService');

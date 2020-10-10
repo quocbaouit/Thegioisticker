@@ -2,19 +2,38 @@
 <html ng-app="thegioistickerApp" ng-controller="RootController">
 <head>
     <meta charset="UTF-8">
-
-    @if (IsSectionDefined("HeadMeta"))
+   @if (IsSectionDefined("HeadMeta"))
     {
-        @RenderSection("HeadMeta")
-    }
-    else
-    {
+            @RenderSection("HeadMeta")
+     }
+      else
+     {    
         <title>Thế giới sticker</title>
         <meta name="description" content="Thế Giới Sticker - Chuyên in ấn và gia công tem nhãn, decal, túi giấy, hộp giấy và các ấn phẩm văn phòng, ấn phẩm quảng cáo tại Tp HCM.">
         <meta name="keywords" content="Thế Giới Sticker - Chuyên in ấn và gia công tem nhãn, decal, túi giấy, hộp giấy và các ấn phẩm văn phòng, ấn phẩm quảng cáo tại Tp HCM.">
-    }
+     }
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/Content/thegioisticker.min.css?ver=2.1" rel="stylesheet" />
+
+    <link href="~/Content/fonts/fonts.css" rel="stylesheet" />
+    <link href="~/Content/fonts/themify-icons.css" rel="stylesheet" />
+    <link href="~/Content/fonts/fonts-google.css" rel="stylesheet" />
+    <link href="~/Content/vendor-css/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/vendor-css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/vendor-css/animsition/dist/css/animsition.min.css" rel="stylesheet" />
+    <link href="~/Content/vendor-css/animate.css/source/slide_fwd_center/slide_fwd_center.css" rel="stylesheet" />
+    <link href="~/Content/vendor-css/owl-carousel/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/vendor-css/slick/css/slick.css" rel="stylesheet" />
+    <link href="~/Content/vendor-css/range_filter/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/vendor-css/slider-revolution/css/settings.css" rel="stylesheet" />
+    <link href="~/Content/vendor-css/slider-revolution/css/layers.css" rel="stylesheet" />
+    <link href="~/Content/vendor-css/slider-revolution/css/navigation.css" rel="stylesheet" />
+    <link href="~/Content/css/main.css" rel="stylesheet" />
+    <link href="~/Content/css/switcher.css" rel="stylesheet" />
+    <link href="~/Content/css/responsive.css" rel="stylesheet" />
+    <link href="~/Content/css/colors/color-green.css" rel="stylesheet" />
+    <link href="~/Content/login-register.css" rel="stylesheet" />
+    <link href="~/Content/css/angular-ui-notification.min.css" rel="stylesheet" />
+
     <link href="~/Content/formValidation.min.css" rel="stylesheet" />
     <link rel="icon" href="~/images/favicon.png">
     <style>
@@ -73,8 +92,8 @@
                                         <div class="cart-content">
                                             <div ng-repeat="product in cart" class="cart-item">
                                                 @*<div class="cart-img">
-                                                    <img ng-src="{{product.image}}" alt="mini cart" />
-                                                </div>*@
+                                                        <img ng-src="{{product.image}}" alt="mini cart" />
+                                                    </div>*@
                                                 <div class="cart-text">
                                                     <p>{{product.name}}</p>
                                                     @*<p>In decal xi bóng</p>*@
@@ -124,8 +143,8 @@
                                     <a href="/gioi-thieu" class="dropdown-toggle color-setting">Giới Thiệu</a>
                                 </li>
                                 @*<li ng-class="{ active: checkActive('/san-pham')||checkActive('/gio-hang')||checkActive('/thanh-toan')||checkActive('/hoan-tat-don-hang')}" class="dropdown">
-                                    <a href="/san-pham" class="dropdown-toggle color-setting">Sản Phẩm</a>
-                                </li>*@
+                                        <a href="/san-pham" class="dropdown-toggle color-setting">Sản Phẩm</a>
+                                    </li>*@
                                 <li ng-class="{ active: checkActive('/thu-vien-decal')}" class="dropdown">
                                     <a href="/thu-vien-decal" class="dropdown-toggle color-setting">Sản Phẩm</a>
                                 </li>
@@ -791,7 +810,34 @@
     </div>
     <!-- End Library PUPUP -->
     <!-- Javascript-->
-    <script src="~/Scripts/thegioisticker.min.js"></script>
+    <script src="~/Scripts/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/Scripts/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/vendor/jquery_easing/jquery.easing.min.js"></script>
+    <script src="~/Scripts/vendor/owl-carousel/js/owl.carousel.js"></script>
+    <script src="~/Scripts/vendor/slick/js/slick.js"></script>
+    <script src="~/Scripts/vendor/isotope/js/isotope.js"></script>
+    <script src="~/Scripts/vendor/isotope/js/imagesloaded.pkgd.js"></script>
+    <script src="~/Scripts/vendor/range_filter/js/jquery-ui.js"></script>
+    <script src="~/Scripts/switcher.js"></script>
+    <script src="~/Scripts/vendor/slider-revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Scripts/vendor/slider-revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.actions.min.js"></script>
+    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.carousel.min.js"></script>
+    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.kenburn.min.js"></script>
+    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.layeranimation.min.js"></script>
+    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.migration.min.js"></script>
+    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.navigation.min.js"></script>
+    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.parallax.min.js"></script>
+    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.slideanims.min.js"></script>
+    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.video.min.js"></script>
+    <script src="~/Scripts/vendor/angular/angular.min.js"></script>
+    <script src="~/Scripts/vendor/angular/angular-ui-router.min.js"></script>
+    <script src="~/Scripts/vendor/angular/angular-messages.min.js"></script>
+    <script src="~/Scripts/vendor/angular/angular-animate.min.js"></script>
+    <script src="~/Scripts/vendor/angular/angular-ui-notification.min.js"></script>
+    <script src="~/Scripts/vendor/angular/angular-local-storage.min.js"></script>
+    <script src="~/Scripts/login-register.js"></script>
+
     <script src="~/Scripts/formValidation.min.js"></script>
     <script src="~/Scripts/framework/bootstrap.min.js"></script>
     <script src="~/Scripts/moment.js"></script>
