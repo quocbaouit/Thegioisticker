@@ -13,13 +13,13 @@ thegioistickerApp.config(['NotificationProvider',function (NotificationProvider)
 }]);
 var serviceBase = '';
 if (window.location.port == '') {
-    serviceBase = 'https://vinasticker.com/';
+    serviceBase = 'https://thegioisticker.azurewebsites.net/';
 } else {
-    serviceBase = 'https://vinasticker.com/';
+    serviceBase = 'https://localhost:44337/';
 }
 thegioistickerApp.constant('ngAuthSettings', {
 	apiServiceBaseUri: serviceBase,
-    clientId: 'sieuvietApp'
+    clientId: 'thegioistickerApp'
 });
 thegioistickerApp.config(function ($httpProvider) {
 	$httpProvider.interceptors.push('authInterceptorService');

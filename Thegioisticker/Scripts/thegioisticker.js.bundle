@@ -1,0 +1,19 @@
+﻿#options skipremin,outputbundleonly
+vendor/jquery/dist/jquery.min.js
+vendor/jquery_easing/jquery.easing.min.js
+vendor/owl-carousel/js/owl.carousel.js
+vendor/slick/js/slick.js
+vendor/isotope/js/isotope.js
+vendor/isotope/js/imagesloaded.pkgd.js
+vendor/range_filter/js/jquery-ui.js
+vendor/Chart.js
+vendor/doughnutit.js
+vendor/owl.carousel.min.js
+switcher.js
+vendor/angular/angular.min.js
+vendor/angular/angular-ui-router.min.js
+vendor/angular/angular-messages.min.js
+vendor/angular/angular-animate.min.js
+vendor/angular/angular-ui-notification.min.js
+vendor/angular/angular-local-storage.min.js
+login-register.js

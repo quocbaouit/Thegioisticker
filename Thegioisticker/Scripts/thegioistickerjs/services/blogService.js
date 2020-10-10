@@ -16,11 +16,6 @@ thegioistickerApp.factory('blogService', ['$http', 'ngAuthSettings', function ($
             return results;
         });       
     };
-    var _getBlogBySeoUrl = function (seoUrl) {
-        return $http.get(serviceBase + 'api/blog/GetBlogBySeoUrl/' + seoUrl).then(function (results) {
-            return results;
-        });
-    };
     var _getBlogForHomePage = function () {
         return $http.get(serviceBase + 'api/blog/getBlogForHomePage').then(function (results) {
             return results;
@@ -28,7 +23,6 @@ thegioistickerApp.factory('blogService', ['$http', 'ngAuthSettings', function ($
     };
     blogServiceFactory.getblogs = _getblogs;
     blogServiceFactory.getBlogById = _getBlogById;
-    blogServiceFactory.getBlogBySeoUrl = _getBlogBySeoUrl;
     blogServiceFactory.getBlogForHomePage = _getBlogForHomePage;
     return blogServiceFactory;
 

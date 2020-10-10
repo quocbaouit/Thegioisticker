@@ -3,7 +3,6 @@ thegioistickerAdmin.controller('faqsController', ['$scope', '$timeout', 'Notific
     var table = {};
     $scope.faq = {};
     $scope.initTable = function () {
-        showLoading();
          table = $('#faq-table').DataTable({
             "language": {
                 "lengthMenu": "Hiển thị _MENU_ số dòng trên trang",
@@ -19,8 +18,7 @@ thegioistickerAdmin.controller('faqsController', ['$scope', '$timeout', 'Notific
             ordering: true,
             paging: true,
             ajax: "api/faq/getPagingFaqs",
-             initComplete: function () {
-                 hideLoading();
+            initComplete: function () {
                 var api = this.api(),
                     searchBox = $('#faqs-search-input');
                 if (searchBox.length > 0) {
@@ -34,10 +32,10 @@ thegioistickerAdmin.controller('faqsController', ['$scope', '$timeout', 'Notific
                 { "data": "question" },
                 { "data": "answer" },
                 {
-                    "data": null, sortable: false, "targets": -1, "defaultContent": " <button type=\"button\" class=\"btn btn-icon edit-faq\" aria-label=\"Product details\"><i class=\"icon icon-pencil s-4\"></i></button>",
+                    "data": null, sortable: false, "targets": -1, "defaultContent": " <button type=\"button\" class=\"btn btn-icon edit-item\" aria-label=\"Product details\"><i class=\"icon icon-pencil s-4\"></i></button>",
                 },
                 {
-                    "data": null, sortable: false, "targets": -2, "defaultContent": " <button type=\"button\" class=\"btn btn-icon delete-faq\" aria-label=\"Product details\"><i class=\"icon icon-delete-circle s-4\"></i></button>",
+                    "data": null, sortable: false, "targets": -2, "defaultContent": " <button type=\"button\" class=\"btn btn-icon delete-item\" aria-label=\"Product details\"><i class=\"icon icon-delete-circle s-4\"></i></button>",
                 }
             ],
             lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
@@ -49,26 +47,26 @@ thegioistickerAdmin.controller('faqsController', ['$scope', '$timeout', 'Notific
         });
     }
     $scope.initTable();
-    $('body').delegate('.edit-faq', 'click', function (e) {
+    $('body').delegate('.edit-item', 'click', function (e) {
         e.preventDefault();
         var data = table.row($(this).parents('tr')).data();
         $scope.faq = data;
         $('input.form-control, textarea.form-control').addClass('md-has-value');
         $timeout(function () {
-            $('#modal-faq').modal('show');
+            $('#modal-lg').modal('show');
         }, 200);     
     });
     $scope.saveFaq = function () {
         faqService.savefaq($scope.faq).then(function (response) {
             $('#faq-table').DataTable().ajax.reload();
             Notification.success("Lưu thành công");
-            $('#modal-faq').modal('hide');
+            $('#modal-lg').modal('hide');
         },
 			function (err) {
 			    $scope.waringMessage = "Vui lòng kiểm tra lại";
 			});
     };
-    $('body').delegate('.delete-faq', 'click', function (e) {
+    $('body').delegate('.delete-item', 'click', function (e) {
         e.preventDefault();
         var data = table.row($(this).parents('tr')).data();
         faqService.delete(data).then(function (response) {
@@ -86,7 +84,7 @@ thegioistickerAdmin.controller('faqsController', ['$scope', '$timeout', 'Notific
             answer:'',
         };
         $timeout(function () {
-            $('#modal-faq').modal('show');
+            $('#modal-lg').modal('show');
         }, 200);
     };
 }]);

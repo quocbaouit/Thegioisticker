@@ -1,835 +1,462 @@
 ﻿<!DOCTYPE html>
-<html ng-app="thegioistickerApp" ng-controller="RootController">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-   @if (IsSectionDefined("HeadMeta"))
-    {
-            @RenderSection("HeadMeta")
-     }
-      else
-     {    
-        <title>Thế giới sticker</title>
-        <meta name="description" content="Thế Giới Sticker - Chuyên in ấn và gia công tem nhãn, decal, túi giấy, hộp giấy và các ấn phẩm văn phòng, ấn phẩm quảng cáo tại Tp HCM.">
-        <meta name="keywords" content="Thế Giới Sticker - Chuyên in ấn và gia công tem nhãn, decal, túi giấy, hộp giấy và các ấn phẩm văn phòng, ấn phẩm quảng cáo tại Tp HCM.">
-     }
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Thế Giới Sticker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
+    <meta name="description" content="Thế Giới Sticker">
+    <meta name="author" content="Netbase">
+    <!--Add css lib-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="~/Scripts/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" />
 
     <link href="~/Content/fonts/fonts.css" rel="stylesheet" />
     <link href="~/Content/fonts/themify-icons.css" rel="stylesheet" />
     <link href="~/Content/fonts/fonts-google.css" rel="stylesheet" />
     <link href="~/Content/vendor-css/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/vendor-css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/vendor-css/animsition/dist/css/animsition.min.css" rel="stylesheet" />
     <link href="~/Content/vendor-css/animate.css/source/slide_fwd_center/slide_fwd_center.css" rel="stylesheet" />
-    <link href="~/Content/vendor-css/owl-carousel/css/owl.carousel.css" rel="stylesheet" />
-    <link href="~/Content/vendor-css/slick/css/slick.css" rel="stylesheet" />
     <link href="~/Content/vendor-css/range_filter/css/jquery-ui.css" rel="stylesheet" />
-    <link href="~/Content/vendor-css/slider-revolution/css/settings.css" rel="stylesheet" />
-    <link href="~/Content/vendor-css/slider-revolution/css/layers.css" rel="stylesheet" />
-    <link href="~/Content/vendor-css/slider-revolution/css/navigation.css" rel="stylesheet" />
-    <link href="~/Content/css/main.css" rel="stylesheet" />
-    <link href="~/Content/css/switcher.css" rel="stylesheet" />
+    <link href="~/Content/css/main_styles.css" rel="stylesheet" />
     <link href="~/Content/css/responsive.css" rel="stylesheet" />
-    <link href="~/Content/css/colors/color-green.css" rel="stylesheet" />
     <link href="~/Content/login-register.css" rel="stylesheet" />
     <link href="~/Content/css/angular-ui-notification.min.css" rel="stylesheet" />
 
+    <link href="~/Scripts/plugins/OwlCarousel2-2.2.1/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Scripts/plugins/OwlCarousel2-2.2.1/owl.theme.default.css" rel="stylesheet" />
+    <link href="~/Scripts/plugins/OwlCarousel2-2.2.1/animate.css" rel="stylesheet" />
+    <link href="~/Scripts/plugins/slick-1.8.0/slick.css" rel="stylesheet" />
     <link href="~/Content/formValidation.min.css" rel="stylesheet" />
-    <link rel="icon" href="~/images/favicon.png">
-    <style>
-        .banner-img {
-            width: 20%;
-            float: left;
-            overflow: hidden;
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
-
-        .content-text {
-            float: left;
-            margin-left: 5px;
-            margin-top: 20px;
-        }
-
-        .col-sm-3 {
-            min-width: 200px;
-        }
-
-        .text-weight {
-            font-weight: bolder;
-            font-size: larger;
-        }
-    </style>
 </head>
-<body>
-    <!-- Loader website -->
-    <div class="page-loader">
-        <div class="loader"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div></div>
-    </div>
-    <!-- End Loader website -->
-    <!-- BUTTON SEARCH -->
-    <div class="search">
-        <input type="text" class="ip-search" placeholder="&nbsp Bạn đang cần tìm gì ?">
-    </div>
-    <!-- Start Header -->
-    <header id="header">
-        <div class="link bg-setting">
-            <div class="container">
-                <div class="link-left pull-left">
-                    <div class="wellcome dp-iblock link-color"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp; 0967 697 932 - 0898 678 187.&nbsp;&nbsp;<i class="fa fa-envelope" aria-hidden="true"></i>&nbsp; innhanhsieuviet@gmail.com</div>
-                </div> <!-- /link left -->
-                <div class="link-right pull-right">
-                    <div class="check-account dp-iblock">
+<body ng-app="thegioistickerApp" ng-controller="RootController">
+    <div class="super_container">
+        <!-- Header -->
+        <header class="header">
+            <!-- Top Bar -->
+            <div class="top_bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col d-flex flex-row">
+                            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>(028) 38 122 191</div>
+                            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:admin.thegioiinan.today">admin.thegioiinan.today</a></div>
+                            <div class="top_bar_content ml-auto">
+                                <div class="top_bar_user">
+                                    <div data-ng-hide="!authentication.isAuth"><a href="/user">Xin chào: {{authentication.fullName}}.</a></div>
+                                    <div data-ng-hide="authentication.isAuth"><a data-toggle="modal" href="javascript:void(0)" data-ng-click="openLoginModal()">Đăng Nhập/Đăng Ký</a></div>
+                                    <div style="margin-left:20px;margin-right:20px" data-ng-hide="!authentication.isAuth"><a href="javascript:void(0)" data-ng-click="logOut()">Đăng Xuất</a></div>
+                                    @*<div><i class="fa fa-2x fa-shopping-cart" aria-hidden="true"></i></div>*@
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="icon-social dp-iblock">
-                        <li data-ng-hide="!authentication.isAuth"><a class="check link-color" href="/user">Xin chào: {{authentication.fullName}}</a></li>
-                        <li data-ng-hide="authentication.isAuth"><a class="check link-color" data-toggle="modal" href="javascript:void(0)" data-ng-click="openLoginModal()">Đăng Nhập/Đăng Ký</a></li>
-                        <li data-ng-hide="!authentication.isAuth"> <a class="check link-color" href="javascript:void(0)" data-ng-click="logOut()">Đăng Xuất</a>
-                        <li>
-                            <div ng-if="isShowCart" class="nav navbar-nav nav-right pull-right">
-                                <div data-ng-hide="cart.length==0" class="mini-cart">
-                                    <div class="cart-wrap">
-                                        <div class="cart-content">
-                                            <div ng-repeat="product in cart" class="cart-item">
-                                                @*<div class="cart-img">
-                                                        <img ng-src="{{product.image}}" alt="mini cart" />
-                                                    </div>*@
-                                                <div class="cart-text">
-                                                    <p>{{product.name}}</p>
-                                                    @*<p>In decal xi bóng</p>*@
-                                                    <h3 class="color-setting">{{product.subTotal | number}}(VND)</h3>
-                                                    <a data-ng-click="removeShoppingCart(product)" href="javascript:void(0)"><img src="~/images/home01/cart-close.jpg" alt=""></a>
-                                                </div>
-                                            </div>
+                </div>
+            </div>
+            <!-- Header Main -->
+
+            <div class="header_main">
+                <div class="container">
+                    <div class="row">
+                        <!-- Logo -->
+                        <div class="col-lg-2 col-sm-3 col-3 order-1">
+                            <div class="logo_container">
+                                <div class="logo">
+                                    <a href="#">
+                                        <img style="min-width:150px;max-width:150px" src="~/images/logo.png" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+                            <div class="header_search">
+                                <div class="header_search_content">
+                                    <div class="header_search_form_container">
+                                        <form action="#" class="header_search_form clearfix">
+                                            <input type="search" required="required" class="header_search_input" placeholder="Tìm sản phẩm...">
+                                            @*<div class="custom_dropdown">
+                                                    <div class="custom_dropdown_list">
+                                                        <span class="custom_dropdown_placeholder clc">All Categories</span>
+                                                        <i class="fas fa-chevron-down"></i>
+                                                        <ul class="custom_list clc">
+                                                            <li><a class="clc" href="#">All Categories</a></li>
+                                                            <li><a class="clc" href="#">Computers</a></li>
+                                                            <li><a class="clc" href="#">Laptops</a></li>
+                                                            <li><a class="clc" href="#">Cameras</a></li>
+                                                            <li><a class="clc" href="#">Hardware</a></li>
+                                                            <li><a class="clc" href="#">Smartphones</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>*@
+                                            <button type="submit" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt=""></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wishlist -->
+                        <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                            <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+                                @*<div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                                        <div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
+                                        <div class="wishlist_content">
+                                            <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                                            <div class="wishlist_count">115</div>
                                         </div>
-                                        <div class="cart-panel-footer">
-                                            <p class="cart-total color-setting">Tổng Cộng: <span>{{subTotal1 | number}}(VND)</span></p>
-                                            <div class="cart-action">
-                                                <button onclick="window.location.href='/gio-hang'" class="btn button btn-white bd-color-white bd-radius-50 btn-view-cart">Giỏ Hàng</button>
-                                                @*<button onclick="window.location.href='/thanh-toan'" class="btn button btn-setting bd-color-setting bd-radius-50 btn-check-out">Thanh Toán</button>*@
-                                            </div>
+                                    </div>*@
+                                <!-- Cart -->
+                                <div class="cart">
+                                    <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                        <div class="cart_icon">
+                                            <img src="images/cart.png" alt="">
+                                            <div class="cart_count"><span>10</span></div>
+                                        </div>
+                                        <div class="cart_content">
+                                            <div class="cart_text"><a href="#">Giỏ hàng</a></div>
+                                            <div class="cart_price">$85</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                </div> <!-- /link right -->
-            </div>
-        </div> <!-- link -->
-        <!-- Menu style="position: absolute;width: 100%;z-index: 1000; opacity: 0.9;"  -->
-        <div class="menu menu-home1">
-            <nav class="navbar navbar-default">
-                <div class="container">
-                    <div class="navtop01 clearfix">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar top-bar"></span>
-                                <span class="icon-bar middle-bar"></span>
-                                <span class="icon-bar bottom-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="/"><img style="width:220px" src="~/images/logo.png" alt="Organic" /></a>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Navigation -->
+            <nav class="main_nav">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="main_nav_content d-flex flex-row">
+                                <div class="main_nav_menu mr-auto">
+                                    <ul class="standard_dropdown main_nav_dropdown">
+                                        <li><i style="cursor:pointer" onclick="window.location.href='/'" class="fas fa-2x fa-home"></i></li>
+                                        <li ng-repeat="menu in menus" class="hassubs">
+                                            <a ng-href="{{menu.url}}">{{menu.name}}<i ng-if="menu.childs.length>0" class="fas fa-chevron-down"></i></a>
+                                            <ul ng-if="menu.childs.length>0">
+                                                <li ng-repeat="child in menu.childs">
+                                                    <a ng-href="{{child.url}}">{{child.name}}<i class="fas fa-chevron-down"></i></a>
+                                                </li>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse pull-left" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navleft">
-                                <li ng-class="{ active: checkActive('/')}" class="dropdown">
-                                    <a href="/" class="dropdown-toggle color-setting">Trang Chủ</a>
-                                </li>
-                                <li ng-class="{ active: checkActive('/gioi-thieu')}" class="dropdown">
-                                    <a href="/gioi-thieu" class="dropdown-toggle color-setting">Giới Thiệu</a>
-                                </li>
-                                @*<li ng-class="{ active: checkActive('/san-pham')||checkActive('/gio-hang')||checkActive('/thanh-toan')||checkActive('/hoan-tat-don-hang')}" class="dropdown">
-                                        <a href="/san-pham" class="dropdown-toggle color-setting">Sản Phẩm</a>
-                                    </li>*@
-                                <li ng-class="{ active: checkActive('/thu-vien-decal')}" class="dropdown">
-                                    <a href="/thu-vien-decal" class="dropdown-toggle color-setting">Sản Phẩm</a>
-                                </li>
-                                <li ng-class="{ active: checkActive('/thong-tin')}" class="dropdown">
-                                    <a href="/thong-tin" class="dropdown-toggle color-setting">Tin Tức</a>
-                                </li>
-                                <li ng-class="{ active: checkActive('/lien-he')}" class="dropdown">
-                                    <a href="/lien-he" class="dropdown-toggle color-setting">Liên Hệ</a>
-                                </li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                        <div ng-if="isShowCart" class="nav navbar-nav nav-right pull-right">
-                            <div class="nav-cart">
-                                <a href="#" class="ic-cart color-setting">
-                                    <span class="fa-stack fa-2x has-badge" data-count="{{dataCount}}">
-                                        <i style="" class="shopping-cart fa fa-shopping-cart fa-stack-2x "></i>
-                                    </span>
-                                </a>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Menu Trigger -->
+
+                                <div class="menu_trigger_container ml-auto">
+                                    <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
+                                        <div class="menu_burger">
+                                            <div class="menu_trigger_text">menu</div>
+                                            <div class="cat_burger menu_burger_inner"><span></span><span></span><span></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-
                         </div>
                     </div>
                 </div>
             </nav>
-        </div> <!-- /menu -->
-        <!-- Slined -->
-        <div ng-if="isHomePage" class="slined slined-home01">
-            <div class="slider-headerrevo revo-v1 skew-slide">
-                <div id="rev_slider-home01" class="rev_slider fullwidthabanner" data-version="5.4.1">
-                    <!-- Wrapper for slides -->
-                    <ul>
-                        <li data-transition="zoomin" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" class="item-1 slide-show-text">
-                            <img src="~/images/home01/slider1.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg img-responsive" data-no-retina>
-                        </li>
-                        <li data-transition="zoomin" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" class="item-1 slide-show-text">
-                            <img src="~/images/home01/slider2.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg img-responsive" data-no-retina>
-                        </li>
-                        <li data-transition="zoomin" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" class="item-1 slide-show-text">
-                            <img src="~/images/home01/slider3.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg img-responsive" data-no-retina>
-                        </li>
-                        <li data-transition="zoomin" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" class="item-1 slide-show-text">
-                            <img src="~/images/home01/slider4.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg img-responsive" data-no-retina>
-                        </li>
 
-                    </ul>
-                    <div class="tp-bannertimer"></div>
-                    <!-- Left and right controls -->
+            <!-- Menu -->
+
+            <div class="page_menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+
+                            <div class="page_menu_content">
+
+                                <div class="page_menu_search">
+                                    <form action="#">
+                                        <input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
+                                    </form>
+                                </div>
+                                <ul class="page_menu_nav">
+                                    <li class="page_menu_item has-children">
+                                        <a href="#">Language<i class="fa fa-angle-down"></i></a>
+                                        <ul class="page_menu_selection">
+                                            <li><a href="#">English<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">Italian<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">Spanish<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">Japanese<i class="fa fa-angle-down"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="page_menu_item has-children">
+                                        <a href="#">Currency<i class="fa fa-angle-down"></i></a>
+                                        <ul class="page_menu_selection">
+                                            <li><a href="#">US Dollar<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">EUR Euro<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">GBP British Pound<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">JPY Japanese Yen<i class="fa fa-angle-down"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="page_menu_item">
+                                        <a href="#">Home<i class="fa fa-angle-down"></i></a>
+                                    </li>
+                                    <li class="page_menu_item has-children">
+                                        <a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
+                                        <ul class="page_menu_selection">
+                                            <li><a href="#">Super Deals<i class="fa fa-angle-down"></i></a></li>
+                                            <li class="page_menu_item has-children">
+                                                <a href="#">Menu Item<i class="fa fa-angle-down"></i></a>
+                                                <ul class="page_menu_selection">
+                                                    <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                                    <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                                    <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                                    <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="page_menu_item has-children">
+                                        <a href="#">Featured Brands<i class="fa fa-angle-down"></i></a>
+                                        <ul class="page_menu_selection">
+                                            <li><a href="#">Featured Brands<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="page_menu_item has-children">
+                                        <a href="#">Trending Styles<i class="fa fa-angle-down"></i></a>
+                                        <ul class="page_menu_selection">
+                                            <li><a href="#">Trending Styles<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a></li>
+                                    <li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
+                                </ul>
+
+                                <div class="menu_contact">
+                                    <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>+38 068 005 3570</div>
+                                    <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div ng-if="isHomePage" style="background-color: #2F4098;position:relative" class="baner container-fluid">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="wap-banner-item">
-                        <div class="banner-img">
-                            <img src="~/images/group1.png" />
-                        </div>
-                        <div class="content-text">
-                            <p style="color:white">Tiết Kiệm<br /><span class="text-weight">Thời Gian</span> </p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-sm-3">
-                    <div class="wap-banner-item">
-                        <div class="banner-img">
-                            <img src="~/images/group2.png" />
-                        </div>
-                        <div class="content-text">
-                            <p style="color:white">Dịch Vụ<br /><span class="text-weight">Tận Tâm</span></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-sm-3">
-                    <div class="wap-banner-item">
-                        <div class="banner-img">
-                            <img src="~/images/group3.png" />
-                        </div>
-                        <div class="content-text">
-                            <p style="color:white">Giá Cả<br /><span class="text-weight">Cạnh Tranh</span></p>
+        </header>
+        <!-- Banner -->
+        @*<div class="container">
+                <div class="banner_background" style="background-image:url(images/banner_background.jpg)"></div>
+                <div class="container fill_height">
+                    <div class="row fill_height">
+                        <div class="col-lg-5 offset-lg-4 fill_height">
+                            <div class="banner_content">
+                                <h1 class="banner_text"></h1>
+                                <div class="banner_price"><span></span></div>
+                                <div class="banner_product_name"></div>
+                                <div class="button banner_button"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="wap-banner-item">
-                        <div class="banner-img">
-                            <img src="~/images/group4.png" />
-                        </div>
-                        <div class="content-text">
-                            <p style="color:white">Giao Hành<br /><span class="text-weight">Nhanh Chóng</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div ng-if="!isHomePage" class="breakcrumb">
-            <div class="container">
-                <div class="text-center">
-                </div>
-            </div>
-        </div> <!-- breakcrumb -->
-    </header>
-    <!-- End Header -->
-    @RenderBody()
-    <!-- FOOTER -->
-    <footer id="footer">
-        <div class="footer-top">
+            </div>*@
+        @RenderBody()
+        <!-- Newsletter -->
+        <div class="newsletter">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="footer-text">
-                            <h2><a href="javascript:void(0)" class="footer-logo">THẾ GIỚI STICKER</a></h2>
-                            <p style="color:white">Giải pháp in ấn chuyên nghiệp của bạn</p>
-                            <p style="color:white">Email: {{settings[0].settingValue}}</p>
-                            <p style="color:white">Kế toán – Đơn hàng: {{settings[1].settingValue}}</p>
-                            <p style="color:white">Thời gian làm việc: thứ 2- thứ 7</p>
-                            <p style="color:white">Sáng 8h – 12h,chiều 1h30 – 5h30</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="footer-text">
-                            <h2><a href="javascript:void(0)" class="footer-logo">BẠN CẦN BIẾT</a></h2>
-                            <p><a style="color:white" href="/gioi-thieu">Giới thiệu thế giới Sticker</a></p>
-                            <p><a style="color:white" href="/tuyen-dung">Tuyển dụng</a></p>
-                            <p><a style="color:white" href="/quy-dinh-chung">Quy định chung</a></p>
-                            <p><a style="color:white" href="/thanh-toan-va-giao-hang">Phương thức thanh toán – giao hàng</a></p>
-                            <p><a style="color:white" href="/chinh-sach-bao-mat">Chính sách bảo mật</a></p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="footer-text">
-                            <h2><a href="javascript:void(0)" class="footer-logo">HỖ TRỢ TRỰC TUYẾN</a></h2>
-                            <p style="color:white">{{settings[3].settingValue}}</p>
-                            <p style="color:white">{{settings[4].settingValue}}</p>
-                            <p style="color:white">{{settings[5].settingValue}}</p>
-                            <p style="color:white">{{settings[6].settingValue}}</p>
+                    <div class="col">
+                        <div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
+                            <div class="newsletter_title_container">
+                                <div class="newsletter_icon"><img src="images/send.png" alt=""></div>
+                                <div class="newsletter_title">Đăng ký để nhận tin từ chúng tôi</div>
+                                <div class="newsletter_text"><p>...để nhận mã giảm giá 20% cho đơn hàng đầu tiên.</p></div>
+                            </div>
+                            <div class="newsletter_content clearfix">
+                                <form action="#" class="newsletter_form">
+                                    <input type="email" class="newsletter_input" required="required" placeholder="Nhập email của bạn">
+                                    <button class="newsletter_button">Đăng ký</button>
+                                </form>
+                                <div class="newsletter_unsubscribe_link"><a href="#">Hủy đăng ký</a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
+        <!-- Footer -->
+        <footer class="footer">
             <div class="container">
-                <ul class="footer-menu pull-right">
-                    <li>
-                        <a href="http://online.gov.vn/Home/WebDetails/64369" target="_blank">
-                            <img style="width: 200px; margin-top: 20px;" data-src="~/images/logoSaleNoti.png" class=" ls-is-cached lazyloaded" src="~/images/logoSaleNoti.png" loading="lazy"><noscript><img src="~/images/logoSaleNoti.png" style="width: 200px; margin-top: 20px;"></noscript>
-                        </a>
-                    </li>
-                </ul>
-                <div class="footer-menu pull-left">
-                    <p style="color:white;width:100%" class="copy-right pull-left{{settings[10].settingValue}}">{{}}</p><br />
-                    <p style="color:white" class="copy-right pull-left">Địa chỉ: {{settings[8].settingValue}}</p>
-                </div>
+                <div class="row">
 
-            </div>
-        </div>
-    </footer>
-    <div ng-app="thegioistickerApp" ng-controller="loginController" class="modal fade login" id="loginModal">
-        <div class="modal-dialog login animated">
-            <div class="modal-content">
-                <div class="modal-header">
-                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
-                    <h4 class="modal-title">Đăng Nhập</h4>
-                </div>
-                <div style="min-width:unset;min-height:unset" class="modal-body">
-                    <div class="box">
-                        <div class="content">
-                            <div class="social">
-                                @*<a id="google_login" class="circle google" href="javascript:void(0)" data-ng-click="authExternalProvider('Google')">
-                                        <i class="fa fa-google-plus fa-fw"></i>
-                                    </a>*@
-                                <a id="facebook_login" class="circle facebook" href="javascript:void(0)" data-ng-click="authExternalProvider('Facebook')">
-                                    <i class="fa fa-facebook fa-fw"></i>
-                                </a>
+                    <div class="col-lg-3 footer_col">
+                        <div class="footer_column footer_contact">
+                            <div class="logo_container">
+                                <div class="logo"><a href="#">PDCA</a></div>
                             </div>
-                            <div class="division">
-                                <div class="line l"></div>
-                                <span>Hay</span>
-                                <div class="line r"></div>
+                            <div class="footer_title">Got Question? Call Us 24/7</div>
+                            <div class="footer_phone">+38 068 005 3570</div>
+                            <div class="footer_contact_text">
+                                <p>17 Princess Road, London</p>
+                                <p>Grester London NW18JR, UK</p>
                             </div>
-                            <div class="error"></div>
-                            <div class="form loginBox">
-                                <input data-ng-model="loginData.userName" class="form-control" type="text" placeholder="Tên đăng nhập" name="username">
-                                <input data-ng-model="loginData.password" class="form-control" type="password" placeholder="Mật khẩu" name="password">
-                                <input class="btn btn-default btn-login" value="Đăng Nhập" type="submit" data-ng-click="login()">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="content registerBox" style="display:none;">
-                            <div class="form">
-                                <input data-ng-hide="isCreateExtenal" data-ng-model="registration.fullName" class="form-control" type="text" placeholder="Họ và tên" name="fullName">
-                                <input data-ng-hide="isCreateExtenal" data-ng-model="registration.userName" class="form-control" type="text" placeholder="Tên đăng nhập" name="username">
-                                <input data-ng-hide="isCreateExtenal" data-ng-model="registration.email" class="form-control" type="email" placeholder="Email" name="email">
-                                <input data-ng-hide="isCreateExtenal" data-ng-model="registration.password" class="form-control" type="password" placeholder="Mật khẩu" name="password">
-                                <input data-ng-hide="isCreateExtenal" data-ng-model="registration.confirmPassword" class="form-control" type="password" placeholder="Nhắc lại mật khẩu" name="password_confirmation">
-                                <input data-ng-hide="isCreateExtenal" class="btn btn-default btn-register" type="submit" value="Tạo Tài Khoản" name="commit" data-ng-click="signUp()">
-                                <input data-ng-hide="!isCreateExtenal" data-ng-model="registerData.fullName" class="form-control" type="text" placeholder="Tên hiển thị" name="fullName">
-                                <input data-ng-hide="!isCreateExtenal" class="btn btn-default btn-register" type="submit" value="Tạo Tài Khoản" name="commit" data-ng-click="registerExternal()">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="content forgotBox" style="display:none;">
-                            <div class="form">
-                                <input style="margin-bottom:20px" data-ng-model="forgot.email" class="form-control" type="email" placeholder="Email" name="email">
-                                <input class="btn btn-default btn-login" value="Lấy lại mật khẩu" type="submit" data-ng-click="forgotPass()">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="forgot login-footer">
-                        <span>
-                            Bạn muốn
-                            <a href="javascript:void(0)" data-ng-click="showRegisterForm()">Tạo tài khoản</a>
-                            ?
-                        </span>
-                        <br />
-                        <span>Bạn quên mật khẩu ?</span>
-                        <a href="javascript:void(0)" data-ng-click="showforgotForm()">Lấy lại mật khẩu</a>
-
-                    </div>
-                    <div class="forgot register-footer" style="display:none">
-                        <span>Đã có tài khoản</span>
-                        <a href="javascript:void(0)" data-ng-click="showLoginForm()">Đăng nhập</a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End FOOTER -->
-    <!-- Sample detail PUPUP -->
-    <div id="shopping-pupup" data-backdrop="static" style="z-index:1150" class="modal fade" role="dialog">
-        <div class="modal-dialog dialog-full">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    @*<h5 class="modal-title">Modal title</h5>*@
-                    <button ng-click="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <div class="shopgird-detai-img">
-                            <div class="detail-slider">
-                                <div class="img-outline">
-                                    <img style="width:60%;margin-top:50px" ng-src="{{selectedSample.image}}" class="img-responsive">
-                                </div>
-                            </div>
-                        </div>
-                        <form id='f2'>
-                            <div ng-hide="step==2" id='f2-step1' class="mid-product-content media-body">
-                                <div class="form-tax" style="border:unset">
-                                    <div id="sample-info" class="billing-address">
-                                        <div ng-repeat="field in settingModal.fields" class="form-group">
-                                            <div class="billing-category">
-                                                <label>{{field.text}}</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <input ng-model="field.value" num-only name="{{field.key}}" type="text">
-                                            </div>
-                                        </div>
-                                        <button data-ng-click="nextStep()" class="button  bd-radius-50 btn-setting bd-color-setting ">Dùng Mẫu Này</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div ng-hide="step==1" id='f2-step2' class="mid-product-content media-body">
-                                <div class="form-tax" style="border:unset">
-                                    <div class="billing-address">
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Kính thước *</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <input maxlength="4" ng-model="shoppingCart.width" number-input style="width:43%;float:left;margin-right:25px" placeholder="ngang(mm)" name="width" type="text">
-                                                <input maxlength="4" ng-model="shoppingCart.height" number-input style="width:43%;float:left;" placeholder="cao(mm)" name="height" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Số lượng cần in *</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <input maxlength="7" interger-input ng-model="shoppingCart.quantity" num-only name="quantity" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Loại decal</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <select ng-model="shoppingCart.material"
-                                                        ng-options="opt as opt.name for opt in options">
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Cán màng</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <select ng-model="shoppingCart.machining"
-                                                        ng-options="opt as opt.label for opt in machinings">
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Bế</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <select ng-model="shoppingCart.cut"
-                                                        ng-options="opt as opt.label for opt in cuts">
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Đơn Giá</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <p>{{price |number}}(VND)</p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Thành Tiền</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <p>{{subTotal |number}}(VND)</p>
-                                            </div>
-                                        </div>
-                                        <button data-ng-click="prevStep()" class="button  bd-radius-50 btn-setting bd-color-setting ">Sửa thông tin Mẫu</button>
-                                        <button style="min-width: 200px; margin-top: 10px;" data-ng-click="addToshoppingCartFromSample(selectedSample.id)" class="button  bd-radius-50 btn-setting bd-color-setting ">Đặt In Ngay</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Sample detail PUPUP -->
-    <!-- DESIGN PUPUP -->
-    <div id="design-pupup" data-backdrop="static" class="modal fade" role="dialog">
-        <div class="modal-dialog dialog-full">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    @*<h5 class="modal-title">Modal title</h5>*@
-                    <button ng-click="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div style="padding: 20px;" class="modal-body">
-                    <div>
-                        <div class="shopgird-detai-img">
-                            <div class="detail-slider">
-                                <div class="img-outline">
-                                    <img style="max-height:400px" src="~/images/design.jpg" class="img-responsive" />
-                                </div>
-                            </div>
-                        </div>
-                        <form id='f4'>
-                            <div ng-hide="step==2" id='f4-step1' class="mid-product-content media-body">
-                                <h3>Thiết Kế Theo Yêu Cầu </h3>
-                                <div class="product-price-one price-mid">
-                                    <span style="color:blue;font-size:20px" class="color-setting">100,000 VND</span>
-                                </div>
-                                <p>THÔNG SỐ CƠ BẢN.</p>
-                                <div class="service">
-                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Thiết kế mới độc quyền</p>
-                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Tư liệu khách hàng cung cấp</p>
-                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Số lần chỉnh sửa: 2 lần</p>
-                                    <p><i class="fa fa-check color-setting" aria-hidden="true"></i>Thời gian thiết kế: 4 giờ</p>
-                                </div>
-                                <h3>Thông Tin Thiết Kế.</h3>
-                                <div class="form-tax" style="border:unset">
-                                    <textarea ng-model="fileDescription" name="fileDescription" rows="4" cols="100"></textarea>
-                                </div>
-                                <button data-ng-click="nextStep()" class="button  bd-radius-50 btn-setting bd-color-setting ">Dùng File Này</button>
-                            </div>
-                            <div ng-hide="step==1" id='f4-step2' class="mid-product-content media-body">
-                                <div class="form-tax" style="border:unset">
-                                    <div class="billing-address">
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Kính thước *</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <input maxlength="4" ng-model="shoppingCart.width" number-input style="width:43%;float:left;margin-right:25px" placeholder="ngang(mm)" name="width" type="text">
-                                                <input maxlength="4" ng-model="shoppingCart.height" number-input style="width:43%;float:left;" placeholder="cao(mm)" name="height" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Số lượng cần in *</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <input maxlength="7" interger-input ng-model="shoppingCart.quantity" num-only name="quantity" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Loại decal</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <select ng-model="shoppingCart.material"
-                                                        ng-options="opt as opt.name for opt in options track by opt.code">
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Cán màng</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <select ng-model="shoppingCart.machining"
-                                                        ng-options="opt as opt.label for opt in machinings">
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Bế</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <select ng-model="shoppingCart.cut"
-                                                        ng-options="opt as opt.label for opt in cuts">
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Đơn Giá</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <p>{{price |number}}(VND)</p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Thành Tiền</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <p>{{subTotal |number}}(VND)</p>
-                                            </div>
-                                        </div>
-                                        <button data-ng-click="prevStep()" class="button  bd-radius-50 btn-setting bd-color-setting ">Sửa thông tin file</button>
-                                        <button style="min-width: 200px; margin-top: 10px;" data-ng-click="addToshoppingCartFromDesign()" class="button  bd-radius-50 btn-setting bd-color-setting ">Đặt In Ngay</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End DESIGN PUPUP -->
-    <!-- UPLOAD PUPUP -->
-    <div id="upload-pupup" data-backdrop="static" class="modal fade" role="dialog">
-        <div class="modal-dialog dialog-full">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    @*<h5 class="modal-title">Modal title</h5>*@
-                    <button ng-click="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div style="padding: 20px;" class="modal-body">
-                    <div>
-                        <div class="shopgird-detai-img">
-                            <div class="detail-slider">
-                                <div class="img-outline">
-                                    <img src="~/images/upanh.png" class="img-responsive" />
-                                </div>
-                            </div>
-                        </div>
-                        <form id='f3'>
-                            <div ng-hide="step==2" id='f3-step1' class="mid-product-content media-body">
-                                <h3>Tải lên file in </h3>
-                                <div data-provides="fileinput" class="form-group billing-country">
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <span style="width:100%" class="btn btn-primary btn-file">
-                                                <input name="file" type="file" multiple my-directory="getFiles(file)" accept=".png,.jpg,.tif,.gif,.tiff,.bmp,.pdf" ng-disabled="uploading" />
-                                            </span>
-                                        </span>
-                                    </div>
-
-                                    <div ng-repeat="file in data ">
-                                        {{file.FileName  + '  ' + file.FileLength + ' bytes'  }}<br />
-                                    </div>
-                                </div>
-                                <h3>Ghi chú.</h3>
-                                <div class="form-tax" style="border:unset">
-                                    <textarea ng-model="fileDescription" name="fileDescription" rows="4" cols="100"></textarea>
-                                </div>
-                                @*<input type="button" class="button  bd-radius-50 btn-setting bd-color-setting" ng-click="uploadFiles()" value="Dùng File Này" ng-disabled="uploading || countFiles===''" />*@
-                                <button data-ng-click="nextStepUpload()" class="button  bd-radius-50 btn-setting bd-color-setting ">Dùng File Này</button>
-                            </div>
-                            <div ng-hide="step==1" id='f3-step2' class="mid-product-content media-body">
-                                <div class="form-tax" style="border:unset">
-                                    <div class="billing-address">
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Kính thước *</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <input maxlength="4" ng-model="shoppingCart.width" number-input style="width:43%;float:left;margin-right:25px" placeholder="ngang(mm)" name="width" type="text">
-                                                <input maxlength="4" ng-model="shoppingCart.height" number-input style="width:43%;float:left;" placeholder="cao(mm)" name="height" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Số lượng cần in *</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <input maxlength="7" interger-input ng-model="shoppingCart.quantity" num-only name="quantity" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Loại decal</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <select ng-model="shoppingCart.material"
-                                                        ng-options="opt as opt.name for opt in options">
-                                                </select>
-                                                @*<p ng-if="invoicePrintPrice>0">{{invoicePrintPrice|number}} (VND)</p>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Cán màng</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <select ng-model="shoppingCart.machining"
-                                                        ng-options="opt as opt.label for opt in machinings">
-                                                </select>
-                                                @*<p ng-if="invoiceMachining>0">{{invoiceMachining|number}} (VND)</p>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Bế</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <select ng-model="shoppingCart.cut"
-                                                        ng-options="opt as opt.label for opt in cuts">
-                                                </select>
-                                                @*<p ng-if="invoiceCut>0">{{invoiceCut|number}} (VND)</p>*@
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Đơn Giá</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <p>{{price |number}}(VND)</p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="billing-category">
-                                                <label>Thành Tiền</label>
-                                            </div>
-                                            <div class="billing-select">
-                                                <p>{{subTotal |number}}(VND)</p>
-                                            </div>
-                                        </div>
-                                        <button data-ng-click="prevStep()" class="button  bd-radius-50 btn-setting bd-color-setting ">Sửa thông tin file</button>
-                                        <input style="min-width: 200px; margin-top: 10px;" type="button" class="button  bd-radius-50 btn-setting bd-color-setting" ng-click="uploadFiles()" value="Đặt In Ngay" ng-disabled="uploading || countFiles===''" />
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End UPLOAD PUPUP -->
-    <!-- Library PUPUP -->
-    <div id="library-pupup" data-backdrop="static" class="modal fade" role="dialog">
-        <div style="width:80%" class="modal-dialog dialog-full-80">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    @*<h5 class="modal-title">Modal title</h5>*@
-                    <button ng-click="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div style="margin-top:10px" class="modal-body">
-                    <div class="container-fluid">
-                        <ul class="nav nav-pills nav-justified">
-                            <li class="active"><a style="height: 50px; line-height: 50px; padding-top: 0; padding-bottom: 0; border-radius: 0; background: #eceff6; color: #232530 !important; font-weight: 500;" data-toggle="pill" href="#descrition" class="btn-setting">Theo Kiểu Bế</a></li>
-                            <li><a style="height: 50px; line-height: 50px; padding-top: 0; padding-bottom: 0; border-radius: 0; background: #eceff6; color: #232530 !important; font-weight: 500;" data-toggle="pill" href="#additional" class="btn-setting">Theo Chất Liệu In</a></li>
-                        </ul>
-
-                        <div class="tab-content detail-tab">
-                            <div id="descrition" class="tab-pane fade in active">
-                                <ul class="nav nav-tabs">
-                                    <li style="width:unset" ng-repeat="shape in shapes">
-                                        <a ng-click="searchByCategory(shape.id)" data-toggle="tab" href="javascript:void(0)">
-                                            <img ng-src="{{shape.image}}" />
-                                        </a>
-                                    </li>
+                            <div class="footer_social">
+                                <ul>
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-google"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
                                 </ul>
-                                <br /><br />
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="content-product">
-                                            <div class="row">
-
-                                                <div style="min-width:260px" ng-repeat="product in sampleGalery" class="col-xs-6 col-sm-3 animated fadeInDown">
-                                                    <div class="product-item bd-color-setting">
-                                                        <div class="product-image item">
-                                                            <img ng-src="{{product.image}}" alt="our product">
-                                                            <div class="quick-action">
-                                                                <a class="btn button btn-setting bd-color-setting bd-radius-5 cart" ng-click="showLibrary(product.id)" href="javascript:void(0)">Dùng Mẫu Này</a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-text">
-                                                            <div class="product-name">
-                                                                <h3 class="product-title">
-                                                                    <a ng-click="viewDetail(product.id)" href="javascript:void(0)" class="color-setting">{{product.name}}</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> <!-- /product-item -->
-                                            </div>
-                                        </div>
-
-                                        <!-- PAGES NUMBER -->
-                                        <div class="shop-bottom">
-                                            <p class="shop-number pull-right">Tất cả có {{totalProduct}} sản phẩm</p>
-                                            <pagination num-pages="noOfPages" current-page="currentPage" class="pagination-small"></pagination>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                            <div id="additional" class="tab-pane fade">
-                                <p>test</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 offset-lg-2">
+                        <div class="footer_column">
+                            <div class="footer_title">Find it Fast</div>
+                            <ul class="footer_list">
+                                <li><a href="#">Computers & Laptops</a></li>
+                                <li><a href="#">Cameras & Photos</a></li>
+                                <li><a href="#">Hardware</a></li>
+                                <li><a href="#">Smartphones & Tablets</a></li>
+                                <li><a href="#">TV & Audio</a></li>
+                            </ul>
+                            <div class="footer_subtitle">Gadgets</div>
+                            <ul class="footer_list">
+                                <li><a href="#">Car Electronics</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="footer_column">
+                            <ul class="footer_list footer_list_2">
+                                <li><a href="#">Video Games & Consoles</a></li>
+                                <li><a href="#">Accessories</a></li>
+                                <li><a href="#">Cameras & Photos</a></li>
+                                <li><a href="#">Hardware</a></li>
+                                <li><a href="#">Computers & Laptops</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="footer_column">
+                            <div class="footer_title">Customer Care</div>
+                            <ul class="footer_list">
+                                <li><a href="#">My Account</a></li>
+                                <li><a href="#">Order Tracking</a></li>
+                                <li><a href="#">Wish List</a></li>
+                                <li><a href="#">Customer Services</a></li>
+                                <li><a href="#">Returns / Exchange</a></li>
+                                <li><a href="#">FAQs</a></li>
+                                <li><a href="#">Product Support</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+        <!-- Copyright -->
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+
+                        <div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
+                            <div class="copyright_content">
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | Thegioisticker.com
+                            </div>
+                            <div class="logos ml-sm-auto">
+                                <ul class="logos_list">
+                                    <li><a href="#"><img src="images/logos_1.png" alt=""></a></li>
+                                    <li><a href="#"><img src="images/logos_2.png" alt=""></a></li>
+                                    <li><a href="#"><img src="images/logos_3.png" alt=""></a></li>
+                                    <li><a href="#"><img src="images/logos_4.png" alt=""></a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div ng-app="thegioistickerApp" ng-controller="loginController" class="modal fade login" id="loginModal">
+            <div class="modal-dialog login animated">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                        <h4 class="modal-title">Đăng Nhập</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box">
+                            <div class="content">
+                                <div class="social">
+                                    <a id="facebook_login" class="circle facebook" href="javascript:void(0)" data-ng-click="authExternalProvider('Facebook')">
+                                        <i class="fa fa-facebook fa-fw"></i>
+                                    </a>
+                                </div>
+                                <div class="division">
+                                    <div class="line l"></div>
+                                    <span>Hay</span>
+                                    <div class="line r"></div>
+                                </div>
+                                <div class="error"></div>
+                                <div class="form loginBox">
+                                    <input data-ng-model="loginData.userName" class="form-control" type="text" placeholder="Tên đăng nhập" name="username">
+                                    <input data-ng-model="loginData.password" class="form-control" type="password" placeholder="Mật khẩu" name="password">
+                                    <input class="btn btn-default btn-login" value="Đăng Nhập" type="submit" data-ng-click="login()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="content registerBox" style="display:none;">
+                                <div class="form">
+                                    <input data-ng-hide="isCreateExtenal" data-ng-model="registration.fullName" class="form-control" type="text" placeholder="Họ và tên" name="fullName">
+                                    <input data-ng-hide="isCreateExtenal" data-ng-model="registration.userName" class="form-control" type="text" placeholder="Tên đăng nhập" name="username">
+                                    <input data-ng-hide="isCreateExtenal" data-ng-model="registration.password" class="form-control" type="password" placeholder="Mật khẩu" name="password">
+                                    <input data-ng-hide="isCreateExtenal" data-ng-model="registration.confirmPassword" class="form-control" type="password" placeholder="Nhắc lại mật khẩu" name="password_confirmation">
+                                    <input data-ng-hide="isCreateExtenal" class="btn btn-default btn-register" type="submit" value="Tạo Tài Khoản" name="commit" data-ng-click="signUp()">
+                                    <input data-ng-hide="!isCreateExtenal" data-ng-model="registerData.fullName" class="form-control" type="text" placeholder="Tên hiển thị" name="fullName">
+                                    <input data-ng-hide="!isCreateExtenal" class="btn btn-default btn-register" type="submit" value="Tạo Tài Khoản" name="commit" data-ng-click="registerExternal()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="forgot login-footer">
+                            <span>
+                                Bạn muốn
+                                <a href="javascript:void(0)" data-ng-click="showRegisterForm()">Tạo tài khoản</a>
+                                ?
+                            </span>
+                        </div>
+                        <div class="forgot register-footer" style="display:none">
+                            <span>Đã có tài khoản</span>
+                            <a href="javascript:void(0)" data-ng-click="showLoginForm()">Đăng nhập</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- End Library PUPUP -->
-    <!-- Javascript-->
+    <!--Add js lib-->
     <script src="~/Scripts/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="~/Scripts/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/Scripts/vendor/jquery_easing/jquery.easing.min.js"></script>
     <script src="~/Scripts/vendor/owl-carousel/js/owl.carousel.js"></script>
     <script src="~/Scripts/vendor/slick/js/slick.js"></script>
     <script src="~/Scripts/vendor/isotope/js/isotope.js"></script>
     <script src="~/Scripts/vendor/isotope/js/imagesloaded.pkgd.js"></script>
     <script src="~/Scripts/vendor/range_filter/js/jquery-ui.js"></script>
+    <script src="~/Scripts/vendor/Chart.js"></script>
+    <script src="~/Scripts/vendor/doughnutit.js"></script>
+    <script src="~/Scripts/vendor/owl.carousel.min.js"></script>
     <script src="~/Scripts/switcher.js"></script>
-    <script src="~/Scripts/vendor/slider-revolution/js/jquery.themepunch.tools.min.js"></script>
-    <script src="~/Scripts/vendor/slider-revolution/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.actions.min.js"></script>
-    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.carousel.min.js"></script>
-    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.kenburn.min.js"></script>
-    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.layeranimation.min.js"></script>
-    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.migration.min.js"></script>
-    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.navigation.min.js"></script>
-    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.parallax.min.js"></script>
-    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.slideanims.min.js"></script>
-    <script src="~/Scripts/vendor/slider-revolution/js/revolution.extension.video.min.js"></script>
     <script src="~/Scripts/vendor/angular/angular.min.js"></script>
     <script src="~/Scripts/vendor/angular/angular-ui-router.min.js"></script>
     <script src="~/Scripts/vendor/angular/angular-messages.min.js"></script>
@@ -839,55 +466,59 @@
     <script src="~/Scripts/login-register.js"></script>
 
     <script src="~/Scripts/formValidation.min.js"></script>
-    <script src="~/Scripts/framework/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="~/Scripts/moment.js"></script>
     <script src="~/Scripts/assets/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/datetime.js"></script>
     <script src="~/Scripts/bootstrap-select.js"></script>
-    <script src="~/Scripts/validattionHelper.js"></script>
-    <script src="~/Scripts/main.js"></script>
+
+
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/plugins/greensock/TweenMax.min.js"></script>
+    <script src="~/Scripts/plugins/greensock/TimelineMax.min.js"></script>
+    <script src="~/Scripts/plugins/scrollmagic/ScrollMagic.min.js"></script>
+    <script src="~/Scripts/plugins/greensock/animation.gsap.min.js"></script>
+    <script src="~/Scripts/plugins/greensock/ScrollToPlugin.min.js"></script>
+    <script src="~/Scripts/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="~/Scripts/plugins/slick-1.8.0/slick.js"></script>
+    <script src="~/Scripts/plugins/easing/easing.js"></script>
+    <!-- Load app and directive -->
     <script src="~/Scripts/thegioistickerjs/app.js"></script>
     <script src="~/Scripts/directives/pagination.js"></script>
     <script src="~/Scripts/directives/numberInput.js"></script>
 
-    <script src="~/Scripts/thegioistickerjs/services/authInterceptorService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/services/authService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/services/ordersService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/services/tokensManagerService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/services/productService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/services/blogService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/services/commonService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/services/customerService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/services/faqService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/services/invoiceService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/services/sampleService.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/services/companyService.js?ver=2.2"></script>
+    <!-- Load services -->
+    <script src="~/Scripts/thegioistickerjs/services/authInterceptorService.js?v=2"></script>
+    <script src="~/Scripts/thegioistickerjs/services/authService.js?v=2"></script>
+    <script src="~/Scripts/thegioistickerjs/services/ordersService.js?v=2"></script>
+    <script src="~/Scripts/thegioistickerjs/services/tokensManagerService.js?v=2"></script>
+    <script src="~/Scripts/thegioistickerjs/services/productService.js"></script>
+    <script src="~/Scripts/thegioistickerjs/services/blogService.js"></script>
+    <script src="~/Scripts/thegioistickerjs/services/commonService.js"></script>
+    <script src="~/Scripts/thegioistickerjs/services/customerService.js"></script>
+    <script src="~/Scripts/thegioistickerjs/services/faqService.js"></script>
+    <script src="~/Scripts/thegioistickerjs/services/invoiceService.js"></script>
+    <script src="~/Scripts/thegioistickerjs/services/sampleService.js"></script>
     <script src="~/Scripts/thegioistickerjs/services/settingService.js"></script>
-    <script src="~/Scripts/thegioistickerjs/services/couponService.js"></script>
-    <script src="~/Scripts/thegioistickerjs/services/shapeService.js"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/root.controller.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/homeController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/indexController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/loginController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/ordersController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/refreshController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/tokensManagerController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/productController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/galleryController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/productDetailController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/shoppingCartController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/blogController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/blogDetailController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/faqController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/companyController.js?ver=2.2"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/userController.js?ver=2.2"></script>
 
-    @*<script src="~/Scripts/thegioistickerApp.min.js?ver=2.2"></script>*@
+    <!-- Load controllers -->
+    <script src="~/Scripts/thegioistickerjs/controllers/root.controller.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/homeController.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/indexController.js?v=2"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/loginController.js?v=2"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/ordersController.js?v=2"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/refreshController.js?v=2"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/tokensManagerController.js?v=2"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/productController.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/galleryController.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/productDetailController.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/shoppingCartController.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/blogController.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/blogDetailController.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/faqController.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/invoiceController.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/companyController.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/userController.js"></script>
+    <script src="~/Scripts/thegioistickerjs/controllers/editorController.js"></script>
 </body>
 </html>
-<script>
-    // Set a same-site cookie for first-party contexts
-    document.cookie = 'cookie1=value1; SameSite=Lax';
-    // Set a cross-site cookie for third-party contexts
-    document.cookie = 'cookie2=value2; SameSite=None; Secure';
-</script>

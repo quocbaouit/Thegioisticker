@@ -231,8 +231,6 @@
     <Content Include="Content\assets\icons\fuse-icon-font\style.css" />
     <Content Include="Content\assets\icons\fuse-icon-font\fonts\fuse-iconfont.svg" />
     <Content Include="Content\css\angular-ui-notification.min.css" />
-    <Content Include="Content\css\css-loader.css" />
-    <Content Include="Content\css\h5splayer.css" />
     <Content Include="Content\customAnimation.css" />
     <Content Include="Content\assets\vendor\animate.css\animate.css" />
     <Content Include="Content\assets\vendor\animate.css\animate.min.css" />
@@ -1004,12 +1002,8 @@
     <Content Include="Content\css\colors\color-green.min.css" />
     <Content Include="Content\css\colors\color-lavender.css" />
     <Content Include="Content\css\colors\color-orange.css" />
-    <Content Include="Content\css\main.css" />
-    <Content Include="Content\css\main.min.css" />
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\responsive.min.css" />
-    <Content Include="Content\css\switcher.css" />
-    <Content Include="Content\css\switcher.min.css" />
     <Content Include="Content\fonts\fonts-google.css" />
     <Content Include="Content\fonts\fonts-google.min.css" />
     <Content Include="Content\fonts\fonts.css" />
@@ -2144,9 +2138,6 @@
     <Content Include="Scripts\assets\vendor\popper.js\index.js" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\datetime.js" />
-    <Content Include="Scripts\directives\invoice-form.directive.js" />
-    <Content Include="Scripts\directives\invoice-form.html" />
-    <Content Include="Scripts\directives\numberInput1.js" />
     <Content Include="Scripts\directives\numberInput.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\thegioistickerAdminjs\app.js" />
@@ -2235,31 +2226,25 @@
     <Content Include="Scripts\directives\pagination.js" />
     <Content Include="Scripts\thegioistickerjs\services\authInterceptorService.js" />
     <Content Include="Scripts\thegioistickerjs\services\authService.js" />
-    <Content Include="Scripts\thegioistickerjs\services\companyService.js" />
     <Content Include="Scripts\thegioistickerjs\services\commonService.js" />
     <Content Include="Scripts\thegioistickerjs\services\blogService.js" />
-    <Content Include="Scripts\thegioistickerjs\services\couponService.js" />
     <Content Include="Scripts\thegioistickerjs\services\invoiceService.js" />
     <Content Include="Scripts\thegioistickerjs\services\faqService.js" />
     <Content Include="Scripts\thegioistickerjs\services\customerService.js" />
-    <Content Include="Scripts\thegioistickerjs\services\settingService.js" />
-    <Content Include="Scripts\thegioistickerjs\services\shapeService.js" />
     <Content Include="Scripts\thegioistickerjs\services\sampleService.js" />
     <Content Include="Scripts\thegioistickerjs\services\productService.js" />
     <Content Include="Scripts\thegioistickerjs\services\ordersService.js" />
+    <Content Include="Scripts\thegioistickerjs\services\settingService.js" />
     <Content Include="Scripts\thegioistickerjs\services\tokensManagerService.js" />
     <Content Include="Scripts\formValidation.min.js" />
     <Content Include="Scripts\framework\bootstrap.js" />
     <Content Include="Scripts\framework\bootstrap.min.js" />
     <Content Include="Scripts\framework\README-BEFORE-DELETING.txt" />
     <Content Include="Scripts\login-register.js" />
-    <Content Include="Scripts\test.bundle.js" />
-    <Content Include="Scripts\validattionHelper.js" />
     <Content Include="Scripts\vendor\angular\angular-local-storage.min.js" />
     <Content Include="Scripts\authComplete.js" />
     <Content Include="Scripts\thegioistickerjs\app.js" />
     <Content Include="Scripts\thegioistickerjs\controllers\root.controller.js" />
-    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\switcher.js" />
     <Content Include="Scripts\vendor\angular\angular-animate.js" />
     <Content Include="Scripts\vendor\angular\angular-animate.min.js" />
@@ -2624,8 +2609,6 @@
     <Content Include="Views\ShoppingCart\OrderComplete.cshtml" />
     <Content Include="Views\Blog\BlogDetail.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Content\thegioisticker.css.bundle" />
-    <Content Include="Content\thegioistickerAdmin.css.bundle" />
     <None Include="Properties\PublishProfiles\Thegioisticker - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\Thegioisticker - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\Thegioisticker - Web Deploy.pubxml" />
@@ -2637,9 +2620,6 @@
     <Content Include="Views\Company\Delivery.cshtml" />
     <Content Include="Views\Company\PrivacyPolicy.cshtml" />
     <Content Include="Views\User\ResetPassword.cshtml" />
-    <Content Include="Scripts\thegioisticker.js.bundle" />
-    <Content Include="Scripts\thegioistickerAdmin.js.bundle" />
-    <Content Include="Scripts\thegioistickerApp.js.bundle" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2711,7 +2691,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>26264</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44336/</IISUrl>
+          <IISUrl>https://localhost:44337/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

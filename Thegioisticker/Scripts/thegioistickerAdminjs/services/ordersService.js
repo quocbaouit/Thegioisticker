@@ -33,11 +33,6 @@ thegioistickerAdmin.factory('ordersService', ['$http', 'ngAuthSettings', functio
     var _deleteDetail = function (orderDetail) {
         return $http.post(serviceBase + 'api/order/deleteOrderDetail', orderDetail).then(function (response) {
             return response;
-        });    
-    };
-    var _getListFileName = function (transactionId) {
-        return $http.get(serviceBase + 'api/upload/getListFileName/' + transactionId).then(function (results) {
-            return results;
         });
     };
 
@@ -47,7 +42,6 @@ thegioistickerAdmin.factory('ordersService', ['$http', 'ngAuthSettings', functio
     orderServiceFactory.saveOrder = _saveOrder;
     orderServiceFactory.delete = _delete;
     orderServiceFactory.deleteDetail = _deleteDetail;
-    orderServiceFactory.getListFileName = _getListFileName;
 
     return orderServiceFactory;
 

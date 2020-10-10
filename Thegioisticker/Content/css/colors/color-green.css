@@ -11,7 +11,7 @@
 	background-color: #2F4098 !important;
 }
 .btn-setting {
-	color: #FFF;
+	color: #FFF !important;
 	background: #2F4098;
 }
 	.btn-setting:hover, .btn-setting:focus {

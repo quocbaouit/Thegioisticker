@@ -13,43 +13,23 @@ thegioistickerApp.controller('loginController', ['$scope', '$timeout', 'Notifica
 	$scope.registration = {
 	    fullName: "",
 		userName: "",
-		email:"",
 		password: "",
 		confirmPassword: ""
 	};
-
-	$scope.forgot = {
-		email: "",
-	};
-	
 	$scope.signUp = function () {
 	    if ($scope.registration.fullName == '') {
-	        $scope.shakeModal("Vui lòng nhập họ và tên");
+	        $scope.shakeModal("Họ và tên không được trống");
 	        return;
-		}
-		if ($scope.registration.email == '') {
-			$scope.shakeModal("Vui lòng nhập email");
-			return;
-		}
-		if ($scope.registration.password == '') {
-			$scope.shakeModal("Vui lòng nhập mật khẩu");
-			return;
-		}
+	    }
 		if ($scope.registration.password != $scope.registration.confirmPassword) {
 		    $scope.shakeModal("Password và confirm password không giống nhau");
 			return;
 		}
 		authService.saveRegistration($scope.registration).then(function (response) {
 			$scope.savedSuccessfully = true;			
-			//$scope.openLoginModal();
+			$scope.openLoginModal();
 			$timeout(function () {
-				Notification.success("Tạo tài khoản thành công");
-				$scope.loginData = {
-					userName: $scope.registration.userName,
-					password: $scope.registration.password,
-					useRefreshTokens: false
-				};
-				$scope.login();
+			    $scope.shakeModal("Tạo tài khoản thành công");
 			}, 1000);			
 			//startTimer();
 		},
@@ -75,21 +55,7 @@ thegioistickerApp.controller('loginController', ['$scope', '$timeout', 'Notifica
 			function (err) {
 			    $scope.shakeModal("Vui lòng kiểm tra lại userName và password");
          });
-	};
-	$scope.forgotPass = function () {
-		if ($scope.forgot.email == '') {
-			$scope.shakeModal("Vui lòng nhập email");
-			return;
-		}
-		authService.requestPasswordReset($scope.forgot).then(function (response) {
-			$scope.forgot.email == '';
-			Notification.primary('Đã gởi reset link tới email của bạn.');
-			$('#loginModal').modal('hide');
-		},
-			function (err) {
-				$scope.shakeModal("Vui lòng kiểm tra lại email");
-			});
-	};
+    };
 
 	$scope.authExternalProvider = function (provider) {
 

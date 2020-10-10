@@ -1,73 +1,413 @@
-﻿<style>
-    .row {
-        margin-left: unset;
-    }
-</style>
-<div class="doc cards-doc page-layout simple full-width animated fadeInUp">
-    <!-- HEADER -->
-    <nav class="breadcrumb">
-        <a class="breadcrumb-item" href="#">Trang chủ</a>
-        <a class="breadcrumb-item" href="/admin#/blogs-manager">Tin Tức</a>
-        <span class="breadcrumb-item active">Thêm mới/Chỉnh sửa</span>
-    </nav>
-    <!-- / HEADER -->
-    <div class="page-content row p-6 container-fluid">
-        <!-- / IMAGE CAPS -->
-        <div class="col-12">
-            <form style="background-color:white">
-                <div class="row">
-                    <div class="form-group col-md-6 col-md-offset-6">
-                        <img src="/images/home01/slider1.png" />
-                        <label>Tiêu Đề</label>
-                    </div>
-                    <div class="form-group col-md-6 col-md-offset-6">
-                        <input ng-model="blog.author" type="text" class="form-control md-has-value" aria-describedby="product name" />
-                        <label>Tác Giả</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6 col-md-offset-6">
-                        <label for="repeatSelect">Hiển Thị Trên Trang Chủ</label>
-                        <select name="repeatSelect" id="repeatSelect" ng-model="blog.isInHomePage" class="form-control"
-                                ng-options="o.v as o.n for o in [{ n: 'Không', v: false }, { n: 'Có', v: true }]"></select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-12 col-md-offset-6">
-                        <img ng-src="{{blog.image}}" />
-                        <div data-provides="fileinput" class="form-group billing-country">
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <span style="width:100%" class="btn btn-primary btn-file">
-                                        <input type="file" my-directory="getFiles(file)" accept=".png,.jpg,.tif,.gif,.tiff,.bmp,.pdf" ng-disabled="uploading" />
-                                    </span>
-                                </span>
+﻿
+<div id="e-commerce-products" class="page-layout carded full-width">
+                    <div class="top-bg bg-secondary"></div>
+                    <!-- CONTENT -->
+                    <div class="page-content">
+                        <!-- HEADER -->
+                        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+                            <!-- APP TITLE -->
+                            <div class="col-12 col-sm">
+                                <div class="logo row no-gutters align-items-start">
+                                    <div class="logo-icon mr-3 mt-1">
+                                        <i class="icon-cube-outline s-6"></i>
+                                    </div>
+                                    <div class="logo-text">
+                                        <div class="h4">Sản Phẩm Bán Chạy</div>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div ng-repeat="file in data ">
-                                {{file.FileName  + '  ' + file.FileLength + ' bytes'  }}<br />
-                            </div>
+                            <!-- / APP TITLE -->
                         </div>
-                        <label>Ảnh Đại Diện</label>
-                    </div>
+                        <!-- / HEADER -->
+                        <div class="page-content-card">
+                            <table id="e-commerce-products-table" class="table dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">ID</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Hình</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Tên Sản Phẩm</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Giá</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Hoạt Động</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Thường Xuyên</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Nổi Bật</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Sửa</span>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>                               
+                            </table>
+                        </div>
+                        <!-- HEADER -->
+                        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+                            <!-- APP TITLE -->
+                            <div class="col-12 col-sm">
+                                <div class="logo row no-gutters align-items-start">
+                                    <div class="logo-icon mr-3 mt-1">
+                                        <i class="icon-cube-outline s-6"></i>
+                                    </div>
+                                    <div class="logo-text">
+                                        <div class="h4">Sản Phẩm Tiêu Biểu</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- / APP TITLE -->
+                        </div>
+                        <!-- / HEADER -->
+                        <div class="page-content-card">
+                            <table id="e-commerce-products-table1" class="table dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">ID</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Hình</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Tên Sản Phẩm</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Giá</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Hoạt Động</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Thường Xuyên</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Nổi Bật</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Sửa</span>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <!-- HEADER -->
+                        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+                            <!-- APP TITLE -->
+                            <div class="col-12 col-sm">
+                                <div class="logo row no-gutters align-items-start">
+                                    <div class="logo-icon mr-3 mt-1">
+                                        <i class="icon-cube-outline s-6"></i>
+                                    </div>
+                                    <div class="logo-text">
+                                        <div class="h4">Bài Viết </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- / APP TITLE -->
+                        </div>
+                        <!-- / HEADER -->
+                        <div class="page-content-card">
+                            <table id="e-commerce-products-table2" class="table dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">ID</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Tiêu Đề</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Tác Giả</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Ảnh Đại Diện</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Mô Tả</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Trên Trang Chủ</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Sửa</span>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <!-- HEADER -->
+                        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+                            <!-- APP TITLE -->
+                            <div class="col-12 col-sm">
+                                <div class="logo row no-gutters align-items-start">
+                                    <div class="logo-icon mr-3 mt-1">
+                                        <i class="icon-cube-outline s-6"></i>
+                                    </div>
+                                    <div class="logo-text">
+                                        <div class="h4">Lý Do Để Chọn In Nhanh Siêu Việt</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- / APP TITLE -->
+                        </div>
+                        <!-- / HEADER -->
+                        <div class="page-content-card">
+                            <table id="e-commerce-products-table3" class="table dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">ID</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Image</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Name</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Category</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Price</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Quantity</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Active</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Actions</span>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><img class="product-image" src="../assets/images/backgrounds/january.jpg"></td>
+                                        <td>Printed Dress</td>
+                                        <td>Dresses</td>
+                                        <td>10.24</td>
+                                        <td>3</td>
+                                        <td>true</td>
+                                        <td>
+                                            <button type="button" class="btn btn-icon" aria-label="Product details">
+                                                <i class="icon icon-pencil s-4"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><img class="product-image" src="../assets/images/backgrounds/january.jpg"></td>
+                                        <td>Green Skirt</td>
+                                        <td>Skirts</td>
+                                        <td>24.62</td>
+                                        <td>92</td>
+                                        <td>true</td>
+                                        <td>
+                                            <button type="button" class="btn btn-icon" aria-label="Product details">
+                                                <i class="icon icon-pencil s-4"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><img class="product-image" src="../assets/images/backgrounds/january.jpg"></td>
+                                        <td>Printed Dress</td>
+                                        <td>Dresses</td>
+                                        <td>49.29</td>
+                                        <td>60</td>
+                                        <td>true</td>
+                                        <td>
+                                            <button type="button" class="btn btn-icon" aria-label="Product details">
+                                                <i class="icon icon-pencil s-4"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
 
-                    <!--<input type="button" class="button btn btn-secondary" ng-click="uploadFiles()" value="Tải File" />-->
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-12 col-md-offset-6">
-                        <textarea rows="5" ng-model="blog.description" type="text" class="form-control md-has-value" aria-describedby="product name" />
-                        <label>Mô Tả</label>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- HEADER -->
+                        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+                            <!-- APP TITLE -->
+                            <div class="col-12 col-sm">
+                                <div class="logo row no-gutters align-items-start">
+                                    <div class="logo-icon mr-3 mt-1">
+                                        <i class="icon-cube-outline s-6"></i>
+                                    </div>
+                                    <div class="logo-text">
+                                        <div class="h4">Thông Tin</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- / APP TITLE -->
+                        </div>
+                        <!-- / HEADER -->
+                        <div class="page-content-card">
+                            <table id="e-commerce-products-table4" class="table dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">ID</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Image</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Name</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Category</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Price</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Quantity</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Active</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Actions</span>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><img class="product-image" src="../assets/images/backgrounds/january.jpg"></td>
+                                        <td>Printed Dress</td>
+                                        <td>Dresses</td>
+                                        <td>10.24</td>
+                                        <td>3</td>
+                                        <td>true</td>
+                                        <td>
+                                            <button type="button" class="btn btn-icon" aria-label="Product details">
+                                                <i class="icon icon-pencil s-4"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><img class="product-image" src="../assets/images/backgrounds/january.jpg"></td>
+                                        <td>Green Skirt</td>
+                                        <td>Skirts</td>
+                                        <td>24.62</td>
+                                        <td>92</td>
+                                        <td>true</td>
+                                        <td>
+                                            <button type="button" class="btn btn-icon" aria-label="Product details">
+                                                <i class="icon icon-pencil s-4"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><img class="product-image" src="../assets/images/backgrounds/january.jpg"></td>
+                                        <td>Printed Dress</td>
+                                        <td>Dresses</td>
+                                        <td>49.29</td>
+                                        <td>60</td>
+                                        <td>true</td>
+                                        <td>
+                                            <button type="button" class="btn btn-icon" aria-label="Product details">
+                                                <i class="icon icon-pencil s-4"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                    <!-- / CONTENT -->
                 </div>
-                <div class="row">
-                    <div id="summernoteBlog"></div>
-                </div>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <!--<input type="button" class="btn btn-primary" ng-click="uploadFiles()" value="Lưu" ng-disabled="uploading || countFiles===''" />-->
-                <!--<button data-ng-click="saveBlog()" type="button" class="btn btn-primary">Lưu</button>-->
-                <button ng-hide="!hasUpload" type="button" class="btn btn-primary" ng-click="uploadFiles()">Lưu</button>
-                <button ng-hide="hasUpload" data-ng-click="saveBlog()" type="button" class="btn btn-primary">Lưu</button>
-            </form>
-        </div>
-    </div>
-</div>
