@@ -62,6 +62,16 @@ $(document).ready(function()
 	initBrandsSlider();
 	initTimer();
 
+	$(".bannerSlider").slick({
+		dots: false
+		, autoplay: true
+		, infinite: true
+		, dots: false
+		, slidesToShow: 1
+		, slideswToScroll: 1
+		, arrows: false
+	});
+
 	$(window).on('resize', function()
 	{
 		setHeader();

@@ -3,110 +3,162 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    .input-group-text {
-        min-width: 150px;
-    }
+        .input-group-text {
+            min-width: 150px;
+        }
 
-    .row {
-        margin-bottom: 0px;
-    }
+        .row {
+            margin-bottom: 0px;
+        }
 
-    .form-control {
-        margin-left: 10px;
-    }
+        .form-control {
+            margin-left: 10px;
+        }
 
-    .cart_items {
-        margin-top: 10px !important;
-    }
+        .cart_items {
+            margin-top: 10px !important;
+        }
 
-    .input-group {
-        padding: 10px;
+        .input-group {
+            padding: 10px;
+        }
+
+        *****************************************
+        ! BANNER SLIDER ! ----------------------*
+        *****************************************
+        */
+        /*reset*/
+        ul.bannerSlider {
+            padding-left: 0;
+        }
+
+        .bannerSlider {
+            height: 450px;
+        }
+
+            .bannerSlider .slide__image::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 450px;
+/*                background: rgba(33,33,33,.7);*/
+            }
+
+            .bannerSlider .slick-slide {
+                position: relative;
+            }
+
+            .bannerSlider .slide__image img {
+                width: 100%;
+                height: 450px;
+                object-fit: cover;
+            }
+
+        img.slide__image__top-position {
+            object-position: center bottom;
+        }
+
+        .bannerSlider .slide__text {
+            position: absolute;
+            z-index: 100;
+            text-align: center;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+            .bannerSlider .slide__text h2 {
+                font-size: 48px;
+                font-weight: 100;
+                color: #fff;
+            }
+        /*
+    .bannerSlider {
+        margin: 0 auto;
     }
+    .bannerSlider .slick-arrow{
+        position: absolute;
+
+        top: calc(50% - 14px);
+        width: 24px;
+        height: 42px;
+
+        font-size: 48px;
+        z-index: 2;
+
+        color: #fff;
+    }
+    .bannerSlider .slick-prev {
+        background: url(../images/layout/slick-prev.png);
+        left: 50px;
+    }
+    .bannerSlider .slick-next {
+        background: url(../images/layout/slick-next.png);
+        right: 50px;
+    }
+    .bannerSlider i:hover{
+        cursor: pointer;
+    } */
 </style>
 <main ng-app="thegioistickerApp" ng-controller="homeController">
     <div class="banner_2">
-        <div class="banner_2_background" style="background-image:url(images/banner_2_background.jpg)"></div>
+        @*<div class="banner_2_background" style="background-image:url(images/banner_2_background.jpg)"></div>*@
         <div class="banner_2_container">
             <div class="banner_2_dots"></div>
             <!-- Banner 2 Slider -->
-
-            <div class="owl-carousel owl-theme banner_2_slider">
-
-                <!-- Banner 2 Slider Item -->
-                <div class="owl-item">
-                    <div class="banner_2_item">
-                        <div class="container fill_height">
-                            <div class="row fill_height">
-                                @*<div class="col-lg-4 col-md-6 fill_height">
-                                        <div class="banner_2_content">
-                                            <div class="banner_2_category">Laptops</div>
-                                            <div class="banner_2_title">MacBook Air 13</div>
-                                            <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                            <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="button banner_2_button"><a href="#">Explore</a></div>
-                                        </div>
-
-                                    </div>*@
-                                <div class="col-lg-8 col-md-6 fill_height">
-                                    <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="images/banner_2_product.png" alt=""></div>
+            <!--  BANNER SLIDER  -->
+            <div class="banner">
+                <div class="row fullwidth">
+                    <div class="col-md-12">
+                        <ul class="bannerSlider">
+                            <!--  1. slide  -->
+                            <li class="slide">
+                                <a href="#">
+                                    <div class="slide__text">
+                                        @*<h2>This is the otter.</h2>*@
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                    <div class="slide__image">
+                                        <img src="https://unsplash.it/1500/599?random" alt="" />
+                                    </div>
+                                </a>
+                            </li>
+                            <!--  2. slide  -->
+                            <li class="slide">
+                                <a href="#">
+                                    <div class="slide__text">
+                                        @*<h2>Otters are cool. </h2>*@
+                                    </div>
+                                    <div class="slide__image">
+                                        <img src="https://unsplash.it/1500/600?random" alt="" />
+                                    </div>
+                                </a>
+                            </li>
+                            <!--  3. slide  -->
+                            <li class="slide">
+                                <a href="#">
+                                    <div class="slide__text">
+                                       @* <h2>They swim, eat and sleep.</h2>*@
+                                    </div>
+                                    <div class="slide__image">
+                                        <img src="https://unsplash.it/1500/601?random" alt="" />
+                                    </div>
+                                </a>
+                            </li>
+                            <!--  4. slide  -->
+                            <li class="slide">
+                                <a href="#">
+                                    <div class="slide__text">
+                                        @*<h2>Coming soon.</h2>*@
+                                    </div>
+                                    <div class="slide__image">
+                                        <img src="https://unsplash.it/1500/602?random" alt="" />
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
                     </div>
                 </div>
-
-                <!-- Banner 2 Slider Item -->
-                <div class="owl-item">
-                    <div class="banner_2_item">
-                        <div class="container fill_height">
-                            <div class="row fill_height">
-                                @*<div class="col-lg-4 col-md-6 fill_height">
-                                        <div class="banner_2_content">
-                                            <div class="banner_2_category">Laptops</div>
-                                            <div class="banner_2_title">MacBook Air 13</div>
-                                            <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                            <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="button banner_2_button"><a href="#">Explore</a></div>
-                                        </div>
-
-                                    </div>*@
-                                <div class="col-lg-8 col-md-6 fill_height">
-                                    <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="images/banner_2_product.png" alt=""></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Banner 2 Slider Item -->
-                <div class="owl-item">
-                    <div class="banner_2_item">
-                        <div class="container fill_height">
-                            <div class="row fill_height">
-                                @*<div class="col-lg-4 col-md-6 fill_height">
-                                        <div class="banner_2_content">
-                                            <div class="banner_2_category">Laptops</div>
-                                            <div class="banner_2_title">MacBook Air 13</div>
-                                            <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                            <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="button banner_2_button"><a href="#">Explore</a></div>
-                                        </div>
-
-                                    </div>*@
-                                <div class="col-lg-8 col-md-6 fill_height">
-                                    <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="images/banner_2_product.png" alt=""></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
