@@ -3,109 +3,80 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-        .input-group-text {
-            min-width: 150px;
-        }
+    .input-group-text {
+        min-width: 150px;
+    }
 
-        .row {
-            margin-bottom: 0px;
-        }
+    .row {
+        margin-bottom: 0px;
+    }
 
-        .form-control {
-            margin-left: 10px;
-        }
+    .form-control {
+        margin-left: 10px;
+    }
 
-        .cart_items {
-            margin-top: 10px !important;
-        }
+    .cart_items {
+        margin-top: 10px !important;
+    }
 
-        .input-group {
-            padding: 10px;
-        }
+    .input-group {
+        padding: 10px;
+    }
 
-        *****************************************
-        ! BANNER SLIDER ! ----------------------*
-        *****************************************
-        */
-        /*reset*/
-        ul.bannerSlider {
-            padding-left: 0;
-        }
+    *****************************************
+    ! BANNER SLIDER ! ----------------------*
+    *****************************************
+    */
+    /*reset*/
+    ul.bannerSlider {
+        padding-left: 0;
+    }
 
-        .bannerSlider {
-            height: 450px;
-        }
-
-            .bannerSlider .slide__image::before {
-                content: "";
-                position: absolute;
-                width: 100%;
-                height: 450px;
-/*                background: rgba(33,33,33,.7);*/
-            }
-
-            .bannerSlider .slick-slide {
-                position: relative;
-            }
-
-            .bannerSlider .slide__image img {
-                width: 100%;
-                height: 450px;
-                object-fit: cover;
-            }
-
-        img.slide__image__top-position {
-            object-position: center bottom;
-        }
-
-        .bannerSlider .slide__text {
-            position: absolute;
-            z-index: 100;
-            text-align: center;
-            width: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-            .bannerSlider .slide__text h2 {
-                font-size: 48px;
-                font-weight: 100;
-                color: #fff;
-            }
-        /*
     .bannerSlider {
-        margin: 0 auto;
+        height: 450px;
     }
-    .bannerSlider .slick-arrow{
+
+        .bannerSlider .slide__image::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 450px;
+            /*                background: rgba(33,33,33,.7);*/
+        }
+
+        .bannerSlider .slick-slide {
+            position: relative;
+        }
+
+        .bannerSlider .slide__image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+
+    img.slide__image__top-position {
+        object-position: center bottom;
+    }
+
+    .bannerSlider .slide__text {
         position: absolute;
-
-        top: calc(50% - 14px);
-        width: 24px;
-        height: 42px;
-
-        font-size: 48px;
-        z-index: 2;
-
-        color: #fff;
+        z-index: 100;
+        text-align: center;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
     }
-    .bannerSlider .slick-prev {
-        background: url(../images/layout/slick-prev.png);
-        left: 50px;
-    }
-    .bannerSlider .slick-next {
-        background: url(../images/layout/slick-next.png);
-        right: 50px;
-    }
-    .bannerSlider i:hover{
-        cursor: pointer;
-    } */
+
+        .bannerSlider .slide__text h2 {
+            font-size: 48px;
+            font-weight: 100;
+            color: #fff;
+        }
 </style>
 <main ng-app="thegioistickerApp" ng-controller="homeController">
     <div class="banner_2">
-        @*<div class="banner_2_background" style="background-image:url(images/banner_2_background.jpg)"></div>*@
         <div class="banner_2_container">
             <div class="banner_2_dots"></div>
-            <!-- Banner 2 Slider -->
             <!--  BANNER SLIDER  -->
             <div class="banner">
                 <div class="row fullwidth">
@@ -137,7 +108,7 @@
                             <li class="slide">
                                 <a href="#">
                                     <div class="slide__text">
-                                       @* <h2>They swim, eat and sleep.</h2>*@
+                                        @* <h2>They swim, eat and sleep.</h2>*@
                                     </div>
                                     <div class="slide__image">
                                         <img src="https://unsplash.it/1500/601?random" alt="" />
