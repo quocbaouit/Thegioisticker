@@ -1,0 +1,87 @@
+﻿<div id="e-commerce-products" class="page-layout carded full-width">
+    <div class="top-bg bg-secondary"></div>
+    <!-- CONTENT -->
+    <div class="page-content">
+        <!-- HEADER -->
+        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+            <!-- APP TITLE -->
+            <div class="col-12 col-sm">
+                <div class="logo row no-gutters align-items-start">
+                    <div class="logo-icon mr-3 mt-1">
+                        <i class="icon-cube-outline s-6"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="h4">Thêm mới/Chỉnh sửa bài viết</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / HEADER -->
+        <div class="page-content-card">
+            <div class="page-content row p-6 container-fluid">
+                <!-- / IMAGE CAPS -->
+                <div class="col-12">
+                    <form style="background-color:white">
+                        <div class="row">
+                            <div class="form-group col-md-6 col-md-offset-6">
+                                <input ng-model="blog.title" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                <label>Tiêu Đề</label>
+                            </div>
+                            <div class="form-group col-md-6 col-md-offset-6">
+                                <input ng-model="blog.author" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                <label>Tác Giả</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4 col-md-offset-4">
+                                <input ng-model="blog.seoUrl" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                <label>Seo Url</label>
+                            </div>
+                            <div class="form-group col-md-8 col-md-offset-8">
+                                <input ng-model="blog.metaTitle" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                <label>Seo Meta Title</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 col-md-offset-6">
+                                <textarea rows="3" ng-model="blog.metaDescription" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                <label>Seo Meta Description</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Hình</label>
+                                <img name="file" id="picture" style="max-width:300px;min-width:300px" ng-src="{{blog.image}}" />
+                                <div data-provides="fileinput" class="form-group billing-country">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span style="width:100%" class="btn btn-primary btn-file">
+                                                <input id="imgInp" type="file" my-directory="getFiles(file)" accept=".png,.jpg,.tif,.gif,.tiff,.bmp,.pdf" ng-disabled="uploading" />
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 col-md-offset-6">
+                                <textarea rows="3" ng-model="blog.description" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                <label>Mô Tả</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="summernoteBlog"></div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <!--<input type="button" class="btn btn-primary" ng-click="uploadFiles()" value="Lưu" ng-disabled="uploading || countFiles===''" />-->
+                        <!--<button data-ng-click="saveBlog()" type="button" class="btn btn-primary">Lưu</button>-->
+                        <button ng-hide="!hasUpload" type="button" class="btn btn-primary" ng-click="uploadFiles()">Lưu</button>
+                        <button ng-hide="hasUpload" data-ng-click="saveBlog()" type="button" class="btn btn-primary">Lưu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+</div>

@@ -3,6 +3,7 @@ thegioistickerAdmin.controller('customerController', ['$scope', 'customerService
     var table = {};
     $scope.customer = {};
     $scope.initTable = function () {
+        showLoading();
         table = $('#customer-table').DataTable({
             "language": {
                 "lengthMenu": "Hiển thị _MENU_ số dòng trên trang",
@@ -19,6 +20,7 @@ thegioistickerAdmin.controller('customerController', ['$scope', 'customerService
             paging: true,
             ajax: "api/customer/getPagingCustomers",
             initComplete: function () {
+                hideLoading();
                 var api = this.api(),
                     searchBox = $('#customers-search-input');
                 if (searchBox.length > 0) {
@@ -34,10 +36,10 @@ thegioistickerAdmin.controller('customerController', ['$scope', 'customerService
                 { "data": "address" },
                 { "data": "phoneNumber" },
                 {
-                    "data": null, sortable: false, "targets": -1, "defaultContent": " <button type=\"button\" class=\"btn btn-icon edit-item\" aria-label=\"Product details\"><i class=\"icon icon-pencil s-4\"></i></button>",
+                    "data": null, sortable: false, "targets": -1, "defaultContent": " <button type=\"button\" class=\"btn btn-icon edit-customer\" aria-label=\"Product details\"><i class=\"icon icon-pencil s-4\"></i></button>",
                 },
                 {
-                    "data": null, sortable: false, "targets": -2, "defaultContent": " <button type=\"button\" class=\"btn btn-icon delete-item\" aria-label=\"Product details\"><i class=\"icon icon-delete-circle s-4\"></i></button>",
+                    "data": null, sortable: false, "targets": -2, "defaultContent": " <button type=\"button\" class=\"btn btn-icon delete-customer\" aria-label=\"Product details\"><i class=\"icon icon-delete-circle s-4\"></i></button>",
                 }
             ],
             lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
@@ -49,26 +51,26 @@ thegioistickerAdmin.controller('customerController', ['$scope', 'customerService
         });
     }
     $scope.initTable();
-    $('body').delegate('.edit-item', 'click', function (e) {
+    $('body').delegate('.edit-customer', 'click', function (e) {
         e.preventDefault();
         var data = table.row($(this).parents('tr')).data();
         $scope.customer = data;
         $('input.form-control, textarea.form-control').addClass('md-has-value');
         $timeout(function () {
-            $('#modal-lg').modal('show');
+            $('#modal-customerpage').modal('show');
         }, 200);
     });
     $scope.saveCustomer = function () {
         customerService.savecustomer($scope.customer).then(function (response) {
             $('#customer-table').DataTable().ajax.reload();
             Notification.success("Lưu thành công");
-            $('#modal-lg').modal('hide');
+            $('#modal-customerpage').modal('hide');
         },
 			function (err) {
 			    $scope.waringMessage = "Vui lòng kiểm tra lại";
 			});
     };
-    $('body').delegate('.delete-item', 'click', function (e) {
+    $('body').delegate('.delete-customer', 'click', function (e) {
         e.preventDefault();
         var data = table.row($(this).parents('tr')).data();
         customerService.delete(data).then(function (response) {
@@ -88,7 +90,7 @@ thegioistickerAdmin.controller('customerController', ['$scope', 'customerService
             phoneNumber: '',
         };
         $timeout(function () {
-            $('#modal-lg').modal('show');
+            $('#modal-customerpage').modal('show');
         }, 200);
     };
 }]);

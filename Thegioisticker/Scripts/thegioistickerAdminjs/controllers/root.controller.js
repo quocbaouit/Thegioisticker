@@ -12,6 +12,7 @@
         //localStorageService.set('shoppingCart', { products: listProducts });
        // var authData = localStorageService.get('authorizationData');
         //localStorageService.remove('authorizationData');
+        $rootScope.authentication = authService.authentication;
 		$scope.logOut = function () {
 			authService.logOut();
 			$state.go('admin.login')

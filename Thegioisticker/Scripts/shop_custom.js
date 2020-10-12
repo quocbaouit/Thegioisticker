@@ -32,9 +32,9 @@ $(document).ready(function()
 
 	setHeader();
 
-	initCustomDropdown();
-	initPageMenu();
-	initViewedSlider();
+	//initCustomDropdown();
+	//initPageMenu();
+	//initViewedSlider();
 	initBrandsSlider();
 	initIsotope();
 	initPriceSlider();

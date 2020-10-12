@@ -1,4 +1,4 @@
-﻿thegioistickerApp.controller("RootController", ['$window', 'localStorageService', 'Notification', 'authService', '$rootScope', '$scope', '$location', '$timeout', 'invoiceService', 'sampleService', 'productService',
+﻿thegioistickerApp.controller("RootController", ['$window', 'localStorageService', 'Notification', 'authService', '$rootScope', '$scope', '$location', '$timeout', 'invoiceService', 'sampleService', 'productService', 'settingService',
     function (
         $window,
         localStorageService,
@@ -10,7 +10,8 @@
         $timeout,
         invoiceService,
         sampleService,
-        productService     
+        productService,
+        settingService
         ) {
         $scope.isShowCart = true;
         if (window.location.pathname == '/gio-hang' || window.location.pathname == '/hoan-tat-don-hang' || window.location.pathname == '/thanh-toan') {
@@ -21,6 +22,28 @@
             if (baseUrl.toLowerCase() == url.toLowerCase()) return true;
             return false;  
         };
+        $scope.menus = [
+            {
+                name: 'CÁC SẢN PHẨM TEM', url: '/san-pham-tem', childs: [
+                    { name: 'Tem nhãn decal giấy', url: '/chi-tiet-san-pham/decal-giay' },
+                    { name: 'Tem nhãn decal giấy kraft', url: '/chi-tiet-san-pham/decal-draft' },
+                    { name: 'Tem nhãn decal nhựa sữa', url: '/chi-tiet-san-pham/decal-nhua-sua' },
+                    { name: 'Tem nhãn decal nhựa sữa cao cấp', url: '/chi-tiet-san-pham/decal-nhua-cao-cap' },
+                    { name: 'Tem nhãn decal nhựa trong', url: '/chi-tiet-san-pham/decal-nhua-trong' },
+                    { name: 'Tem nhãn decal xi bạc', url: '/chi-tiet-san-pham/decal-xi-bac' },
+                    { name: 'Tem nhãn decal xi vàng', url: '/chi-tiet-san-pham/decal-xi-vang' },
+                    { name: 'Tem nhãn decal bảy màu', url: '/chi-tiet-san-pham/decal-bay-mau' },
+                    { name: 'Tem bảo hành-tem bể-tem vỡ', url: '/chi-tiet-san-pham/tem-bao-hanh' },
+                    { name: 'Decal metalize', url: '/chi-tiet-san-pham/decal-metalize' },
+                    { name: 'Tem nhãn decal 1 màu đen', url: '/chi-tiet-san-pham/decal-mau-den' }
+                ]
+            },
+            { name: 'THƯ VIỆN ONLINE', url: '/thu-vien-decal', childs: [] },
+            { name: 'CÁC SẢN PHẨM KHÁC', url: '/san-pham', childs: [{ name: 'Túi giấy', url: '/chi-tiet-san-pham/tui-giay' }, { name: 'In pp', url: '/chi-tiet-san-pham/in-pp' }] },
+            { name: 'KHUYẾN MÃI', url: '/cong-ty/khuyen-mai', childs: [] },
+            { name: 'THÔNG TIN', url: '/thong-tin', childs: [] },
+            { name: 'LIÊN HỆ', url: '/lien-he', childs: [] }
+        ];
         $scope.numPerPage = 8;
         $scope.noOfPages = 1;
         $scope.currentPage = 1;
@@ -41,29 +64,7 @@
             cutType: '',
             file: ''
         };
-        $scope.menus = [
-            {
-                name: 'CÁC SẢN PHẨM TEM', url: '/sticker', childs: [
-                    { name: 'Tem nhãn decal giấy', url: '/decal-giay' },
-                    { name: 'Tem nhãn decal giấy kraft', url: '/decal-draft' },
-                    { name: 'Tem nhãn decal nhựa sữa', url: '/decal-nhua-sua' },
-                    { name: 'Tem nhãn decal nhựa sữa cao cấp', url: '/decal-nhua-cao-cap' },
-                    { name: 'Tem nhãn decal nhựa trong', url: 'decal-nhua-trong' },
-                    { name: 'Tem nhãn decal xi bạc', url: 'decal-xi-bac' },
-                    { name: 'Tem nhãn decal xi vàng', url: 'decal-xi-vang' },
-                    { name: 'Tem nhãn decal bảy màu', url: 'decal-bay-mau' },
-                    { name: 'Tem bảo hành-tem bể-tem vỡ', url: '/tem-bao-hanh' },
-                    { name: 'Decal metalize', url: 'decal-metalize' },
-                    { name: 'Tem nhãn decal 1 màu đen', url: 'decal-mau-den' }
-                ]
-            },
-            { name: 'THƯ VIỆN ONLINE', url: '/sticker-online', childs: [] },
-            { name: 'CÁC SẢN PHẨM KHÁC', url: '/san-pham-in', childs: [{ name: 'Túi giấy', url: '/tui-giay' }, { name: 'In pp', url: '/in-pp' }] },
-            { name: 'KHUYẾN MÃI', url: '/khuyen-mai', childs: [] },
-            { name: 'TRỢ GIÚP', url: '/tro-giup', childs: [] },
-            { name: 'LIÊN HỆ', url: '/lien-he', childs: [] }
-        ];
-        //getSetting();
+        getSetting();
         getRegular();
         if (window.location.pathname == '/' || window.location.pathname == '/thu-vien-decal' || window.location.pathname == '/chi-tiet-san-pham') {
             getShape();

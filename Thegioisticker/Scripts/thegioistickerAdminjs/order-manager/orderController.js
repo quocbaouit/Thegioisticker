@@ -5,6 +5,9 @@ thegioistickerAdmin.controller('orderController', ['$scope', 'customerService', 
     var table = {};
     $scope.order = {};
     $scope.customer = {};
+    $scope.fields = [];
+    $scope.imageUrls = [];
+    showLoading();
     $scope.DeleveryOptions = ['Khi Nhận Hàng', 'Chuyển Khoản'];
     $scope.orderStatusOptions = [
       { value: 0, name: 'Chưa Giao Hàng' },
@@ -37,6 +40,7 @@ thegioistickerAdmin.controller('orderController', ['$scope', 'customerService', 
                 "type": "GET"
             },
             initComplete: function () {
+                hideLoading();
                 var api = this.api(),
                     searchBox = $('#orders-search-input');
                 if (searchBox.length > 0) {
@@ -103,10 +107,10 @@ thegioistickerAdmin.controller('orderController', ['$scope', 'customerService', 
                     }
                 },
                 {
-                    "data": null, sortable: false, "targets": -1, "defaultContent": " <button type=\"button\" class=\"btn btn-icon edit-item\" aria-label=\"Product details\"><i class=\"icon icon-pencil s-4\"></i></button>",
+                    "data": null, sortable: false, "targets": -1, "defaultContent": " <button type=\"button\" class=\"btn btn-icon edit-order\" aria-label=\"Product details\"><i class=\"icon icon-eye-outline s-4\"></i></button>",
                 },
                 {
-                    "data": null, sortable: false, "targets": -2, "defaultContent": " <button type=\"button\" class=\"btn btn-icon delete-item\" aria-label=\"Product details\"><i class=\"icon icon-delete-circle s-4\"></i></button>",
+                    "data": null, sortable: false, "targets": -2, "defaultContent": " <button type=\"button\" class=\"btn btn-icon delete-order\" aria-label=\"Product details\"><i class=\"icon icon-delete-circle s-4\"></i></button>",
                 }
             ],
             lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
@@ -118,7 +122,7 @@ thegioistickerAdmin.controller('orderController', ['$scope', 'customerService', 
         });
     }
     $scope.initTable();
-    $('body').delegate('.edit-item', 'click', function (e) {
+    $('body').delegate('.edit-order', 'click', function (e) {
         e.preventDefault();
         var data = table.row($(this).parents('tr')).data();
         $scope.order = data;
@@ -132,7 +136,7 @@ thegioistickerAdmin.controller('orderController', ['$scope', 'customerService', 
                 $('#repeatSelect').val($scope.order.orderStatus);
             }, 200);
             $('#repeatSelect').val($scope.order.orderStatus);
-            $('#modal-lg').modal('show');
+            $('#modal-orderpage').modal('show');
 
         }, 200);
     });
@@ -141,14 +145,13 @@ thegioistickerAdmin.controller('orderController', ['$scope', 'customerService', 
         ordersService.saveOrder($scope.order).then(function (response) {
             $('#order-table').DataTable().ajax.reload();
             Notification.success("Lưu thành công");
-            $('#modal-lg').modal('hide');
+            $('#modal-orderpage').modal('hide');
         },
 			function (err) {
 			    $scope.waringMessage = "Vui lòng kiểm tra lại";
 			});
     };
-    $('body').delegate('.delete-item', 'click', function (e) {
-        debugger;
+    $('body').delegate('.delete-order', 'click', function (e) {
         e.preventDefault();
         var data = table.row($(this).parents('tr')).data();
         ordersService.delete(data).then(function (response) {
@@ -160,12 +163,27 @@ thegioistickerAdmin.controller('orderController', ['$scope', 'customerService', 
 			});
     });
     $scope.editDetail = function (detail) {
-        debugger;
         $scope.detail = detail;
+        debugger;
+        if ($scope.detail.fileType==1) {
+            $scope.fields = JSON.parse($scope.detail.settingModal).fields;
+        }
+        if ($scope.detail.fileType == 3) {
+            getListfile($scope.detail.transactionId);
+        }
         $('input.form-control, textarea.form-control').addClass('md-has-value');
         $timeout(function () {
             $('#modal-lg-detail').modal('show');
         }, 200);
+    }
+    function getListfile(transactionId) {
+        ordersService.getListFileName(transactionId).then(function (response) {
+            $scope.imageUrls = response.data;
+        },
+            function (err) {
+                Notification.error('Vui lòng kiểm tra lại.');
+                hideLoader();
+            });
     }
     var calculateSubTotal = function () {
         $scope.detail.subTotal = $scope.detail.quantity * $scope.detail.price;
@@ -179,7 +197,6 @@ thegioistickerAdmin.controller('orderController', ['$scope', 'customerService', 
     $scope.$watch('order', calculateTotal, true);
     $scope.$watch('detail', calculateSubTotal, true);
     $scope.deleteDetail = function (detail) {
-        debugger;
         var index = $scope.orderDetail.indexOf(detail);
         $scope.orderDetail.splice(index, 1)
     }
@@ -190,7 +207,7 @@ thegioistickerAdmin.controller('orderController', ['$scope', 'customerService', 
             answer: '',
         };
         $timeout(function () {
-            $('#modal-lg').modal('show');
+            $('#modal-orderpage').modal('show');
         }, 200);
     };
 

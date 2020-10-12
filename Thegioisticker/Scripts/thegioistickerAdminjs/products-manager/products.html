@@ -12,7 +12,7 @@
                         <i class="icon-cube-outline s-6"></i>
                     </div>
                     <div class="logo-text">
-                        <div class="h4">Sản Phẩm</div>
+                        <div class="h4">Danh Mục In</div>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
             </div>
             <!-- / SEARCH -->
             <div class="col-auto">
-                <a href="javascript:void(0)" data-ng-click="createProduct()" class="btn btn-secondary">Thêm Mới Sản Phẩm</a>
+                <a href="javascript:void(0)" data-ng-click="createProduct()" class="btn btn-secondary">Thêm Mới</a>
             </div>
         </div>
         <!-- / HEADER -->
@@ -46,12 +46,13 @@
                         </th>
                         <th>
                             <div class="table-header">
-                                <span class="column-title">Tên Sản Phẩm</span>
+                                <span class="column-title">Tên</span>
                             </div>
                         </th>
+
                         <th>
                             <div class="table-header">
-                                <span class="column-title">Giá</span>
+                                <span class="column-title">Giá Decal/A4</span>
                             </div>
                         </th>
                         <th>
@@ -61,12 +62,12 @@
                         </th>
                         <th>
                             <div class="table-header">
-                                <span class="column-title">Thường Xuyên</span>
+                                <span class="column-title">Mô Tả</span>
                             </div>
                         </th>
                         <th>
                             <div class="table-header">
-                                <span class="column-title">Nổi Bật</span>
+                                <span class="column-title">Chọn Mẫu</span>
                             </div>
                         </th>
                         <th>
@@ -85,7 +86,7 @@
         </div>
     </div>
     <!-- / CONTENT -->
-    <div id="modal-lg" class="modal fade" tabindex="-1" role="dialog"
+    <div id="modal-product" class="modal fade" tabindex="-1" role="dialog"
          aria-labelledby="myLargeModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -98,43 +99,54 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                        <form>
+                    <form id='product-form'>
+                        <div id='validate-product'>
                             <div class="form-group">
-                                <input ng-model="product.name" type="text" class="form-control" aria-describedby="product name" />
-                                <label>Tên Sản Phẩm</label>
+                                <input name="name" ng-model="product.name" type="text" class="form-control" aria-describedby="product name" />
+                                <label>Tên</label>
                             </div>
                             <div class="form-group">
-                                <textarea ng-model="product.description" class="form-control" aria-describedby="product description" rows="5"></textarea>
-                                <label>Mô Tả</label>
+                                <input number-input name="price" ng-model="product.price" class="form-control" aria-describedby="product description" />
+                                <label>Giá Decal/A4</label>
                             </div>
                             <div class="form-group">
-                                <input ng-model="product.price" type="text" class="form-control" aria-describedby="product categories" />
-                                <label>Giá(VND)</label>
-                            </div>
-                            <div class="form-group">
-                                <input ng-model="product.promotionPrice" type="text" class="form-control" aria-describedby="product tags" />
-                                <label>Giá Ưu Đãi(VND)</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="repeatSelect"> Trạng Thái Sản Phẩm</label>
+                                <label for="repeatSelect"> Trạng Thái </label>
                                 <select name="repeatSelect" id="repeatSelect" ng-model="product.isActive" class="form-control"
-                                        ng-options="o.v as o.n for o in [{ n: 'Không Hoạt Động', v: false }, { n: 'Đang Hoạt Động', v: true }]"></select>                           
+                                        ng-options="o.v as o.n for o in [{ n: 'Không Hoạt Động', v: false }, { n: 'Đang Hoạt Động', v: true }]"></select>
+                            </div>
+                            <div class="form-group ">
+                                <label>Seo Url</label>
+                                <input name="seoUrl"  ng-model="product.seoUrl" type="text" class="form-control md-has-value" aria-describedby="product name" />
                             </div>
                             <div class="form-group">
-                                <label for="repeatSelect1"> Sản Phẩm Thường Xuyên</label>
-                                <select name="repeatSelect1" id="repeatSelect1" ng-model="product.regularProducts" class="form-control"
-                                        ng-options="o.v as o.n for o in [{ n: 'Không', v: false }, { n: 'Có', v: true }]"></select>
+                                <label>Seo Meta Title</label>
+                                <input name="metaTitle"  ng-model="product.metaTitle" type="text" class="form-control md-has-value" aria-describedby="product name" />
                             </div>
                             <div class="form-group">
-                                <label for="repeatSelect2">Sản Phẩm Nổi Bật</label>
-                                <select name="repeatSelect2" id="repeatSelect2" ng-model="product.highlightProduct" class="form-control"
-                                        ng-options="o.v as o.n for o in [{ n: 'Không', v: false }, { n: 'Có', v: true }]"></select>
+                                <textarea name="metaDescription"  rows="3" ng-model="product.metaDescription" type="text" class="form-control md-has-value" aria-describedby="product name" />
+                                <label>Seo Meta Description</label>
                             </div>
-                        </form>
+                            <div class="form-group">
+                                <label>Ảnh Danh Mục</label>
+                                <img name="file" id="picture" style="max-width:300px;min-width:300px" ng-src="{{product.image}}" />
+                                <div data-provides="fileinput" class="form-group billing-country">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span style="width:100%" class="btn btn-primary btn-file">
+                                                <input id="imgInp" type="file" my-directory="getFiles(file)" accept=".png,.jpg,.tif,.gif,.tiff,.bmp,.pdf" ng-disabled="uploading" />
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button data-ng-click="saveProduct()" type="button" class="btn btn-primary">Lưu</button>
+                    <button ng-hide="!hasUpload" type="button" class="btn btn-primary" ng-click="uploadFiles()">Lưu</button>
+                    <button ng-hide="hasUpload" data-ng-click="saveProduct()" type="button" class="btn btn-primary">Lưu</button>
                 </div>
             </div>
         </div>

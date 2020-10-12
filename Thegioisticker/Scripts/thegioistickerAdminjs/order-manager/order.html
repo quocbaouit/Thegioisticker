@@ -76,7 +76,7 @@
                         </th>
                         <th>
                             <div class="table-header">
-                                <span class="column-title">Sửa</span>
+                                <span class="column-title">Chi Tiết</span>
                             </div>
                         </th>
                         <th>
@@ -91,7 +91,7 @@
 
     </div>
     <!-- / CONTENT -->
-    <div id="modal-lg" class="modal fade" tabindex="-1" role="dialog"
+    <div id="modal-orderpage" class="modal fade" tabindex="-1" role="dialog"
          aria-labelledby="myLargeModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -159,7 +159,7 @@
                                             <td>{{detail.quantity}}</td>
                                             <td>{{detail.price}}</td>
                                             <td>{{detail.subTotal}}</td> 
-                                            <td><button data-ng-click="editDetail(detail)" type="button" class="btn btn-icon" aria-label="Product details"><i class="icon icon-pencil s-4"></i></button></td>
+                                            <td><button data-ng-click="editDetail(detail)" type="button" class="btn btn-icon" aria-label="Product details"><i class="icon icon-eye-outline s-4"></i></button></td>
                                             <td><button data-ng-click="deleteDetail(detail)" type="button" class="btn btn-icon" aria-label="Product details"><i class="icon icon-delete-circle s-4"></i></button></td>
                                         </tr>
                                     </tbody>
@@ -210,6 +210,32 @@
                                 <div class="form-group col-md-6 col-md-offset-6">
                                     <input ng-model="detail.subTotal" type="text" class="form-control md-has-value" aria-describedby="product name" />
                                     <label>Thành Tiền</label>
+                                </div>
+                            </div>
+                            <div ng-if="detail.fileType==1" class="row">
+                                <div class="form-group col-md-12">
+                                    <label>Chọn mẫu từ thư viện</label>
+                                    <a target="_blank" href="{{detail.image}}">hình mẫu</a>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Ghi chú</label>
+                                    <p>{{detail.fileDescription}}</p>
+                                    <div ng-repeat="field in fields" class="form-group">
+                                        <label>{{field.text}}</label>
+                                        <label>{{field.value}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="detail.fileType==2" class="row">
+                                <div class="form-group col-md-12">
+                                    <label>Thiết kế theo yêu cầu</label>
+                                    <p>Ghi chú:&nbsp; {{detail.fileDescription}}</p>
+                                </div>
+                            </div>
+                            <div ng-if="detail.fileType==3" class="row">
+                                <div ng-repeat="imageUrl in imageUrls" class="form-group col-md-12">
+                                    <label>File được tải lên</label>
+                                    <a target="_blank" href="{{imageUrl}}">{{imageUrl}}</a>
                                 </div>
                             </div>
                         </form>

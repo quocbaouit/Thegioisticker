@@ -15,31 +15,29 @@ namespace Thegioisticker.Service
         void UpdateContentPage(ContentPage ContentPage);
         void SaveContentPage();
         ContentPagePaging GetPagingContentPage(int pageIndex, int pageSize);
+        ContentPage GetContentPageBySeoUrl(string seoUrl);
     }
 
     public class ContentPageService : IContentPageService
     {
-        private readonly IContentPageRepository ContentPagesRepository;
-        private readonly ICategoryRepository categoryRepository;
+        private readonly IContentPageRepository _contentPagesRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public ContentPageService(IContentPageRepository ContentPagesRepository, ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+        public ContentPageService(IContentPageRepository contentPagesRepository, IUnitOfWork unitOfWork)
         {
-            this.ContentPagesRepository = ContentPagesRepository;
-            this.categoryRepository = categoryRepository;
+            this._contentPagesRepository = contentPagesRepository;
             this.unitOfWork = unitOfWork;
         }
-
         #region IContentPageService Members
 
         public IEnumerable<ContentPage> GetContentPages()
         {
-            var ContentPages = ContentPagesRepository.GetMany(x=>!x.isDelete);
+            var ContentPages = _contentPagesRepository.GetMany(x=>!x.isDelete);
             return ContentPages;
         }
         public ContentPagePaging GetPagingContentPage(int pageIndex, int pageSize)
         {
-            var ContentPages = ContentPagesRepository.GetMany(x=>!x.isDelete);
+            var ContentPages = _contentPagesRepository.GetMany(x=>!x.isDelete);
             var pager = new Pager(ContentPages.Count(), pageIndex,pageSize);
             var ContentPagePaging = new ContentPagePaging
             {
@@ -51,19 +49,33 @@ namespace Thegioisticker.Service
 
         public ContentPage GetContentPage(int id)
         {
-            var ContentPage = ContentPagesRepository.GetById(id);
+            var ContentPage = _contentPagesRepository.GetById(id);
             return ContentPage;
         }
         public void UpdateContentPage(ContentPage ContentPage)
         {
-            ContentPagesRepository.Update(ContentPage);
+            _contentPagesRepository.Update(ContentPage);
             SaveContentPage();
         }
 
         public void CreateContentPage(ContentPage ContentPage)
         {
-            ContentPagesRepository.Add(ContentPage);
+            _contentPagesRepository.Add(ContentPage);
             SaveContentPage();
+        }
+        public ContentPage GetContentPageBySeoUrl(string seoUrl)
+        {
+            var allData = _contentPagesRepository.GetMany(x => !x.isDelete && x.SeoUrl.Contains(seoUrl)).Select(x => new { x.Id, x.MetaTitle, x.SeoUrl, x.MetaDescription,x.Content }).ToList();
+            var content = allData.Select(y => new ContentPage()
+            {
+                Id = y.Id,
+                Description = "",
+                MetaTitle = y.MetaTitle,
+                Content=y.Content,
+                SeoUrl = y.SeoUrl,
+                MetaDescription = y.MetaDescription
+            }).FirstOrDefault();
+            return content;
         }
 
         public void SaveContentPage()

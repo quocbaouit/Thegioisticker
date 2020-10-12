@@ -8,7 +8,6 @@ thegioistickerApp.controller('ordersController', ['$scope', 'ordersService', fun
         $scope.orders = results.data;
         hideLoader();
     }, function (error) {
-        //alert(error.data.message);
     });
 
 }]);

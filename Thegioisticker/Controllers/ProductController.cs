@@ -22,7 +22,7 @@ namespace Thegioisticker.Web.Controllers
         {
             return View();
         }
-        public ActionResult ProductFullWith()
+        public ActionResult Sticker()
         {
             return View();
         }

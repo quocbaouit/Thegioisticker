@@ -1,0 +1,147 @@
+﻿
+<div id="e-commerce-products" class="page-layout carded full-width">
+    <div class="top-bg bg-secondary"></div>
+    <!-- CONTENT -->
+    <div class="page-content">
+        <!-- HEADER -->
+        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+            <!-- APP TITLE -->
+            <div class="col-12 col-sm">
+                <div class="logo row no-gutters align-items-start">
+                    <div class="logo-icon mr-3 mt-1">
+                        <i class="icon-cube-outline s-6"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="h4">Nhân Viên</div>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+            <!-- SEARCH -->
+            <div class="col search-wrapper px-2">
+                <div class="input-group">
+                    <input id="customers-search-input" type="text" class="form-control" placeholder="Tìm Kiếm"
+                           aria-label="Search" />
+                </div>
+            </div>
+            <!-- / SEARCH -->
+            <div class="col-auto">
+                <a href="javascript:void(0)" data-ng-click="createEmployee()" class="btn btn-secondary">Thêm Mới</a>
+            </div>
+        </div>
+        <!-- / HEADER -->
+        <div class="page-content-card">
+            <table id="employee-table" class="table dataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">ID</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Họ Và Tên</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Email</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Địa Chỉ</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Số Điện Thoại</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Tên Quyền</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Sửa</span>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="table-header">
+                                <span class="column-title">Xóa</span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+    <div id="modal-employee" class="modal fade" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Nội Dung</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="loginForm" novalidate>
+                        <div class="form-group mb-4">
+                            <input data-ng-model="registration.fullName" type="text" class="form-control" id="loginFormfullName" aria-describedby="emailHelp"
+                                   placeholder="" />
+                            <label for="loginFormfullName">Họ Và Tên</label>
+                        </div>
+                        <div class="form-group mb-4">
+                            <input data-ng-model="registration.userName" type="text" class="form-control" id="userName" aria-describedby="emailHelp"
+                                   placeholder="" />
+                            <label for="userName">Tên Đăng Nhập</label>
+                        </div>
+                        <div class="form-group mb-4">
+                            <input data-ng-model="registration.email" type="text" class="form-control" id="email" aria-describedby="emailHelp"
+                                   placeholder="" />
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="form-group mb-4">
+                            <input data-ng-model="registration.address" type="text" class="form-control" id="address" aria-describedby="emailHelp"
+                                   placeholder="" />
+                            <label for="address">Địa Chỉ</label>
+                        </div>
+                        <div class="form-group mb-4">
+                            <input data-ng-model="registration.phoneNumber" type="text" class="form-control" id="phoneNumber" aria-describedby="emailHelp"
+                                   placeholder="" />
+                            <label for="phoneNumber">Số Điện Thoại</label>
+                        </div>
+                        <div class="form-group">
+                            <select ng-model="registration.role"  ng-options="o.value as o.label for o in roles" class="form-control" id="formControlSelect1">
+                            </select>
+                            <label>Quyền</label>
+                        </div>
+                        <div ng-if="waringMessage" class="preview">
+                            <div class="preview-elements">
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>{{waringMessage}}</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button data-ng-click="signUp()" type="submit" class="submit-button btn btn-block btn-secondary my-4 mx-auto" aria-label="LOG IN">
+                        Lưu Lại
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

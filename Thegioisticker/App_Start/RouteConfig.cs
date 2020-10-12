@@ -59,6 +59,11 @@ namespace Thegioisticker.Web
                 defaults: new { controller = "Product", action = "Index" }
                );
             routes.MapRoute(
+                name: "Sticker",
+                url: "san-pham-tem",
+                defaults: new { controller = "Product", action = "Sticker" }
+               );
+            routes.MapRoute(
                 name: "ProductDetail",
                 url: "chi-tiet-san-pham/{seoUrl}",
                 defaults: new { controller = "Product", action = "ProductDetail" }
@@ -125,28 +130,8 @@ namespace Thegioisticker.Web
                );
             routes.MapRoute(
                 name: "Company",
-                url: "gioi-thieu", 
+                url: "cong-ty/{seoUrl}", 
                 defaults: new { controller = "Company", action = "Index" }
-               );
-            routes.MapRoute(
-                name: "Recruitment",
-                url: "tuyen-dung",
-                defaults: new { controller = "Company", action = "Recruitment" }
-               );
-            routes.MapRoute(
-                name: "Rule",
-                url: "quy-dinh-chung",
-                defaults: new { controller = "Company", action = "Rule" }
-               );
-            routes.MapRoute(
-                name: "Delivery",
-                url: "thanh-toan-va-giao-hang",
-                defaults: new { controller = "Company", action = "Delivery" }
-               );
-            routes.MapRoute(
-                name: "PrivacyPolicy",
-                url: "chinh-sach-bao-mat",
-                defaults: new { controller = "Company", action = "PrivacyPolicy" }
                );
             routes.MapRoute(
                 name: "CampanyContact",

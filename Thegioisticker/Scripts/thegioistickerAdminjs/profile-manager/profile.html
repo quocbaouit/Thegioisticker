@@ -1,0 +1,58 @@
+﻿
+<div id="e-commerce-products" class="page-layout carded full-width">
+    <div class="top-bg bg-secondary"></div>
+    <!-- CONTENT -->
+    <div class="page-content">
+        <!-- HEADER -->
+        <div class="header bg-secondary text-auto row no-gutters align-items-center justify-content-between">
+            <!-- APP TITLE -->
+            <div class="col-12 col-sm">
+                <div class="logo row no-gutters align-items-start">
+                    <div class="logo-icon mr-3 mt-1">
+                        <i class="icon-cube-outline s-6"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="h4">Thông Tin Tài Khoản</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / HEADER -->
+        <div class="page-content-card">
+            <div class="page-content row p-6 container-fluid">
+                <!-- / IMAGE CAPS -->
+                <div class="col-12">
+                    <form style="background-color:white">
+                        <div class="row">
+                            <div class="form-group col-md-12 col-md-offset-12">
+                                <input ng-model="employee.fullName" type="text" class="form-control md-has-value" aria-describedby="fullName" />
+                                <label>Họ Và Tên</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 col-md-offset-12">
+                                <input ng-model="employee.address" type="text" class="form-control md-has-value" aria-describedby="address" />
+                                <label>Địa Chỉ</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 col-md-offset-12">
+                                <input ng-model="employee.email" type="text" class="form-control md-has-value" aria-describedby="email" />
+                                <label>Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 col-md-offset-12">
+                                <input ng-model="employee.phoneNumber" type="text" class="form-control md-has-value" aria-describedby="phoneNumber" />
+                                <label>Số Điện Thoại</label>
+                            </div>
+                        </div>
+                        <button data-ng-click="saveProfile()" type="button" class="btn btn-primary">Cập nhật thông tin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+</div>

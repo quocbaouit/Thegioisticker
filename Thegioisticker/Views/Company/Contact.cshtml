@@ -2,96 +2,87 @@
     ViewBag.Title = "Về Chúng tôi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<section ng-app="thegioistickerApp" ng-controller="companyController" class="organic-content">
-    <div class="container">
-        <div class="contact-02">
-            <div class="row contact-02-gird">
-                <div class="col-md-7">
-                    @*<div id="map" class="map-style1"></div>*@
-                    <iframe src="https://www.google.com/maps/d/embed?mid=1JpnGKlsElhLp0DKOwpsNDsBBashy5nYl" width="640" height="480"></iframe>
-                </div>
-                <form id='f11'>
-                    <div  class="col-md-5 contact-half">
-                        <h3>Hãy kết nối với chúng tôi !</h3>
-                        <div id='f11-step1' class="address-half">
-                            <div class="address-inside1">
-                                <input type="text" class="address-border1 bd-radius-5" name="name" placeholder="Tên*">
-                            </div>
-                            <div class="address-inside1">
-                                <input type="text" class="address-border1 bd-radius-5" name="email" placeholder="Email">
-                            </div>
-                            <div class="address-inside1">
-                                <textarea class="address-border1 bd-radius-5" name="msg" placeholder="Tin nhắn"></textarea>
-                            </div>
-                        </div>
-                        <div class="send-messages1">
-                            <button ng-click="sendContact()" class="button bd-radius-50 btn-setting bd-color-setting ">gởi Tin Nhắn</button>
-                        </div>
-                    </div>
-                </form>
-                
-            </div>
+<link href="~/Content/css/contact_styles.css" rel="stylesheet" />
+<link href="~/Content/css/contact_responsive.css" rel="stylesheet" />
+<main>
+    <!-- Contact Info -->
 
+    <div class="contact_info">
+        <div class="container">
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="address-info">
-                        <h3>Công ty TNHH Thương Mại Quảng Cáo PDCA</h3>
-                        <p>Địa chỉ: 118/15 Bàu Cát 2, P.12, Q.Tân Bình, Tp.HCM</p>
-                        <p>Email: thegioiinan.today@gmail.com</p>
-                        <p>Điện thoại: 0909 371 586</p>
-                        <p>Hotline: 091 346 1539 – 0909 371 586</p>
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="contact_info_container d-flex flex-lg-row flex-column justify-content-between align-items-between">
+
+                        <!-- Contact Item -->
+                        <div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
+                            <div class="contact_info_image"><img src="images/contact_1.png" alt=""></div>
+                            <div class="contact_info_content">
+                                <div class="contact_info_title">Số điện thoại</div>
+                                <div class="contact_info_text">0909 371 586</div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Item -->
+                        <div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
+                            <div class="contact_info_image"><img src="images/contact_2.png" alt=""></div>
+                            <div class="contact_info_content">
+                                <div class="contact_info_title">Email</div>
+                                <div class="contact_info_text">admin.thegioiinan.today</div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Item -->
+                        <div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
+                            <div class="contact_info_image"><img src="images/contact_3.png" alt=""></div>
+                            <div class="contact_info_content">
+                                <div class="contact_info_title">Địa chỉ</div>
+                                <div class="contact_info_text">118/15 Bàu Cát 2, P.12, Q.Tân Bình, Tp.HCM</div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
-<!-- MAP JAVASCRIPT -->
-<script>
-        var map;
-        function initMap() {
-          map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 16,
-              center: new google.maps.LatLng(10.798415, 106.643494),
-            mapTypeId: 'roadmap',
-            disableDefaultUI: true
-          });
-          var icons = {
-            parking: {
-              icon:'images/Contact1-Recovered.png'
-            }
-          };
 
-          var features = [
-            {
-                position: new google.maps.LatLng(11.103092, 106.56668),
-              type: 'parking'
-            }
-          ];
+    <!-- Contact Form -->
 
-          // Create markers.
-          features.forEach(function(feature) {
-            var marker = new google.maps.Marker({
-              position: feature.position,
-              icon: icons[feature.type].icon,
-              map: map
-            });
+    <div class="contact_form">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="contact_form_container">
+                        <div class="contact_form_title">Liên lạc với chúng tôi</div>
 
-            var contentString = '<div id="content-gg">'+
-              '<h3 id="firstHeading" class="firstHeading">Thế giới sticker</h3>'+
-              '<p>Bến Cát, Bình Dương</p>'+
-              '</div>'
-              ;
+                        <form action="#" id="contact_form">
+                            <div class="contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
+                                <input type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="Tên" required="required" data-error="Name is required.">
+                                <input type="text" id="contact_form_email" class="contact_form_email input_field" placeholder="Email" required="required" data-error="Email is required.">
+                                <input type="text" id="contact_form_phone" class="contact_form_phone input_field" placeholder="Số điện thoại">
+                            </div>
+                            <div class="contact_form_text">
+                                <textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Tin nhắn" required="required" data-error="Please, write us a message."></textarea>
+                            </div>
+                            <div class="contact_form_button">
+                                <button type="submit" class="button contact_submit_button">Gởi Tin Nhắn</button>
+                            </div>
+                        </form>
 
-          var infowindow = new google.maps.InfoWindow({
-                content: contentString,
-                maxWidth: 300
-              });
-              marker.addListener('mouseover', function() {
-                infowindow.open(map, marker);
-              });
-          });
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel"></div>
+    </div>
 
-        }
-</script>
-@*<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW-CwBhzyV2zZ1DcG1oBJtAoDW_LMQT70&callback=initMap"></script>*@
+    <!-- Map -->
+
+    @*<div class="contact_map">
+        <div id="google_map" class="google_map">
+            <div class="map_container">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>*@
+</main>

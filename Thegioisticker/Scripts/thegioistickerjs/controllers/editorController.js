@@ -3,7 +3,6 @@ thegioistickerApp.controller('editorController', ['$scope', '$timeout', 'faqServ
     function ($scope, $timeout, faqService, localStorageService, Notification, Fabric, FabricConstants, Keypress) {
     //$scope.faqs = [];
     //faqService.getfaqs().then(function (results) {
-    //    debugger;
     //    $scope.faqs = results.data;
     //    hideLoader();
     //}, function (error) {

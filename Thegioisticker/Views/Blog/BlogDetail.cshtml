@@ -7,9 +7,9 @@
     <title>@ViewBag.MetaTitle</title>
     <meta name="description" content="@ViewBag.MetaDescription">
 }
-<section ng-app="thegioistickerApp" ng-controller="blogDetailController" class="organic-content">
+<section ng-app="thegioistickerApp" ng-controller="blogDetailController">
     <div class="container">
-        <div class="blog-detail-fullwidth blog-detail">
+        <div>
             @Html.Raw(ViewBag.Content)
         </div>
     </div>

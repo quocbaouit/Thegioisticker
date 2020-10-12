@@ -2,18 +2,20 @@
     ViewBag.Title = "Về Chúng tôi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<section ng-app="thegioistickerApp" ng-controller="companyController" class="organic-content">
+@section HeadMeta
+{
+    <title>@ViewBag.MetaTitle</title>
+    <meta name="description" content="@ViewBag.MetaDescription">
+}
+<link href="~/Content/css/regular_styles.css" rel="stylesheet" />
+<link href="~/Content/css/regular_responsive.css" rel="stylesheet" />
+
+<main ng-app="thegioistickerApp" ng-controller="blogDetailController">
     <div class="container">
-        <div class="about-us">
-            <section id="why-choose">
-                <div class="container">
-                    <div class="headding">
-                        <h2 class="title">Giới Thiệu</h2>
-                    </div>
-                    <div id="gioithieu">
-                    </div>
-                </div>
-            </section>
+        <div>
+            @Html.Raw(ViewBag.Content)
         </div>
     </div>
-</section>
+</main>
+
+

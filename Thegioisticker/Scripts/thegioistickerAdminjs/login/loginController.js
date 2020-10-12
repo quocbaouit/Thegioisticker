@@ -1,5 +1,5 @@
 ﻿'use strict';
-thegioistickerAdmin.controller('loginController', ['$scope', '$timeout', '$location', 'authService', '$state', 'ngAuthSettings', function ($scope, $timeout, $location, authService, $state, ngAuthSettings) {
+thegioistickerAdmin.controller('loginController', ['$scope','$rootScope', '$timeout', '$location', 'authService', '$state', 'ngAuthSettings', function ($scope, $rootScope, $timeout, $location, authService, $state, ngAuthSettings) {
     $timeout(function () {
         $('input.form-control, textarea.form-control').fuseMdInput();
     }, 1000);
@@ -17,7 +17,7 @@ thegioistickerAdmin.controller('loginController', ['$scope', '$timeout', '$locat
             $scope.loginData.password = '';
             $scope.loginData.userName = '';
             $scope.message = "Bạn đã đăng nhập thành công";
-            $state.go('admin.dashboard');
+            $state.go('admin.products');
         },
 			function (err) {
 			    $scope.waringMessage = "Vui lòng kiểm tra lại email và password";

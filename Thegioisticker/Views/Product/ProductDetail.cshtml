@@ -7,177 +7,225 @@
     <title>@ViewBag.MetaTitle</title>
     <meta name="description" content="@ViewBag.MetaDescription">
 }
-
+<link href="~/Content/css/product_styles.css" rel="stylesheet" />
+<link href="~/Content/css/product_responsive.css" rel="stylesheet" />
+<link href="~/Content/css/blog_single_styles.css" rel="stylesheet" />
+<link href="~/Content/css/blog_single_responsive.css" rel="stylesheet" />
 <style>
-    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-        width: 280px;
-    }
-    .billing-country {
-        padding-bottom: 5px;
-    }
-    .dropdown-menu {
-        position: unset !important;
-    }
-    .detail-slider img {
-        margin: 0 auto;
-        width: 100%;
-        min-height: 120px;
-    }
-    .modal-body {
-        min-height: 400px;
-    }
-    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-        /*       border: groove;*/
-        border-color: cornflowerblue;
-    }
-    .nav-tabs > li {
-        min-width: 80px;
-        max-width: 130px;
-    }
-    .nav > li > a {
-         padding: unset;
-    }
-    .nav-tabs > li > a {
-         margin-right: unset; 
-    }
-    textarea {
-        width: 100%;
+    .input-group-text {
+        min-width: 150px;
     }
 
-    .textwrapper {
-        border: 1px solid #999999;
-        margin: 5px 0;
-        padding: 3px;
+    .row {
+        margin-bottom: 0px;
+    }
+
+    .form-control {
+        margin-left: 10px;
+    }
+
+    .cart_items {
+        margin-top: 10px !important;
+    }
+
+    .input-group {
+        padding: 10px;
     }
 </style>
-<!-- content -->
-<section ng-app="thegioistickerApp" ng-controller="productDetailController" class="organic-content">
-    <section class="organic-content">
+<main>
+    <!-- Single Product -->
+
+    <div class="single_product">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="sidebar">
-                        <div class="product-list clearfix">
-                            <h3 class="sidebar-title">Danh Mục In</h3>
-                            <p ng-if="!printingCategory ||printingCategory.length==0">Không có sản phẩm nào vừa xem.</p>
-                            <div ng-repeat="product in printingCategory" class="product">
-                                <div class="media-left product-img">
-                                    <a ng-click="viewDetail(product.seoUrl)" href="javascript:void(0)"><img ng-src="{{product.image}}" alt="{{product.name}}"></a>
-                                </div>
-                                <div class="product-price media-right">
-                                    <h3><a ng-click="viewDetail(product.seoUrl)" href="javascript:void(0)" class="color-setting">{{product.name}}</a></h3>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
+
+                <!-- Images -->
+                <div class="col-lg-2 order-lg-1 order-2">
+                    <ul class="image_list">
+                        <li data-image="/images/single_4.jpg"><img src="/images/single_4.jpg" alt=""></li>
+                        <li data-image="/images/single_2.jpg"><img src="/images/single_2.jpg" alt=""></li>
+                        <li data-image="/images/single_3.jpg"><img src="/images/single_3.jpg" alt=""></li>
+                    </ul>
+                </div>
+
+                <!-- Selected Image -->
+                <div class="col-lg-5 order-lg-2 order-1">
+                    <div class="image_selected"><img src="/images/single_4.jpg" alt=""></div>
+                </div>
+
+                <!-- Description -->
+                <div class="col-lg-5 order-3">
+                    <div style="margin-top:-10px" class="cart_container">
+                        <div class="cart_items">
+                            <ul class="cart_list">
+                                <li class="cart_item clearfix  font-italic">
+                                    <div class="row">
+                                        <div style="text-align:center" class="col-md-12"><h3>KHUYẾN MÃI</h3></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">Giảm 5% khi đặt hàng từ 3 - 5 ngày.</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">Khuyến mãi tem 5 cm đồng giá 225.000 vnđ.</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">Khuyến mãi tem 3cm đồng giá 150.000 vnđ.</div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
+
+                    </div>
+
+                    <div class="cart_container">
+                        <div class="cart_items">
+                            <ul class="cart_list">
+                                <li style="height:382px" class="cart_item clearfix  font-italic">
+                                    <div class="row">
+                                        <div style="text-align:center" class="col-md-12"><h3>CÁC DỊCH VỤ KHUYẾN MÃI KHÁC CHỈ CÓ TẠI TGSK</h3></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">Miễn phí kho mẫu thiết kế với số lượng in trên 1.000 tem.</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">Miễn phí giao hàng với đơn hàng tr6n 499.000 vnd trong Q.Tân Bình.</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">Miễn phí 1 hộp namecard với đơn hàng trên 1.000.000 vnđ.</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="shopgird-detai-img">
-                            <div class="detail-slider">
-                            </div>
-                        </div>
-                        <form id='f1'>
-                            <div class="shopgird-detai-content">
-                                <div id='f1-step1' class="mid-product-content media-body">
-                                    <div class="form-tax">
-                                        <h4>{{product.name}}</h4>
-                                        <div class="billing-address">
-                                            <div class="form-group billing-country">
-                                                <div class="billing-category">
-                                                    <label>Kính thước *</label>
-                                                </div>
-                                                <div class="billing-select">
-                                                    <input maxlength="4" ng-model="shoppingCart.width" number-input style="width:43%;float:left;margin-right:25px" placeholder="ngang(mm)" name="width" type="text">
-                                                    <input maxlength="4" ng-model="shoppingCart.height" number-input style="width:43%;float:left;" placeholder="cao(mm)" name="height" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="form-group billing-country">
-                                                <div class="billing-category">
-                                                    <label>Số lượng cần in *</label>
-                                                </div>
-                                                <div class="billing-select">
-                                                    <input maxlength="7" interger-input ng-model="shoppingCart.quantity" num-only name="quantity" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="form-group billing-country">
-                                                <div class="billing-category">
-                                                    <label>Loại decal</label>
-                                                </div>
-                                                <div class="billing-select">
-                                                    <select ng-disabled="true" ng-model="shoppingCart.material"
-                                                            ng-options="opt as opt.name for opt in printingCategory track by opt.code">
-                                                    </select>
-                                                    <p ng-if="invoicePrintPrice>0">{{invoicePrintPrice|number}} (VND)</p>
-                                                </div>
-                                            </div>
-                                            <div class="form-group billing-country">
-                                                <div class="billing-category">
-                                                    <label>Cán màng</label>
-                                                </div>
-                                                <div class="billing-select">
-                                                    <select ng-model="shoppingCart.machining"
-                                                            ng-options="opt as opt.label for opt in machinings">
-                                                    </select>
-                                                    <p ng-if="invoiceMachining>0">{{invoiceMachining|number}} (VND)</p>
-                                                </div>
-                                            </div>
-                                            <div class="form-group billing-country">
-                                                <div class="billing-category">
-                                                    <label>Bế</label>
-                                                </div>
-                                                <div class="billing-select">
-                                                    <select ng-model="shoppingCart.cut"
-                                                            ng-options="opt as opt.label for opt in cuts">
-                                                    </select>
-                                                    <p ng-if="invoiceCut>0">{{invoiceCut|number}} (VND)</p>
-                                                </div>
-                                            </div>
 
-                                            <div class="form-group billing-country">
-                                                <div class="billing-category">
-                                                    <label>Thành Tiền</label>
-                                                </div>
-                                                <div class="billing-select">
-                                                    <p>{{subTotal |number}}(VND)</p>
-                                                </div>
-                                            </div>
-                                        <div class="form-group">
-                                            <label class="radio-inline">
-                                                <input ng-model="fileType.name" value="design" type="radio" name="fileradio">Thiết Kế Theo Yêu Cầu
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input ng-model="fileType.name" value="sample" type="radio" name="fileradio">Chọn Mẫu
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input ng-model="fileType.name" value="upload" type="radio" name="fileradio">Upload File
-                                            </label>
+            </div>
+        </div>
+    </div>
+    <!-- invoice -->
+    <div class="invoice" style="width:100%;">
+        <div class="container">
+            @*<h3>BÁO GIÁ TEM NHÃN STICKER ONLINE</h3>*@
+            <div style="font-size:24px;font-weight:500">Tiến Hành Đặt Hàng Online</div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="cart_container">
+                        <div class="cart_items">
+                            <ul class="cart_list">
+                                <li class="cart_item clearfix">
+                                    <h5>Vui lòng chọn loại chất liệu và nhập kích thước, số lượng</h5>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Chất Liệu</span>
                                         </div>
+                                        <select ng-change="materialChange()" class="form-control classic ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="shoppingCart.material" ng-options="opt as opt.label for opt in options"><option label="Decal sữa" value="object:6" selected="selected">Decal sữa</option><option label="Decal trong" value="object:7">Decal trong</option><option label="Decal giấy" value="object:8">Decal giấy</option><option label="Decal Kraft" value="object:9">Decal Kraft</option><option label="Decal xi bạc" value="object:10">Decal xi bạc</option><option label="Decal 7 màu" value="object:11">Decal 7 màu</option><option label="Tem bảo hành, tem vỡ,tem bế" value="object:12">Tem bảo hành, tem vỡ,tem bế</option><option label="Decal sữa cao cấp" value="object:13">Decal sữa cao cấp</option></select>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Nhập kích thước</span>
                                         </div>
+                                        <input num-only="" maxlength="9" ng-model="shoppingCart.width" type="text" placeholder="ngang(mm)" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-maxlength">
+                                        <input num-only="" maxlength="9" ng-model="shoppingCart.height" type="text" placeholder="cao(mm)" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-maxlength">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Số Lượng</span>
+                                        </div>
+                                        <input num-only="" maxlength="9" ng-model="shoppingCart.quantity" type="text" placeholder="nhập số lượng cần in" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-maxlength">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Chọn Gia Công</span>
+                                        </div>
+                                        <select class="form-control classic ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="shoppingCart.machining" ng-options="opt as opt.label for opt in options1"><option label="Cán màng" value="object:14" selected="selected">Cán màng</option><option label="Không cán màng" value="object:15">Không cán màng</option></select>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Chọn Bế</span>
+                                        </div>
+                                        <select class="form-control classic ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="shoppingCart.cut" ng-options="opt as opt.label for opt in options2"><option label="Bế thẳng" value="object:16" selected="selected">Bế thẳng</option><option label="Bế đặc biệt(hình tròn, hình khó)" value="object:17">Bế đặc biệt(hình tròn, hình khó)</option></select>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="cart_container">
+                        <div class="cart_items">
+                            <ul class="cart_list">
+                                <li class="cart_item clearfix  font-italic">
+                                    <div class="row">
+                                        <div class="col-md-6">Chất liệu</div>
+                                        <div class="col-md-3 ml-auto ng-binding">Decal sữa</div>
                                     </div>
                                     <hr>
-                                    <div class="add-card">
-                                        <button data-ng-click="shopNow()" class="button  bd-radius-50 btn-setting bd-color-setting ">Đặt In Ngay</button>
+                                    <div class="row">
+                                        <div class="col-md-6">Kích thước tem nhãn</div>
+                                        <div class="col-md-3 ml-auto ng-binding">0mm X 0mm</div>
                                     </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="detail">
-                        <ul class="nav nav-pills nav-justified">
-                            <li class="active"><a data-toggle="pill" href="#descrition" class="btn-setting">Mô Tả Sản Phẩm</a></li>
-                        </ul>
-
-                        <div class="tab-content detail-tab">
-                            <div class="tab-pane fade in active">
-                                @Html.Raw(ViewBag.description)
-                            </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Số lượng in</div>
+                                        <div class="col-md-3 ml-auto ng-binding">0</div>
+                                    </div>
+                                    @*<hr>*@
+                                    @*<div class="row">
+                                            <div class="col-md-6">Diện tích bằng mét vuông.</div>
+                                            <div class="col-md-3 ml-auto ng-binding">0(mét vuông)</div>
+                                        </div>*@
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Gia công</div>
+                                        <div class="col-md-3 ml-auto ng-binding">Cán màng</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Bế</div>
+                                        <div class="col-md-3 ml-auto ng-binding">Bế thẳng</div>
+                                    </div>
+                                    @*<hr>*@
+                                    @*<div class="row">
+                                            <div class="col-md-6">Đơn giá</div>
+                                            <div class="col-md-3 ml-auto ng-binding">0(vnd)</div>
+                                        </div>*@
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Thành tiền</div>
+                                        <div class="col-md-3 ml-auto ng-binding">0(vnd)</div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</section>
+    </div>
+
+    <div class="single_post">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="single_post_title">Vivamus sed nunc in arcu cursus mollis quis et orci. Interdum et malesuada</div>
+                    <div class="single_post_text">
+                        <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis ac eu nisi. In accumsan tellus ut dapibus blandit.</p>
+
+                        <div class="single_post_quote text-center">
+                            <div class="quote_image"><img src="/images/quote.png" alt=""></div>
+                            <div class="quote_text">Quisque sagittis non ex eget vestibulum. Sed nec ultrices dui. Cras et sagittis erat. Maecenas pulvinar, turpis in dictum tincidunt, dolor nibh lacinia lacus.</div>
+                            <div class="quote_name">Liam Neeson</div>
+                        </div>
+
+                        <p>Praesent ac magna sed massa euismod congue vitae vitae risus. Nulla lorem augue, mollis non est et, eleifend elementum ante. Nunc id pharetra magna.  Praesent vel orci ornare, blandit mi sed, aliquet nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 <!--content -->

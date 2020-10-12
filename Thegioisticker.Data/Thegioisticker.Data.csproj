@@ -87,6 +87,10 @@
     <Compile Include="Migrations\202010090916171_init_thegioisticker.Designer.cs">
       <DependentUpon>202010090916171_init_thegioisticker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010120856102_updateContentPage.cs" />
+    <Compile Include="Migrations\202010120856102_updateContentPage.Designer.cs">
+      <DependentUpon>202010120856102_updateContentPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AuthRepository.cs" />
@@ -125,6 +129,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202010090916171_init_thegioisticker.resx">
       <DependentUpon>202010090916171_init_thegioisticker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010120856102_updateContentPage.resx">
+      <DependentUpon>202010120856102_updateContentPage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

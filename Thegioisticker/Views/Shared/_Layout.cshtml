@@ -4,8 +4,17 @@
     <meta charset="utf-8">
     <title>Thế Giới Sticker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes" />
-    <meta name="description" content="Thế Giới Sticker">
     <meta name="author" content="Netbase">
+    @if (IsSectionDefined("HeadMeta"))
+    {
+        @RenderSection("HeadMeta")
+    }
+    else
+    {
+        <title>In nhanh siêu việt</title>
+        <meta name="description" content="In Nhanh Siêu Việt - Chuyên in ấn và gia công tem nhãn, decal, túi giấy, hộp giấy và các ấn phẩm văn phòng, ấn phẩm quảng cáo tại Tp HCM.">
+        <meta name="keywords" content="In Nhanh Siêu Việt - Chuyên in ấn và gia công tem nhãn, decal, túi giấy, hộp giấy và các ấn phẩm văn phòng, ấn phẩm quảng cáo tại Tp HCM.">
+    }
     <!--Add css lib-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="~/Scripts/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" />
@@ -37,8 +46,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col d-flex flex-row">
-                            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>(028) 38 122 191</div>
-                            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:admin.thegioiinan.today">admin.thegioiinan.today</a></div>
+                            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/images/phone.png" alt=""></div>(028) 38 122 191</div>
+                            <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/images/mail.png" alt=""></div><a href="mailto:admin.thegioiinan.today">admin.thegioiinan.today</a></div>
                             <div class="top_bar_content ml-auto">
                                 <div class="top_bar_user">
                                     <div data-ng-hide="!authentication.isAuth"><a href="/user">Xin chào: {{authentication.fullName}}.</a></div>
@@ -60,7 +69,7 @@
                         <div class="col-lg-2 col-sm-3 col-3 order-1">
                             <div class="logo_container">
                                 <div class="logo">
-                                    <a href="#">
+                                    <a href="/">
                                         <img style="min-width:150px;max-width:150px" src="~/images/logo.png" />
                                     </a>
                                 </div>
@@ -88,7 +97,7 @@
                                                         </ul>
                                                     </div>
                                                 </div>*@
-                                            <button type="submit" class="header_search_button trans_300" value="Submit"><img src="images/search.png" alt=""></button>
+                                            <button type="submit" class="header_search_button trans_300" value="Submit"><img src="/images/search.png" alt=""></button>
                                         </form>
                                     </div>
                                 </div>
@@ -109,7 +118,7 @@
                                 <div class="cart">
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         <div class="cart_icon">
-                                            <img src="images/cart.png" alt="">
+                                            <img src="/images/cart.png" alt="">
                                             <div class="cart_count"><span>10</span></div>
                                         </div>
                                         <div class="cart_content">
@@ -238,8 +247,8 @@
                                 </ul>
 
                                 <div class="menu_contact">
-                                    <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>+38 068 005 3570</div>
-                                    <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                                    <div class="menu_contact_item"><div class="menu_contact_icon"><img src="/images/phone_white.png" alt=""></div>+38 068 005 3570</div>
+                                    <div class="menu_contact_item"><div class="menu_contact_icon"><img src="/images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
                                 </div>
                             </div>
                         </div>
@@ -271,7 +280,7 @@
                     <div class="col">
                         <div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
                             <div class="newsletter_title_container">
-                                <div class="newsletter_icon"><img src="images/send.png" alt=""></div>
+                                <div class="newsletter_icon"><img src="/images/send.png" alt=""></div>
                                 <div class="newsletter_title">Đăng ký để nhận tin từ chúng tôi</div>
                                 <div class="newsletter_text"><p>...để nhận mã giảm giá 20% cho đơn hàng đầu tiên.</p></div>
                             </div>
@@ -291,70 +300,61 @@
         <footer class="footer">
             <div class="container">
                 <div class="row">
-
                     <div class="col-lg-3 footer_col">
                         <div class="footer_column footer_contact">
                             <div class="logo_container">
-                                <div class="logo"><a href="#">PDCA</a></div>
+                                <div class="logo"><a href="javascript:void(0)">PDCA</a></div>
                             </div>
-                            <div class="footer_title">Got Question? Call Us 24/7</div>
-                            <div class="footer_phone">+38 068 005 3570</div>
+                            <div class="footer_title">Tư vấn</div>
+                            <div class="footer_phone">(028)38 122 191</div>
                             <div class="footer_contact_text">
-                                <p>17 Princess Road, London</p>
-                                <p>Grester London NW18JR, UK</p>
+                                <p>118/15 Bàu Cát 2</p>
+                                <p>P.12, Q.Tân Bình, Tp.HCM</p>
                             </div>
                             <div class="footer_social">
                                 <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fab fa-google"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fab fa-vimeo-v"></i></a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-2 offset-lg-2">
                         <div class="footer_column">
-                            <div class="footer_title">Find it Fast</div>
+                            <div class="footer_title">THÔNG TIN </div>
                             <ul class="footer_list">
-                                <li><a href="#">Computers & Laptops</a></li>
-                                <li><a href="#">Cameras & Photos</a></li>
-                                <li><a href="#">Hardware</a></li>
-                                <li><a href="#">Smartphones & Tablets</a></li>
-                                <li><a href="#">TV & Audio</a></li>
-                            </ul>
-                            <div class="footer_subtitle">Gadgets</div>
-                            <ul class="footer_list">
-                                <li><a href="#">Car Electronics</a></li>
+                                <li><a href="/cong-ty/gioi-thieu" target="_self">Giới thiệu</a></li>
+                                <li><a href="/cong-ty/tuyen-dung" target="_self">Tuyển dụng</a></li>
+                                <li><a href="/cong-ty/hop-tac-ban-hang" target="_self">Hợp tác bán hàng</a></li>
+                                <li><a href="/cong-ty/dieu-khoan-su-dung" target="_self">Điều khoản sử dụng</a></li>
+                                <li><a href="/cong-ty/chinh-sach-phan-phoi" target="_self">Chính sách bán hàng</a></li>
                             </ul>
                         </div>
                     </div>
-
                     <div class="col-lg-2">
                         <div class="footer_column">
-                            <ul class="footer_list footer_list_2">
-                                <li><a href="#">Video Games & Consoles</a></li>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">Cameras & Photos</a></li>
-                                <li><a href="#">Hardware</a></li>
-                                <li><a href="#">Computers & Laptops</a></li>
+                            <div class="footer_title">CHÍNH SÁCH</div>
+                            <ul class="footer_list">
+                                <li><a href="/cong-ty/chinh-sach-doi-tra-va-hoan-tien" target="_self">Chính sách đổi trả</a></li>
+                                <li><a href="/cong-ty/chinh-sach-mua-ho" target="_self">Chính sách mua hộ</a></li>
+                                <li><a href="/cong-ty/chinh-sach-bao-mat" target="_self">Chính sách bảo mật</a></li>
+                                <li><a href="/cong-ty/chinh-sach-khieu-nai" target="_self">Chính sách khiếu nại</a></li>
+                                <li><a href="/cong-ty/chinh-sach-bao-hanh" target="_self">Chính sách bảo hành</a></li>
                             </ul>
                         </div>
                     </div>
-
                     <div class="col-lg-2">
                         <div class="footer_column">
-                            <div class="footer_title">Customer Care</div>
+                            <div class="footer_title">HƯỚNG DẪN </div>
                             <ul class="footer_list">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Order Tracking</a></li>
-                                <li><a href="#">Wish List</a></li>
-                                <li><a href="#">Customer Services</a></li>
-                                <li><a href="#">Returns / Exchange</a></li>
-                                <li><a href="#">FAQs</a></li>
-                                <li><a href="#">Product Support</a></li>
+                                <li><a href="/lien-he">Gửi yêu cầu hỗ trợ</a></li>
+                                <li><a href="/cong-ty/cau-hoi-thuong-gap" target="_self">Câu hỏi thường gặp</a></li>
+                                <li><a href="/cong-ty/huong-dan-mua-hang" target="_self">Hướng dẫn mua hàng</a></li>
+                                <li><a href="/cong-ty/chinh-sach-giao-hang" target="_self">Chính sách giao hàng</a></li>
+                                <li><a href="/cong-ty/huong-dan-thanh-toan" target="_self">Hướng dẫn thanh toán</a></li>
                             </ul>
                         </div>
                     </div>
@@ -375,10 +375,10 @@
                             </div>
                             <div class="logos ml-sm-auto">
                                 <ul class="logos_list">
-                                    <li><a href="#"><img src="images/logos_1.png" alt=""></a></li>
-                                    <li><a href="#"><img src="images/logos_2.png" alt=""></a></li>
-                                    <li><a href="#"><img src="images/logos_3.png" alt=""></a></li>
-                                    <li><a href="#"><img src="images/logos_4.png" alt=""></a></li>
+                                    <li><a href="#"><img src="/images/logos_1.png" alt=""></a></li>
+                                    <li><a href="#"><img src="/images/logos_2.png" alt=""></a></li>
+                                    <li><a href="#"><img src="/images/logos_3.png" alt=""></a></li>
+                                    <li><a href="#"><img src="/images/logos_4.png" alt=""></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -474,6 +474,9 @@
 
 
     <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/product_custom.js"></script>
+    <script src="~/Scripts/shop_custom.js"></script>
+    @*<script src="~/Scripts/contact_custom.js"></script>*@
     <script src="~/Scripts/plugins/greensock/TweenMax.min.js"></script>
     <script src="~/Scripts/plugins/greensock/TimelineMax.min.js"></script>
     <script src="~/Scripts/plugins/scrollmagic/ScrollMagic.min.js"></script>
@@ -516,7 +519,7 @@
     <script src="~/Scripts/thegioistickerjs/controllers/blogController.js"></script>
     <script src="~/Scripts/thegioistickerjs/controllers/blogDetailController.js"></script>
     <script src="~/Scripts/thegioistickerjs/controllers/faqController.js"></script>
-    <script src="~/Scripts/thegioistickerjs/controllers/invoiceController.js"></script>
+    @*<script src="~/Scripts/thegioistickerjs/controllers/invoiceController.js"></script>*@
     <script src="~/Scripts/thegioistickerjs/controllers/companyController.js"></script>
     <script src="~/Scripts/thegioistickerjs/controllers/userController.js"></script>
     <script src="~/Scripts/thegioistickerjs/controllers/editorController.js"></script>

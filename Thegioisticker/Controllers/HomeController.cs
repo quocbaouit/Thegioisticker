@@ -20,7 +20,7 @@ namespace Thegioisticker.Controllers
             this.categoryService = categoryService;
         }
 
-        [OutputCache(Duration = 3600, VaryByParam = "none")]
+        //[OutputCache(Duration = 3600, VaryByParam = "none")]
         // GET: Home
         public ActionResult Index(string category = null)
         {

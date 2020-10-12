@@ -2,94 +2,471 @@
     ViewBag.Title = "Thư Viện Ảnh Decal";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/css/shop_styles.css" rel="stylesheet" />
+<link href="~/Content/css/shop_responsive.css" rel="stylesheet" />
 <style>
-    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-        /*       border: groove;*/
-        border-color: cornflowerblue;
+    .input-group-text {
+        min-width: 150px;
     }
 
-    .nav-tabs > li {
-        min-width: 80px;
-        max-width: 130px;
+    .row {
+        margin-bottom: 0px;
     }
-    .modal-body {
-        min-height: 400px;
+
+    .form-control {
+        margin-left: 10px;
+    }
+
+    .cart_items {
+        margin-top: 10px !important;
+    }
+
+    .input-group {
+        padding: 10px;
     }
 </style>
-<section ng-app="thegioistickerApp" ng-controller="galleryController" class="organic-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="sidebar">
-                    <div class="product-list clearfix">
-                        <h3 class="sidebar-title">Danh Mục In</h3>
-                        <p ng-if="!printingCategory ||printingCategory.length==0">Không có sản phẩm nào vừa xem.</p>
-                        <div ng-repeat="product in printingCategory" class="product">
-                            <div class="media-left product-img">
-                                <a ng-click="viewDetail(product.seoUrl)" href="javascript:void(0)"><img ng-src="{{product.image}}" alt="{{product.name}}"></a>
-                            </div>
-                            <div class="product-price media-right">
-                                <h3><a ng-click="viewDetail(product.seoUrl)" href="javascript:void(0)" class="color-setting">{{product.name}}</a></h3>
-                            </div>
-                            <div class="clearfix"></div>
+<main>
+    <!-- Home -->
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg"></div>
+        <div class="home_overlay"></div>
+        <div class="home_content d-flex flex-column align-items-center justify-content-center">
+            <h2 class="home_title">Thư Viện Online</h2>
+        </div>
+    </div>
+    <!-- Shop -->
+    <div class="shop">
+        <div class="container-fluid">
+            <div class="row">
+                <div style="margin-top:25px" class="col-lg-3">
+                    <div class="cart_container">
+                        <div class="cart_items">
+                            <ul class="cart_list">
+                                <li class="cart_item clearfix">
+                                    <h5>Sản phẩm được chọn</h5>
+                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="~/images/noproduct.png" alt=""></div>
+                                    <div class="product_content">
+                                        <div style="margin-left:10px" class="product_name"><div>Canon IXUS 175...</div></div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Chất Liệu</span>
+                                        </div>
+                                        <select ng-change="materialChange()" class="form-control classic ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="shoppingCart.material" ng-options="opt as opt.label for opt in options"><option label="Decal sữa" value="object:6" selected="selected">Decal sữa</option><option label="Decal trong" value="object:7">Decal trong</option><option label="Decal giấy" value="object:8">Decal giấy</option><option label="Decal Kraft" value="object:9">Decal Kraft</option><option label="Decal xi bạc" value="object:10">Decal xi bạc</option><option label="Decal 7 màu" value="object:11">Decal 7 màu</option><option label="Tem bảo hành, tem vỡ,tem bế" value="object:12">Tem bảo hành, tem vỡ,tem bế</option><option label="Decal sữa cao cấp" value="object:13">Decal sữa cao cấp</option></select>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Nhập kích thước</span>
+                                        </div>
+                                        <input num-only="" maxlength="9" ng-model="shoppingCart.width" type="text" placeholder="ngang(mm)" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-maxlength">
+                                        <input num-only="" maxlength="9" ng-model="shoppingCart.height" type="text" placeholder="cao(mm)" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-maxlength">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Số Lượng</span>
+                                        </div>
+                                        <input num-only="" maxlength="9" ng-model="shoppingCart.quantity" type="text" placeholder="nhập số lượng cần in" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-maxlength">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Chọn Gia Công</span>
+                                        </div>
+                                        <select class="form-control classic ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="shoppingCart.machining" ng-options="opt as opt.label for opt in options1"><option label="Cán màng" value="object:14" selected="selected">Cán màng</option><option label="Không cán màng" value="object:15">Không cán màng</option></select>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Chọn Bế</span>
+                                        </div>
+                                        <select class="form-control classic ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="shoppingCart.cut" ng-options="opt as opt.label for opt in options2"><option label="Bế thẳng" value="object:16" selected="selected">Bế thẳng</option><option label="Bế đặc biệt(hình tròn, hình khó)" value="object:17">Bế đặc biệt(hình tròn, hình khó)</option></select>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
+                    </div>
+                    <div class="cart_container">
+                        <div class="cart_items">
+                            <ul class="cart_list">
+                                <li class="cart_item clearfix  font-italic">
+                                    <div class="row">
+                                        <div class="col-md-6">Chất liệu</div>
+                                        <div class="col-md-3 ml-auto ng-binding">Decal sữa</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Kích thước tem nhãn</div>
+                                        <div class="col-md-3 ml-auto ng-binding">0mm X 0mm</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Số lượng in</div>
+                                        <div class="col-md-3 ml-auto ng-binding">0</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Gia công</div>
+                                        <div class="col-md-3 ml-auto ng-binding">Cán màng</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Bế</div>
+                                        <div class="col-md-3 ml-auto ng-binding">Bế thẳng</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Thành tiền</div>
+                                        <div class="col-md-3 ml-auto ng-binding">0(vnd)</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
-            </div>
-            <div class="col-md-10">
-                <ul class="nav nav-pills nav-justified">
-                    <li class="active"><a style="height: 50px; line-height: 50px; padding-top: 0; padding-bottom: 0; border-radius: 0; background: #eceff6; color: #232530; font-weight: 500;" data-toggle="pill" href="#descrition" class="btn-setting">Theo Kiểu Bế</a></li>
-                    <li><a style="height: 50px; line-height: 50px; padding-top: 0; padding-bottom: 0; border-radius: 0; background: #eceff6; color: #232530; font-weight: 500;" data-toggle="pill" href="#additional" class="btn-setting">Theo Chất Liệu In</a></li>
-                </ul>
-                <div class="tab-content detail-tab">
-                    <div id="descrition" class="tab-pane fade in active">
-                        <ul class="nav nav-tabs">
-                            <li ng-repeat="shape in shapes">
-                                <a ng-click="searchByCategory(shape.id)" data-toggle="tab" href="javascript:void(0)">
-                                    <img ng-src="{{shape.image}}" />
-                                </a>
-                            </li>
-                        </ul>
-                        <br /><br />
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="content-product">
-                                    <div class="row">
-
-                                        <div ng-if="products" style="min-width:260px" ng-repeat="product in products" class="col-xs-6 col-sm-3 animated fadeInDown">
-                                            <div class="product-item bd-color-setting">
-                                                <div class="product-image item">
-                                                    <img ng-src="{{product.image}}" alt="our product">
-                                                    <div class="quick-action">
-                                                        <a class="btn button btn-setting bd-color-setting bd-radius-5 cart" ng-click="showLibrary(product.id)" href="javascript:void(0)">Dùng Mẫu Này</a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-text">
-                                                    <div class="product-name">
-                                                        <h3 class="product-title">
-                                                            <a ng-click="viewDetail(product.id)" href="javascript:void(0)" class="color-setting">{{product.name}}</a>
-                                                        </h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> <!-- /product-item -->
-                                    </div>
-                                </div>
-
-                                <!-- PAGES NUMBER -->
-                                <div class="shop-bottom">
-                                    <p class="shop-number pull-right">Tất cả có {{totalProduct}} sản phẩm</p>
-                                    <pagination num-pages="noOfPages" current-page="currentPage" class="pagination-small"></pagination>
-                                </div>
+                <div class="col-lg-9">
+                    <!-- Shop Content -->
+                    <div class="shop_content">
+                        <div class="shop_bar clearfix">
+                            <div class="shop_product_count"><span>186</span> products found</div>
+                            <div class="shop_sorting">
+                                <span>Sort by:</span>
+                                <ul>
+                                    <li>
+                                        <span class="sorting_text">highest rated<i class="fas fa-chevron-down"></span></i>
+                                        <ul>
+                                            <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
+                                            <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
+                                            <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "price" }'>price</li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
+
+                        <div class="product_grid">
+                            <div class="product_grid_border"></div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_5.jpg" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$225</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Philips BT6900A</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item discount">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_1.png" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$225<span>$300</span></div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Huawei MediaPad...</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_2.png" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$379</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Apple iPod shuffle</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_3.png" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$225</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Sony MDRZX310W</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_4.png" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$379</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">LUNA Smartphone</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/shop_1.jpg" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$379</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Canon IXUS 175...</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_5.png" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$379<span>$300</span></div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Canon STM Kit...</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_6.png" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$225<span>$300</span></div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Samsung J330F</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_7.png" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$225</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Lenovo IdeaPad</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_8.png" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$379</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Digitus EDNET...</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_1.jpg" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$225</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Astro M2 Black</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_2.jpg" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$225</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Transcend T.Sonic</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_3.jpg" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$225</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Xiaomi Band 2...</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_4.jpg" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$379</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Rapoo T8 White</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item discount">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_1.png" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$225<span>$300</span></div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Huawei MediaPad...</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_6.jpg" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$379</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Nokia 3310 (2017)</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_7.jpg" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$225</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Rapoo 7100p Gray</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/new_8.jpg" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$379</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Canon EF</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/shop_2.jpg" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$225</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Gembird SPK-103</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                            <!-- Product Item -->
+                            <div class="product_item is_new">
+                                <div class="product_border"></div>
+                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="images/featured_5.png" alt=""></div>
+                                <div class="product_content">
+                                    <div class="product_price">$379</div>
+                                    <div class="product_name"><div><a href="#" tabindex="0">Canon STM Kit...</a></div></div>
+                                </div>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                <ul class="product_marks">
+                                    <li class="product_mark product_discount">-25%</li>
+                                    <li class="product_mark product_new">new</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <!-- Shop Page Navigation -->
+
+                        <div class="shop_page_nav d-flex flex-row">
+                            <div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-left"></i></div>
+                            <ul class="page_nav d-flex flex-row">
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">21</a></li>
+                            </ul>
+                            <div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+
                     </div>
-                    <div id="additional" class="tab-pane fade">
-                        <p>test</p>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-</section>
+</main>
 

@@ -1,13 +1,14 @@
 ﻿'use strict';
-thegioistickerAdmin.controller('blogsController', ['$scope', '$timeout', 'Notification', 'blogService', '$state', '$location', 'authService', function ($scope, $timeout, Notification, blogService, $state, $location, authService) {
+thegioistickerAdmin.controller('blogsController', ['$scope', '$timeout', 'Notification', 'blogService', '$state', '$location', 'authService','$window', function ($scope, $timeout, Notification, blogService, $state, $location, authService, $window) {
     var table = {};
     $scope.blog = {};
-    $('#summernote').summernote({
-        placeholder: 'Nội Dung',
-        tabsize: 2,
-        height: 600
-    });
+    //$('#summernote').summernote({
+    //    placeholder: 'Nội Dung',
+    //    tabsize: 2,
+    //    height: 600
+    //});
     $scope.initTable = function () {
+        showLoading();
         table = $('#blog-table').DataTable({
             "language": {
                 "lengthMenu": "Hiển thị _MENU_ số dòng trên trang",
@@ -24,6 +25,7 @@ thegioistickerAdmin.controller('blogsController', ['$scope', '$timeout', 'Notifi
             paging: true,
             ajax: "api/blog/getPagingBlogs",
             initComplete: function () {
+                hideLoading();
                 var api = this.api(),
                     searchBox = $('#blogs-search-input');
                 if (searchBox.length > 0) {
@@ -46,32 +48,32 @@ thegioistickerAdmin.controller('blogsController', ['$scope', '$timeout', 'Notifi
                     }
                 },
                 { "data": "description" },
-                {
-                    "data": "isInHomePage",
-                    render: function (data, type) {
-                        if (type === 'display') {
-                            if (data === true) {
-                                return '<i class="icon-checkbox-marked-circle text-success"></i>';
-                            }
-                            return '<i class="icon-cancel text-danger"></i>';
-                        }
-                        if (type === 'filter') {
-                            if (data) {
-                                return '5';
-                            }
-                            return '0';
-                        }
-                        return data;
-                    }
-                },
+                //{
+                //    "data": "isInHomePage",
+                //    render: function (data, type) {
+                //        if (type === 'display') {
+                //            if (data === true) {
+                //                return '<i class="icon-checkbox-marked-circle text-success"></i>';
+                //            }
+                //            return '<i class="icon-cancel text-danger"></i>';
+                //        }
+                //        if (type === 'filter') {
+                //            if (data) {
+                //                return '5';
+                //            }
+                //            return '0';
+                //        }
+                //        return data;
+                //    }
+                //},
                 {
                     "data": null, sortable: false, "targets": -3, "defaultContent": " <button type=\"button\" class=\"btn btn-icon view-content\" aria-label=\"Product details\"><i class=\"icon icon-eye-outline s-4\"></i></button>",
                 },
                 {
-                    "data": null, sortable: false, "targets": -1, "defaultContent": " <button type=\"button\" class=\"btn btn-icon edit-item\" aria-label=\"Product details\"><i class=\"icon icon-pencil s-4\"></i></button>",
+                    "data": null, sortable: false, "targets": -1, "defaultContent": " <button type=\"button\" class=\"btn btn-icon edit-blog\" aria-label=\"Product details\"><i class=\"icon icon-pencil s-4\"></i></button>",
                 },
                 {
-                    "data": null, sortable: false, "targets": -2, "defaultContent": " <button type=\"button\" class=\"btn btn-icon delete-item\" aria-label=\"Product details\"><i class=\"icon icon-delete-circle s-4\"></i></button>",
+                    "data": null, sortable: false, "targets": -2, "defaultContent": " <button type=\"button\" class=\"btn btn-icon delete-blog\" aria-label=\"Product details\"><i class=\"icon icon-delete-circle s-4\"></i></button>",
                 }
             ],
             lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
@@ -83,31 +85,28 @@ thegioistickerAdmin.controller('blogsController', ['$scope', '$timeout', 'Notifi
         });
     }
     $scope.initTable();
-    $('body').delegate('.edit-item', 'click', function (e) {
-        e.preventDefault();
+    $('#blog-table').DataTable().ajax.reload();
+    //$('#blog-table tbody').on('click', '.edit-blog', function () {
+    //    console.log('a');
+    //});
+    //$('#blog-table tbody').on('click', '.delete-blog', function () {
+    //    console.log('b');
+    //});
+    //$('#blog-table tbody').on('click', '.view-content', function () {
+    //    console.log('c');
+    //});
+    $('#blog-table tbody').on('click', '.edit-blog', function () {
         var data = table.row($(this).parents('tr')).data();
         $scope.blog = data;
-        var markupStr = $scope.blog.content;
-        $('#summernote').summernote('code', markupStr);
-        $('input.form-control, textarea.form-control').addClass('md-has-value');
-        $timeout(function () {
-            $('#modal-lg').modal('show');
-        }, 200);
+        $state.go('admin.blogedit', { blogId: data.id });
+        //var markupStr = $scope.blog.content;
+        //$('#summernote').summernote('code', markupStr);
+        //$('input.form-control, textarea.form-control').addClass('md-has-value');
+        //$timeout(function () {
+        //    $('#modal-blog').modal('show');
+        //}, 200);
     });
-    $scope.saveBlog = function () {
-        var markupStr = $('#summernote').summernote('code');
-        $scope.blog.content = markupStr;
-        blogService.saveblog($scope.blog).then(function (response) {
-            $('#blog-table').DataTable().ajax.reload();
-            Notification.success("Lưu thành công");
-            $('#modal-lg').modal('hide');
-        },
-			function (err) {
-			    $scope.waringMessage = "Vui lòng kiểm tra lại";
-			});
-    };
-    $('body').delegate('.delete-item', 'click', function (e) {
-        e.preventDefault();
+    $('#blog-table tbody').on('click', '.delete-blog', function () {
         var data = table.row($(this).parents('tr')).data();
         blogService.delete(data).then(function (response) {
             Notification.success("Đã xóa thành công");
@@ -117,27 +116,22 @@ thegioistickerAdmin.controller('blogsController', ['$scope', '$timeout', 'Notifi
 			    $scope.waringMessage = "Vui lòng kiểm tra lại";
 			});
     });
-    $('body').delegate('.view-content', 'click', function (e) {
-        debugger;
-        e.preventDefault();
+    $('#blog-table tbody').on('click', '.view-content', function () {
         var data = table.row($(this).parents('tr')).data();
-        $("#view-content").empty();
-        $("#view-content").append(data.content);
-        $timeout(function () {
-            $('#modal-lg-content').modal('show');
-        }, 200);
+        $window.open('/thong-tin-chi-tiet/' + data.seoUrl+'', '_blank');
     });
     $scope.createBlog = function () {
-        $scope.blog = {
-            id: 0,
-            title: '',
-            author: '',
-            image: 'ddd',
-            content: '',
-            description:'',
-        };
-        $timeout(function () {
-            $('#modal-lg').modal('show');
-        }, 200);
+        $state.go('admin.blogedit', { blogId: 0 });
+        //$scope.blog = {
+        //    id: 0,
+        //    title: '',
+        //    author: '',
+        //    image: 'ddd',
+        //    content: '',
+        //    description:'',
+        //};
+        //$timeout(function () {
+        //    $('#modal-blog').modal('show');
+        //}, 200);
     };
 }]);

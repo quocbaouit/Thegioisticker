@@ -33,7 +33,7 @@ function numOnly() {
         });
     }
 }
-//thegioistickerApp.directive('intergerInput', numOnlyInt);
+//sieuvietApp.directive('intergerInput', numOnlyInt);
 function numOnlyInt() {
     var directive = {
         restrict: 'A',

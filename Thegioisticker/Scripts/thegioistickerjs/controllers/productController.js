@@ -97,7 +97,7 @@ thegioistickerApp.controller('productController', ['$scope', '$timeout', 'produc
             });
         }
     });
-    $scope.viewDetail = function (Id) {
-        window.location.href = '/chi-tiet-san-pham?id=' + Id + '';
+    $scope.viewDetail = function (seoUlr) {
+        window.location.href = '/chi-tiet-san-pham/' + seoUlr + '';
     };
 }]);

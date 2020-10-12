@@ -15,9 +15,14 @@ thegioistickerApp.factory('productService', ['$http', 'ngAuthSettings', '$q', fu
         return $http.get(serviceBase + 'api/products/getProductCategory').then(function (results) {
             return results;
         });
-    };
+    }; 
     var _getProductById = function (productId) {
         return $http.get(serviceBase + 'api/products/GetProductById/' + productId).then(function (results) {
+            return results;
+        });
+    };
+    var _getProductBySeoUrl = function (seoUrl) {
+        return $http.get(serviceBase + 'api/products/getProductBySeoUrl/' + seoUrl).then(function (results) {
             return results;
         });
     };
@@ -41,11 +46,25 @@ thegioistickerApp.factory('productService', ['$http', 'ngAuthSettings', '$q', fu
             return results;
         });
     };
+    var _getSampleByProductById = function (id) {
+        return $http.get(serviceBase + 'api/products/getSampleByProductById/' + id).then(function (results) {
+            return results;
+        });
+    };
+    var _getSampleByProductBySeoUrl = function (seoUrl) {
+        return $http.get(serviceBase + 'api/products/getSampleByProductBySeoUrl/' + seoUrl).then(function (results) {
+            return results;
+        });
+    };
+    var _getListFileName = function (transactionId) {
+        return $http.get(serviceBase + 'api/upload/getListFileName/' + transactionId).then(function (results) {
+            return results;
+        });
+    };
     var _uploadFiles = function ($scope) {
-
         var request = {
             method: 'POST',
-            url: serviceBase+'api/upload/',
+            url: serviceBase + 'api/upload/?identifier=' + $scope.product.transactionId+'',
             data: $scope.formdata,
             headers: {
                 'Content-Type': undefined
@@ -71,11 +90,15 @@ thegioistickerApp.factory('productService', ['$http', 'ngAuthSettings', '$q', fu
     productServiceFactory.getProducts = _getProducts;
     productServiceFactory.getProductCategory = _getProductCategory;
     productServiceFactory.getProductById = _getProductById;
+    productServiceFactory.getListFileName = _getListFileName;
     productServiceFactory.getProductsRegular = _getProductsRegular;
     productServiceFactory.getProductsHightLight = _getProductsHightLight;
     productServiceFactory.getProductByCode = _getProductByCode;
     productServiceFactory.getProductsByCategory = _getProductsByCategory;
     productServiceFactory.uploadFiles = _uploadFiles;
+    productServiceFactory.getSampleByProductById = _getSampleByProductById;
+    productServiceFactory.getProductBySeoUrl = _getProductBySeoUrl;
+    productServiceFactory.getSampleByProductBySeoUrl = _getSampleByProductBySeoUrl;
     return productServiceFactory;
 
-}]);
+}]); 

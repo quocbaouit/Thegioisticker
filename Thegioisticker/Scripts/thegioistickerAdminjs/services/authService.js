@@ -9,6 +9,9 @@ thegioistickerAdmin.factory('authService', ['$http', '$q', 'localStorageService'
         id: "",
         fullName: "",
         userName: "",
+        address: "",
+        email: "",
+        phoneNumber: "",
         useRefreshTokens: false,
         isAdmin:false
     };
@@ -21,7 +24,7 @@ thegioistickerAdmin.factory('authService', ['$http', '$q', 'localStorageService'
 
     var _saveRegistration = function (registration) {
 
-        _logOut();
+        //_logOut();
 
         return $http.post(serviceBase + 'api/account/register', registration).then(function (response) {
             return response;
@@ -40,7 +43,6 @@ thegioistickerAdmin.factory('authService', ['$http', '$q', 'localStorageService'
         var deferred = $q.defer();
 
         $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
-            debugger;
             var isAdmin = response.isAdmin;
             if (loginData.useRefreshTokens) {                
                 localStorageService.set('authorizationData', {
@@ -50,7 +52,8 @@ thegioistickerAdmin.factory('authService', ['$http', '$q', 'localStorageService'
                     fullName: response.fullName,
                     refreshToken: response.refresh_token,
                     useRefreshTokens: true,
-                    isAdmin:isAdmin
+                    isAdmin: isAdmin,
+                    role: response.role,
                 });
             }
             else {
@@ -61,14 +64,24 @@ thegioistickerAdmin.factory('authService', ['$http', '$q', 'localStorageService'
                     fullName: response.fullName,
                     refreshToken: "",
                     useRefreshTokens: false,
-                    isAdmin: isAdmin
+                    isAdmin: isAdmin,
+                    address : response.address,
+                    email : response.email,
+                    phoneNumber : response.phoneNumber,
+                    role: response.role
                 });
             }
+
             _authentication.isAuth = true;
             _authentication.isAdmin = isAdmin;
+            _authentication.id = response.id;
             _authentication.fullName = response.fullName;
             _authentication.userName = loginData.userName;
+            _authentication.address = response.address;
+            _authentication.email = response.email;
+            _authentication.phoneNumber = response.phoneNumber;
             _authentication.useRefreshTokens = loginData.useRefreshTokens;
+            _authentication.role= response.role
 
             deferred.resolve(response);
 
@@ -88,7 +101,8 @@ thegioistickerAdmin.factory('authService', ['$http', '$q', 'localStorageService'
 			_authentication.userName = "";
 			_authentication.fullName = "";
 			_authentication.useRefreshTokens = false;
-			_authentication.isAdmin = false;
+            _authentication.isAdmin = false;
+        _authentication.role = '';
 			//return response;
 		//});    
     };
@@ -101,6 +115,13 @@ thegioistickerAdmin.factory('authService', ['$http', '$q', 'localStorageService'
             _authentication.fullName = authData.fullName;
             _authentication.userName = authData.userName;
             _authentication.isAdmin = authData.isAdmin;
+            _authentication.role = authData.role;
+
+            _authentication.id = authData.id;
+            _authentication.address = authData.address;
+            _authentication.email = authData.email;
+            _authentication.phoneNumber = authData.phoneNumber;
+
             _authentication.useRefreshTokens = authData.useRefreshTokens;
         }
 
@@ -147,7 +168,6 @@ thegioistickerAdmin.factory('authService', ['$http', '$q', 'localStorageService'
         var deferred = $q.defer();
 
         $http.get(serviceBase + 'api/account/ObtainLocalAccessToken', { params: { provider: externalData.provider, externalAccessToken: externalData.externalAccessToken } }).success(function (response) {
-            debugger;
             var isAdmin = response.isAdmin;
             localStorageService.set('authorizationData', {
                 token: response.access_token,
@@ -187,7 +207,6 @@ thegioistickerAdmin.factory('authService', ['$http', '$q', 'localStorageService'
         var deferred = $q.defer();
 
         $http.post(serviceBase + 'api/account/registerexternal', registerExternalData).success(function (response) {
-            debugger;
             var isAdmin = response.isAdmin;
             localStorageService.set('authorizationData', {
                 token: response.access_token,
@@ -220,6 +239,11 @@ thegioistickerAdmin.factory('authService', ['$http', '$q', 'localStorageService'
         return deferred.promise;
 
     };
+    var _saveChangePassword = function (changePassword) {
+        return $http.post(serviceBase + 'api/account/changePassword', changePassword).then(function (response) {
+            return response;
+        });
+    };
 
     authServiceFactory.saveRegistration = _saveRegistration;
     authServiceFactory.login = _login;
@@ -227,8 +251,8 @@ thegioistickerAdmin.factory('authService', ['$http', '$q', 'localStorageService'
     authServiceFactory.fillAuthData = _fillAuthData;
     authServiceFactory.authentication = _authentication;
     authServiceFactory.refreshToken = _refreshToken;
-
     authServiceFactory.obtainAccessToken = _obtainAccessToken;
+    authServiceFactory.saveChangePassword = _saveChangePassword;
     authServiceFactory.externalAuthData = _externalAuthData;
     authServiceFactory.registerExternal = _registerExternal;
 
