@@ -2491,7 +2491,6 @@
     <Folder Include="ProductImages\" />
     <Folder Include="SampleImages\" />
     <Folder Include="Uploads\" />
-    <Folder Include="Views\Categories\" />
     <Folder Include="Views\FileUpload\" />
   </ItemGroup>
   <ItemGroup>
