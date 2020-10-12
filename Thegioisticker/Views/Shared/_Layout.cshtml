@@ -140,16 +140,81 @@
                         <div class="col">
                             <div class="main_nav_content d-flex flex-row">
                                 <div class="main_nav_menu mr-auto">
+                                    @*<ul class="standard_dropdown main_nav_dropdown">
+                                            <li><i style="cursor:pointer" onclick="window.location.href='/'" class="fas fa-2x fa-home"></i></li>
+                                            <li ng-repeat="menu in menus" class="hassubs">
+                                                <a ng-href="{{menu.url}}">{{menu.name}}<i ng-if="menu.childs.length>0" class="fas fa-chevron-down"></i></a>
+                                                <ul ng-if="menu.childs.length>0">
+                                                    <li ng-repeat="child in menu.childs">
+                                                        <a ng-href="{{child.url}}">{{child.name}}<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        </ul>*@
                                     <ul class="standard_dropdown main_nav_dropdown">
                                         <li><i style="cursor:pointer" onclick="window.location.href='/'" class="fas fa-2x fa-home"></i></li>
-                                        <li ng-repeat="menu in menus" class="hassubs">
-                                            <a ng-href="{{menu.url}}">{{menu.name}}<i ng-if="menu.childs.length>0" class="fas fa-chevron-down"></i></a>
-                                            <ul ng-if="menu.childs.length>0">
-                                                <li ng-repeat="child in menu.childs">
-                                                    <a ng-href="{{child.url}}">{{child.name}}<i class="fas fa-chevron-down"></i></a>
+                                        <li class="hassubs ng-scope">
+                                            <a ng-href="/san-pham-tem" class="ng-binding" href="/san-pham-tem">CÁC SẢN PHẨM TEM<i class="fas fa-chevron-down ng-scope"></i></a>
+                                            <ul class="ng-scope">
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/decal-giay" class="ng-binding" href="/chi-tiet-san-pham/decal-giay">Tem nhãn decal giấy<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/decal-draft" class="ng-binding" href="/chi-tiet-san-pham/decal-draft">Tem nhãn decal giấy kraft<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/decal-nhua-sua" class="ng-binding" href="/chi-tiet-san-pham/decal-nhua-sua">Tem nhãn decal nhựa sữa<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/decal-nhua-cao-cap" class="ng-binding" href="/chi-tiet-san-pham/decal-nhua-cao-cap">Tem nhãn decal nhựa sữa cao cấp<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/decal-nhua-trong" class="ng-binding" href="/chi-tiet-san-pham/decal-nhua-trong">Tem nhãn decal nhựa trong<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/decal-xi-bac" class="ng-binding" href="/chi-tiet-san-pham/decal-xi-bac">Tem nhãn decal xi bạc<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/decal-xi-vang" class="ng-binding" href="/chi-tiet-san-pham/decal-xi-vang">Tem nhãn decal xi vàng<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/decal-bay-mau" class="ng-binding" href="/chi-tiet-san-pham/decal-bay-mau">Tem nhãn decal bảy màu<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/tem-bao-hanh" class="ng-binding" href="/chi-tiet-san-pham/tem-bao-hanh">Tem bảo hành-tem bể-tem vỡ<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/decal-metalize" class="ng-binding" href="/chi-tiet-san-pham/decal-metalize">Decal metalize<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/decal-mau-den" class="ng-binding" href="/chi-tiet-san-pham/decal-mau-den">Tem nhãn decal 1 màu đen<i class="fas fa-chevron-down"></i></a>
                                                 </li>
 
                                             </ul>
+                                        </li>
+                                        <li class="hassubs ng-scope">
+                                            <a ng-href="/thu-vien-decal" class="ng-binding" href="/thu-vien-decal">THƯ VIỆN ONLINE</a>
+                                        </li>
+                                        <li class="hassubs ng-scope">
+                                            <a ng-href="/san-pham" class="ng-binding" href="/san-pham">CÁC SẢN PHẨM KHÁC<i class="fas fa-chevron-down ng-scope"></i></a>
+                                            <ul class="ng-scope">
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/tui-giay" class="ng-binding" href="/chi-tiet-san-pham/tui-giay">Túi giấy<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                                <li class="ng-scope">
+                                                    <a ng-href="/chi-tiet-san-pham/in-pp" class="ng-binding" href="/chi-tiet-san-pham/in-pp">In pp<i class="fas fa-chevron-down"></i></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="hassubs ng-scope">
+                                            <a ng-href="/cong-ty/khuyen-mai" class="ng-binding" href="/cong-ty/khuyen-mai">KHUYẾN MÃI</a>
+                                        </li>
+                                        <li class="hassubs ng-scope">
+                                            <a ng-href="/thong-tin" class="ng-binding" href="/thong-tin">THÔNG TIN</a>
+                                        </li>
+                                        <li class="hassubs ng-scope">
+                                            <a ng-href="/lien-he" class="ng-binding" href="/lien-he">LIÊN HỆ</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -304,8 +369,8 @@
                     <div class="col-lg-3 footer_col">
                         <div class="footer_column footer_contact">
                             @*<div class="logo_container">
-                                <div class="logo"><a href="javascript:void(0)">THẾ GIỚI STICKER</a></div>
-                            </div>*@
+                                    <div class="logo"><a href="javascript:void(0)">THẾ GIỚI STICKER</a></div>
+                                </div>*@
                             <div class="footer_title">TƯ VẤN</div>
                             <div class="footer_phone">(028)38 122 191</div>
                             <div class="footer_contact_text">
