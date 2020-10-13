@@ -1150,7 +1150,6 @@
     <Content Include="images\backgrounds\september.jpg" />
     <Content Include="images\blog\in-decal-dan-bao-bi-lay-ngay.jpg" />
     <Content Include="images\blog\in-decal-trong.png" />
-    <Content Include="images\ecommerce\product-image-placeholder.png" />
     <Content Include="images\Error404\Error404_03.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="images\samples\decal\decal7mau_1.jpg" />
@@ -2475,6 +2474,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="BlogImages\" />
+    <Folder Include="images\category\" />
     <Folder Include="images\samples\hinhchunhatbogoc\" />
     <Folder Include="images\samples\hinhchunhat\" />
     <Folder Include="images\samples\hinhhoa\" />

@@ -99,6 +99,14 @@
     <Compile Include="Migrations\202010130829248_productId.Designer.cs">
       <DependentUpon>202010130829248_productId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010130835482_addImageToCategory.cs" />
+    <Compile Include="Migrations\202010130835482_addImageToCategory.Designer.cs">
+      <DependentUpon>202010130835482_addImageToCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010130843096_addImageToProductCategory.cs" />
+    <Compile Include="Migrations\202010130843096_addImageToProductCategory.Designer.cs">
+      <DependentUpon>202010130843096_addImageToProductCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AuthRepository.cs" />
@@ -147,6 +155,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010130829248_productId.resx">
       <DependentUpon>202010130829248_productId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010130835482_addImageToCategory.resx">
+      <DependentUpon>202010130835482_addImageToCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010130843096_addImageToProductCategory.resx">
+      <DependentUpon>202010130843096_addImageToProductCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -52,14 +52,14 @@ $(document).ready(function()
 	initPopularSlider();
 	initBanner2Slider();
 	initFavs();
-	initArrivalsSlider();
-	arrivalsSliderZIndex();
-	bestsellersSlider();
+	//initArrivalsSlider();
+	//arrivalsSliderZIndex();
+	//bestsellersSlider();
 	initTabs();
-	initTrendsSlider();
-	initReviewsSlider();
-	initViewedSlider();
-	initBrandsSlider();
+	//initTrendsSlider();
+	//initReviewsSlider();
+	//initViewedSlider();
+	//initBrandsSlider();
 	initTimer();
 
 	$(".bannerSlider").slick({
@@ -652,11 +652,11 @@ $(document).ready(function()
 		.slick(
 		{
 			rows:2,
-			slidesToShow:5,
+			slidesToShow:4,
 			slidesToScroll:5,
 			infinite:false,
-			arrows:false,
-			dots:true,
+				arrows: false,
+				dots: false,
 			responsive:
 			[
 				{
@@ -664,8 +664,8 @@ $(document).ready(function()
 					{
 						rows:2,
 						slidesToShow:3,
-						slidesToScroll:3,
-						dots:true
+						slidesToScroll: 3,
+						dots: false
 					}
 				},
 				{
@@ -673,8 +673,8 @@ $(document).ready(function()
 					{
 						rows:2,
 						slidesToShow:2,
-						slidesToScroll:2,
-						dots:false
+						slidesToScroll: 2,
+						dots: false
 					}
 				},
 				{
@@ -682,8 +682,8 @@ $(document).ready(function()
 					{
 						rows:1,
 						slidesToShow:1,
-						slidesToScroll:1,
-						dots:false
+						slidesToScroll: 1,
+						dots: false
 					}
 				}
 			]
