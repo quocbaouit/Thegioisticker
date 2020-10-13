@@ -1264,7 +1264,7 @@ select option
 }
 .blog_post
 {
-	width: calc((100% - 60px) / 3);
+	width: calc((100% - 60px) / 4);
 	height: 290px;
 	margin-bottom: 30px;
 	border-radius: 5px;
