@@ -11,6 +11,7 @@ namespace Thegioisticker.Model
         [Key, Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public int? ProductId { get; set; }
         [Required, MaxLength(250)]
         public string Code { get; set; }
         public string Name { get; set; }
