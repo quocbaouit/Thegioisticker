@@ -52,14 +52,14 @@ $(document).ready(function()
 	initPopularSlider();
 	initBanner2Slider();
 	initFavs();
-	//initArrivalsSlider();
-	//arrivalsSliderZIndex();
-	//bestsellersSlider();
+	initArrivalsSlider();
+	arrivalsSliderZIndex();
+	bestsellersSlider();
 	initTabs();
-	//initTrendsSlider();
-	//initReviewsSlider();
-	//initViewedSlider();
-	//initBrandsSlider();
+	initTrendsSlider();
+	initReviewsSlider();
+	initViewedSlider();
+	initBrandsSlider();
 	initTimer();
 
 	$(".bannerSlider").slick({
