@@ -91,11 +91,16 @@
     <Compile Include="Migrations\202010120856102_updateContentPage.Designer.cs">
       <DependentUpon>202010120856102_updateContentPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010130445300_addSticker.cs" />
+    <Compile Include="Migrations\202010130445300_addSticker.Designer.cs">
+      <DependentUpon>202010130445300_addSticker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AuthRepository.cs" />
     <Compile Include="Repositories\CouponRepository.cs" />
     <Compile Include="Repositories\ContentPageRepository.cs" />
+    <Compile Include="Repositories\StickerRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\DecalPriceRepository.cs" />
     <Compile Include="Repositories\SettingRepository.cs" />
@@ -132,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010120856102_updateContentPage.resx">
       <DependentUpon>202010120856102_updateContentPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010130445300_addSticker.resx">
+      <DependentUpon>202010130445300_addSticker.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

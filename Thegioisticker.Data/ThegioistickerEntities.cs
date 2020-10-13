@@ -28,6 +28,7 @@ namespace Thegioisticker.Data
         public DbSet<ContentPage> ContentPage { get; set; }
         public DbSet<Coupon> Coupon { get; set; }
         public DbSet<Setting> Setting { get; set; }
+        public DbSet<Sticker> Sticker { get; set; }
         public virtual void Commit()
         {
             base.SaveChanges();

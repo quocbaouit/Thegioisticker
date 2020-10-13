@@ -57,6 +57,7 @@
     <Compile Include="CommonService.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="BlogService.cs" />
+    <Compile Include="StickerService.cs" />
     <Compile Include="EmployeeService.cs" />
     <Compile Include="DecalPriceService.cs" />
     <Compile Include="ServiceConstants.cs" />

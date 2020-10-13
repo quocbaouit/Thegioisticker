@@ -2077,6 +2077,8 @@
     <Content Include="Scripts\thegioistickerjs\services\authService.js" />
     <Content Include="Scripts\thegioistickerjs\services\commonService.js" />
     <Content Include="Scripts\thegioistickerjs\services\blogService.js" />
+    <Content Include="Scripts\thegioistickerjs\services\companyService.js" />
+    <Content Include="Scripts\thegioistickerjs\services\couponService.js" />
     <Content Include="Scripts\thegioistickerjs\services\invoiceService.js" />
     <Content Include="Scripts\thegioistickerjs\services\faqService.js" />
     <Content Include="Scripts\thegioistickerjs\services\customerService.js" />
@@ -2261,6 +2263,7 @@
     <Compile Include="ApiControllers\ContentPageController.cs" />
     <Compile Include="ApiControllers\BlogController.cs" />
     <Compile Include="ApiControllers\CompanyController.cs" />
+    <Compile Include="ApiControllers\StickerController.cs" />
     <Compile Include="ApiControllers\EmployeeController.cs" />
     <Compile Include="ApiControllers\CustomerController.cs" />
     <Compile Include="ApiControllers\DecalPriceController.cs" />

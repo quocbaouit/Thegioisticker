@@ -60,6 +60,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\Sticker.cs" />
     <Compile Include="Models\DecalPrice.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\Faq.cs" />
