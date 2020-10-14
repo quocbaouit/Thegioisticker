@@ -176,62 +176,60 @@
                 <div class="col-lg-7">
                     <div class="cart_container">
                         <div class="cart_items">
-                            <ul class="cart_list">
-                                <li class="cart_item clearfix">
-                                    <h5>Vui lòng chọn loại chất liệu và nhập kích thước, số lượng</h5>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="">Chất Liệu</span>
+                            <form id='form-validate'>
+                                <ul id="form-validate-step" class="cart_list">
+                                    <li class="cart_item clearfix">
+                                        <h5>Vui lòng chọn loại chất liệu và nhập kích thước, số lượng</h5>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="">Chất Liệu</span>
+                                            </div>
+                                            <select class="form-control classic" ng-model="shoppingCart.material"
+                                                    ng-options="opt as opt.label for opt in materials">
+                                            </select>
                                         </div>
-                                        <select class="form-control classic" ng-model="shoppingCart.material"
-                                                ng-options="opt as opt.label for opt in materials">
-                                        </select>
-                                        @*<select ng-change="materialChange()" class="form-control classic"
-                    ng-options="opt as opt.label for opt in materials">
-            </select>*@
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="">Nhập kích thước</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="">Nhập kích thước</span>
+                                            </div>
+                                            <input name="width" number-input maxlength="9" ng-model="shoppingCart.width" type="text" placeholder="ngang(mm)" class="form-control">
+                                            <input name="height" number-input maxlength="9" ng-model="shoppingCart.height" type="text" placeholder="cao(mm)" class="form-control">
                                         </div>
-                                        <input num-only="" maxlength="9" ng-model="shoppingCart.width" type="text" placeholder="ngang(mm)" class="form-control">
-                                        <input num-only="" maxlength="9" ng-model="shoppingCart.height" type="text" placeholder="cao(mm)" class="form-control">
-                                    </div>
 
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="">Số Lượng</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="">Số Lượng</span>
+                                            </div>
+                                            <input name="quantity" number-input  maxlength="9" ng-model="shoppingCart.quantity" type="text" placeholder="nhập số lượng cần in" class="form-control">
                                         </div>
-                                        <input num-only="" maxlength="9" ng-model="shoppingCart.quantity" type="text" placeholder="nhập số lượng cần in" class="form-control">
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="">Chọn Gia Công</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="">Chọn Gia Công</span>
+                                            </div>
+                                            <select class="form-control classic" ng-model="shoppingCart.machining"
+                                                    ng-options="opt as opt.label for opt in machinings">
+                                            </select>
                                         </div>
-                                        <select class="form-control classic" ng-model="shoppingCart.machining"
-                                                ng-options="opt as opt.label for opt in machinings">
-                                        </select>
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="">Chọn Bế</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="">Chọn Bế</span>
+                                            </div>
+                                            <select class="form-control classic" ng-model="shoppingCart.cut"
+                                                    ng-options="opt as opt.label for opt in cuts">
+                                            </select>
                                         </div>
-                                        <select class="form-control classic" ng-model="shoppingCart.cut"
-                                                ng-options="opt as opt.label for opt in cuts">
-                                        </select>
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="">Upload File</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="">Upload File</span>
+                                            </div>
+                                            <input class="form-control classic btn  btn-info btn-sm" name="file" type="file" multiple my-directory="getFiles(file)" accept=".png,.jpg,.tif,.gif,.tiff,.bmp,.pdf" ng-disabled="uploading" />
                                         </div>
-                                        <input class="form-control classic btn  btn-info btn-sm" name="file" type="file" multiple my-directory="getFiles(file)" accept=".png,.jpg,.tif,.gif,.tiff,.bmp,.pdf" ng-disabled="uploading" />
-                                    </div>              
-                                    <button ng-click="addToshoppingCart()" style="margin-left:10px" class="btn  btn-success btn-sm" tabindex="1">Thêm vào giỏ hàng &nbsp</button>
-                                    <button style="min-width:400px" class="btn  btn-primary btn-sm" tabindex="3">Xem mẫu online</button>
-                                </li>
+                                        <button ng-click="addToshoppingCart()" style="margin-left:10px" class="btn  btn-success btn-sm" tabindex="1">Thêm vào giỏ hàng &nbsp</button>
+                                        <button style="min-width:400px" class="btn  btn-primary btn-sm" tabindex="3">Xem mẫu online</button>
+                                    </li>
 
-                            </ul>
-
+                                </ul>
+                            </form>
                         </div>
 
                     </div>
@@ -278,7 +276,7 @@
                                     <hr />
                                     <div class="row">
                                         <div class="col-md-6">Thành tiền</div>
-                                        <div class="col-md-3 ml-auto">{{subTotal | number}}(vnd)</div>
+                                        <div class="col-md-3 ml-auto">{{subTotalProduct | number}}(vnd)</div>
                                     </div>
                                 </li>
                             </ul>

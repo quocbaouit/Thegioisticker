@@ -43,51 +43,29 @@
             cutType: '',
             file: ''
         };
-        getSetting();
+        function guid() {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                s4() + '-' + s4() + s4() + s4();
+        }
         getRegular();
         if (window.location.pathname == '/' || window.location.pathname == '/thu-vien-decal' || window.location.pathname == '/chi-tiet-san-pham') {
-            getShape();
             getInvoice();
-            getSample();
         }
         setTimeout(function () {
             //hideLoader();
         }, 1000);
-        function getSetting() {
-            settingService.getsettings().then(function (results) {
-                $scope.settings = results.data;              
-            }, function (error) {
-                //alert(error.data.message);
-            });
-        }
         function getRegular() {
             productService.getProductsRegular().then(function (results) {
                 $scope.printingCategory = results.data;  
                 $scope.options = results.data;
-                //if ($scope.shoppingCart.material.id == undefined)
-                //$scope.shoppingCart.material = $scope.options[0];
             }, function (error) {
                 //alert(error.data.message);
             });
-        }
-        function getShape() {
-            $scope.shapes =
-                [
-                  { id: 1, name: 'Hình Tròn', code: 'hinhtron', image: '/images/shapes/hinhtron.png' }
-                , { id: 2, name: 'Hình Oval', code: 'hinhoval', image: '/images/shapes/hinhoval.png' }
-                , { id: 3, name: 'Hình Vuông', code: 'hinhvuong', image: '/images/shapes/hinhvuong.png' }
-                , { id: 4, name: 'Hình Vuông Bo Góc', code: 'hinhvuongbogoc', image: '/images/shapes/hinhvuongbogoc.png' }
-                , { id: 5, name: 'Hình Chữ Nhật', code: 'hinhchunhat', image: '/images/shapes/hinhchunhat.png' }
-                , { id: 6, name: 'Hình Chữ Nhật Bo Góc', code: 'hinhchunhatbogoc', image: '/images/shapes/hinhchunhatbogoc.png' }
-                , { id: 7, name: 'Hình Hoa', code: 'hinhhoa', image: '/images/shapes/hinhhoa.png' }
-                , { id: 8, name: 'Hình Nơ', code: 'hinhno', image: '/images/shapes/hinhno.png' }
-                , { id: 9, name: 'Hình Lục Giác', code: 'hinhlucgiac', image: '/images/shapes/hinhlucgiac.png' }
-                , { id: 10, name: 'Hình Trái Tim', code: 'hinhtraitim', image: '/images/shapes/hinhtraitim.png' }
-                , { id: 11, name: 'Hình Mẫu 1', code: 'hinhmau1', image: '/images/shapes/hinhmau1.png' }
-                , { id: 12, name: 'Hình Mẫu 2', code: 'hinhmau2', image: '/images/shapes/hinhmau2.png' }
-                , { id: 13, name: 'Hình Mẫu 3', code: 'hinhmau3', image: '/images/shapes/hinhmau3.png' }
-                , { id: 14, name: 'Hình Mẫu 4', code: 'hinhmau4', image: '/images/shapes/hinhmau4.png' }
-                ]
         }
         function getInvoice() {
             invoiceService.getAllSticker().then(function (results) {
@@ -96,14 +74,6 @@
             }, function (error) {
             });
         }    
-        function getSample() {
-            sampleService.getAllSample().then(function (results) {
-                $scope.samples = results.data;
-            }, function (error) {
-            });
-
-        }
-        
         $scope.calculateCart = function () {
             if (localStorageService.get('shoppingCart') != null) {
                 $scope.cart = localStorageService.get('shoppingCart').products;
@@ -117,15 +87,6 @@
 
         };
         $scope.calculateCart();
-        //if (localStorageService.get('shoppingCart') != null) {
-        //    $scope.cart = localStorageService.get('shoppingCart').products;
-        //    $scope.dataCount = $scope.cart.length;
-        //    var total = 0;
-        //    for (var i = 0, len = $scope.cart.length; i < len; i++) {
-        //        total = total + $scope.cart[i].subTotal;
-        //    }
-        //    $scope.subTotal1 = total;
-        //}
         $scope.isCreateExtenal = false;
         $scope.authentication = authService.authentication;
         $scope.isHomePage = false;
@@ -221,12 +182,9 @@
             }, 1000);
         }
         //Add To Shopping Card
-        $scope.samples = [];
-        $scope.sampleGalery = [];
-        $scope.step = 1;
         $scope.product = {};
         $scope.price = 0;
-        $scope.subTotal = 0;
+        $scope.subTotalProduct = 0;
         $scope.square = 0;
         $scope.fileDescription = '';
         $scope.invoicePrintPrice = '';
@@ -260,19 +218,22 @@
         $scope.shoppingCart.material = $scope.materials[0];
         $scope.shoppingCart.machining = $scope.machinings[0];
         $scope.shoppingCart.cut = $scope.cuts[0];
-        $scope.settingModal = {
-            name: 'setting',
-            fields:
-                [
-                    { key: 'congty', value: '', text: 'Tên Công Ty' },
-                    { key: 'sodt', value: '', text: 'Số Điện Thoại' },
-                    { key: 'email', value: '', text: 'Email' },
-                    { key: 'diachi', value: '', text: 'Địa Chỉ' },
-                    { key: 'ghichu', value: '', text: 'Ghi Chú' }
-                ]
-        };             
-        function getA4quantity(width, height, quantity) {
-            return Math.ceil(parseFloat((width * height / 60000 * quantity)).toFixed(2));
+        function resetShoppingCart() {
+            $scope.shoppingCart = {
+                material: {},
+                width: '',
+                height: '',
+                quantity: '',
+                machining: {},
+                cut: {},
+                cutType: '',
+                file: ''
+            };
+            $scope.shoppingCart.material = $scope.materials[0];
+            $scope.shoppingCart.machining = $scope.machinings[0];
+            $scope.shoppingCart.cut = $scope.cuts[0];
+            $scope.subTotalProduct = 0;
+            $scope.price = 0;
         }
         $scope.materialChange = function () {
             if ($scope.shoppingCart.material.value == 'tembe' || $scope.shoppingCart.material.value == 'decal7mau' || $scope.shoppingCart.material.value == 'decalxi' || $scope.shoppingCart.material.value == 'decalkraft') {
@@ -319,26 +280,29 @@
                 var specialPrice = $scope.shoppingCart.cut.value == "bedd" ? sticker.specialPrice * $scope.square : 0;
                 var noneDefaultPrice = curtainPrice + nonCurtainPrice + specialPrice;
                 if (sticker.defaultPrice) {
-                    $scope.subTotal = sticker.defaultPrice;
+                    $scope.subTotalProduct = sticker.defaultPrice;
                     $scope.price = sticker.defaultPrice;
                 } else {
-                    $scope.subTotal = noneDefaultPrice;
+                    $scope.subTotalProduct = noneDefaultPrice;
                 }
             }
         };
         $scope.$watch('shoppingCart', calculateTotals, true);
-        function getSampleImageBySampleId(sampleId) {
-            return $scope.samples.find(function (element) {
-                return element.id == sampleId;
-            });
-        }
         $scope.addToshoppingCart = function () {
             debugger;
+            var fv = $('#form-validate').data('formValidation');
+            var $container = $('#form-validate-step');
+            fv.validateContainer($container);
+            var isValidStep = fv.isValidContainer($container);
+            if (isValidStep === false || isValidStep === null) {
+                return false;
+            }
+            $scope.product.transactionId = guid();
             $scope.product.id = $scope.shoppingCart.material.id;
             $scope.product.name = $scope.shoppingCart.material.label;
             $scope.product.quantity = $scope.shoppingCart.quantity;
             $scope.product.price = $scope.price;
-            $scope.product.subTotal = $scope.subTotal;
+            $scope.product.subTotal = $scope.subTotalProduct;
             $scope.product.width = $scope.shoppingCart.width;
             $scope.product.height = $scope.shoppingCart.height;
             $scope.product.machining = $scope.shoppingCart.machining.label;
@@ -348,69 +312,13 @@
             $scope.product.fileId = 0;
             $scope.product.settingModal = '';
             $scope.product.image = '';
-
             var item = $scope.product;
             $scope.cart.push(item);
             var listProducts = $scope.cart;
-            //var count = $scope.cart.length;
-            //$('[data-count]').attr('data-count', count);
             localStorageService.set('shoppingCart', { products: listProducts });
-            //window.location.href = "/gio-hang";
+            Notification.success("Thêm vào giỏ hàng thành công");
             $scope.calculateCart();
-        };
-        $scope.shopNow = function () {
-            var fv = $('#f1').data('formValidation');
-            var $container = $('#f1-step1');
-            fv.validateContainer($container);
-            var isValidStep = fv.isValidContainer($container);
-            if (isValidStep === false || isValidStep === null) {
-                return false;
-            }
-            if ($scope.fileType.name == 'upload') {
-                $('#upload-pupup').modal('show');
-                return;
-            }
-            if ($scope.fileType.name == 'sample') {
-                $('#library-pupup').modal('show');
-                return;
-            }
-            if ($scope.fileType.name == 'design') {
-                $('#design-pupup').modal('show');
-                return;
-            }
-        }
-        $scope.showLibrary = function (itemSelected) {
-            //$scope.selectedSample = $scope.samples.find(obj => {
-            //    return obj.id === itemSelected;
-            //});
-            $scope.selectedSample = $scope.samples.find(function (element) {
-                return element.id == itemSelected;
-            });
-            $scope.step = 1;
-            $('#library-pupup').modal('hide');
-            $timeout(function () {
-                $('#shopping-pupup').modal('show');
-            },500);
-
-        };     
-        $scope.nextStep = function () {
-            $scope.step = 2;
-        }
-        $scope.nextStepUpload = function () {
-            var fv = $('#f3').data('formValidation');
-            var $container = $('#f3-step1');
-            fv.validateContainer($container);
-            var isValidStep = fv.isValidContainer($container);
-            if (isValidStep === false || isValidStep === null) {
-                return false;
-            }
-            $scope.step = 2;
-        }
-        $scope.prevStep = function () {
-            $scope.step = 1;
-        };
-        $scope.closeModal = function () {
-            $scope.step = 1;
+            resetShoppingCart();
         };
         //End To Shopping Card
         //File
@@ -433,7 +341,6 @@
                 }
                 $scope.formdata.append(key, value);
                 $scope.data.push({ FileName: value.name, FileLength: value.size });
-
             });
             $scope.countFiles = $scope.data.length == 0 ? '' : $scope.data.length + ' files selected';
             $scope.$apply();
@@ -485,13 +392,13 @@
         initValidate();
         function initValidate() {
             $timeout(function () {
-                $('#f1').on('init.field.fv', function (e, data) {
+                $('#form-validate').on('init.field.fv', function (e, data) {
                     var $parent = data.element.parents('.form-group'),
                         $icon = data.element.data('fv.icon'),
                         $label = $parent.children('label');
                     $icon.insertAfter($label);
                 });
-                $('#f1').formValidation({
+                $('#form-validate').formValidation({
                     icon: {
                         valid: 'fa fa-check',
                         invalid: 'fa fa-times',
@@ -539,210 +446,8 @@
                     })
                     .on('success.form.fv', function (e) {
                         e.preventDefault();
-                    });
-
-                $('#f2').on('init.field.fv', function (e, data) {
-                    var $parent = data.element.parents('.form-group'),
-                        $icon = data.element.data('fv.icon'),
-                        $label = $parent.children('label');
-                    $icon.insertAfter($label);
-                });
-                $('#f2').formValidation({
-                    icon: {
-                        valid: 'fa fa-check',
-                        invalid: 'fa fa-times',
-                        validating: 'fa fa-refresh'
-                    },
-                    excluded: ':disabled',
-                    live: 'disabled',
-                    fields: {
-                        width: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập chiều ngang' }
-                            }
-                        },
-                        height: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập chiều cao' }
-                            }
-                        },
-                        quantity: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập số lượng' },
-                                callback: {
-                                    message: 'Số lượng tối thiểu là 100.',
-                                    callback: function (value, validator, $field) {
-                                        if (parseFloat(value) >= 100) {
-                                            return true;
-                                        }
-                                        return false;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                })
-                    .on('err.field.fv', function (e, data) {
-                        data.fv.disableSubmitButtons(false);
-                    })
-                    .on('err.validator.fv', function (e, data) {
-                        data.element.data('fv.messages')
-                            .find('.help-block[data-fv-for="' + data.field + '"]').hide()
-                            .filter('[data-fv-validator="' + data.validator + '"]').show();
-                    })
-                    .on('success.field.fv', function (e, data) {
-                        data.fv.disableSubmitButtons(false);
-                    })
-                    .on('success.form.fv', function (e) {
-                        e.preventDefault();
-                    });
-                $('#f3').on('init.field.fv', function (e, data) {
-                    var $parent = data.element.parents('.form-group'),
-                        $icon = data.element.data('fv.icon'),
-                        $label = $parent.children('label');
-                    $icon.insertAfter($label);
-                });
-                $('#f3').formValidation({
-                    icon: {
-                        valid: 'fa fa-check',
-                        invalid: 'fa fa-times',
-                        validating: 'fa fa-refresh'
-                    },
-                    excluded: ':disabled',
-                    live: 'disabled',
-                    fields: {
-                        width: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập chiều ngang' }
-                            }
-                        },
-                        height: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập chiều cao' }
-                            }
-                        },
-                        quantity: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập số lượng' },
-                                callback: {
-                                    message: 'Số lượng tối thiểu là 100.',
-                                    callback: function (value, validator, $field) {
-                                        if (parseFloat(value) >= 100) {
-                                            return true;
-                                        }
-                                        return false;
-                                    }
-                                }
-                            }
-                        },
-                        file: {
-                            validators: {
-                                callback: {
-                                    message: 'Vui lòng chọn file.',
-                                    callback: function (value, validator, $field) {
-                                        if ($scope.countFiles != '') {
-                                            return true;
-                                        }
-                                        return false;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                })
-                    .on('err.field.fv', function (e, data) {
-                        data.fv.disableSubmitButtons(false);
-                    })
-                    .on('err.validator.fv', function (e, data) {
-                        data.element.data('fv.messages')
-                            .find('.help-block[data-fv-for="' + data.field + '"]').hide()
-                            .filter('[data-fv-validator="' + data.validator + '"]').show();
-                    })
-                    .on('success.field.fv', function (e, data) {
-                        data.fv.disableSubmitButtons(false);
-                    })
-                    .on('success.form.fv', function (e) {
-                        e.preventDefault();
-                    });
-                $('#f4').on('init.field.fv', function (e, data) {
-                    var $parent = data.element.parents('.form-group'),
-                        $icon = data.element.data('fv.icon'),
-                        $label = $parent.children('label');
-                    $icon.insertAfter($label);
-                });
-                $('#f4').formValidation({
-                    icon: {
-                        valid: 'fa fa-check',
-                        invalid: 'fa fa-times',
-                        validating: 'fa fa-refresh'
-                    },
-                    excluded: ':disabled',
-                    live: 'disabled',
-                    fields: {
-                        width: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập chiều ngang' }
-                            }
-                        },
-                        height: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập chiều cao' }
-                            }
-                        },
-                        quantity: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập số lượng' },
-                                callback: {
-                                    message: 'Số lượng tối thiểu là 100.',
-                                    callback: function (value, validator, $field) {
-                                        if (parseFloat(value) >= 100) {
-                                            return true;
-                                        }
-                                        return false;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                })
-                    .on('err.field.fv', function (e, data) {
-                        data.fv.disableSubmitButtons(false);
-                    })
-                    .on('err.validator.fv', function (e, data) {
-                        data.element.data('fv.messages')
-                            .find('.help-block[data-fv-for="' + data.field + '"]').hide()
-                            .filter('[data-fv-validator="' + data.validator + '"]').show();
-                    })
-                    .on('success.field.fv', function (e, data) {
-                        data.fv.disableSubmitButtons(false);
-                    })
-                    .on('success.form.fv', function (e) {
-                        e.preventDefault();
-                    });
+                    });              
             })
         }
         //end validation
-        //popup galarey
-        $scope.setPage = function () {
-            //showLoader();
-            sampleService.getSamples($scope.currentPage, $scope.numPerPage, $scope.currentCategory).then(function (results) {
-                $scope.noOfPages = results.data.pager.totalPages;
-                $scope.totalProduct = results.data.pager.totalItems;
-                $scope.sampleGalery = results.data.items;
-                $("html, body").animate({ scrollTop: 0 }, "slow");
-                //hideLoader();
-            }, function (error) {
-            });
-
-        };
-        $scope.$watch('currentPage', $scope.setPage);
-        $scope.searchByCategory = function (categoryId) {
-            $scope.currentCategory = categoryId;
-            $scope.numPerPage = 8;
-            $scope.noOfPages = 1;
-            $scope.currentPage = 1;
-            $scope.setPage();
-        }
-        //end gallarey
-
     }]);

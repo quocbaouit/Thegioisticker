@@ -68,12 +68,6 @@ thegioistickerApp.controller('shoppingCartController', ['$scope', '$timeout', 'c
     $scope.removeShopping = function (item) {
         var index = $scope.shoppingCart.indexOf(item);
         $scope.shoppingCart.splice(index, 1);
-
-        var relatedItem = $scope.shoppingCart.find(function (element) {
-            return element.transactionId == item.transactionId;
-        });
-        $scope.shoppingCart.splice(relatedItem, 1);
-
         var listProducts = $scope.shoppingCart;
         localStorageService.set('shoppingCart', { products: listProducts });
         $scope.calculateCart();
