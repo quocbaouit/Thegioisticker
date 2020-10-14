@@ -76,6 +76,7 @@ thegioistickerApp.controller('shoppingCartController', ['$scope', '$timeout', 'c
 
         var listProducts = $scope.shoppingCart;
         localStorageService.set('shoppingCart', { products: listProducts });
+        $scope.calculateCart();
         Notification.primary('Đã xóa khỏi giỏ hàng thành công');
     }
     $scope.$watch('shoppingCart', calculateTotals, true);

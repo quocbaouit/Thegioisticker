@@ -54,7 +54,6 @@
                                     <div data-ng-hide="!authentication.isAuth"><a href="/user">Xin chào: {{authentication.fullName}}.</a></div>
                                     <div data-ng-hide="authentication.isAuth"><a data-toggle="modal" href="javascript:void(0)" data-ng-click="openLoginModal()">Đăng Nhập/Đăng Ký</a></div>
                                     <div style="margin-left:20px;margin-right:20px" data-ng-hide="!authentication.isAuth"><a href="javascript:void(0)" data-ng-click="logOut()">Đăng Xuất</a></div>
-                                    @*<div><i class="fa fa-2x fa-shopping-cart" aria-hidden="true"></i></div>*@
                                 </div>
                             </div>
                         </div>
@@ -110,7 +109,7 @@
                                         </div>
                                         <div class="cart_content">
                                             <div class="cart_text"><a href="/gio-hang">Giỏ hàng</a></div>
-                                            <div class="cart_price">85 VND</div>
+                                            <div class="cart_price">{{subTotal1 | number}} VND</div>
                                         </div>
                                     </div>
                                 </div>
@@ -309,10 +308,11 @@
                 <div class="row">
                     <div class="col-lg-3 footer_col">
                         <div class="footer_column footer_contact">
-                            @*<div class="logo_container">
-                                    <div class="logo"><a href="javascript:void(0)">THẾ GIỚI STICKER</a></div>
-                                </div>*@
-                            <div class="footer_title">TƯ VẤN</div>
+                            <div class="logo_container">
+                                <a href="/">THẾ GIỚI STICKER</a>
+                                @*<div class="logo"><a href="/">THẾ GIỚI STICKER</a></div>*@
+                            </div>
+                            @*<div class="footer_title">TƯ VẤN</div>*@
                             <div class="footer_phone">(028)38 122 191</div>
                             <div class="footer_contact_text">
                                 <p>118/15 Bàu Cát 2</p>

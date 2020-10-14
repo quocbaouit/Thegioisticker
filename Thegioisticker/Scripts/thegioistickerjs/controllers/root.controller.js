@@ -30,6 +30,7 @@
         $scope.cart = [];
         $scope.shapes = [];
         $scope.subTotal = 0;
+        $scope.stickers = [];
         $scope.isLoaded = false;
         $scope.printingCategory = [];
         $scope.shoppingCart = {
@@ -63,8 +64,8 @@
             productService.getProductsRegular().then(function (results) {
                 $scope.printingCategory = results.data;  
                 $scope.options = results.data;
-                if ($scope.shoppingCart.material.id == undefined)
-                $scope.shoppingCart.material = $scope.options[0];
+                //if ($scope.shoppingCart.material.id == undefined)
+                //$scope.shoppingCart.material = $scope.options[0];
             }, function (error) {
                 //alert(error.data.message);
             });
@@ -89,7 +90,7 @@
                 ]
         }
         function getInvoice() {
-            invoiceService.getInvoices().then(function (results) {
+            invoiceService.getAllSticker().then(function (results) {
                 $scope.stickers = results.data;
                 calculateTotals();
             }, function (error) {
@@ -101,16 +102,30 @@
             }, function (error) {
             });
 
-        } 
-        if (localStorageService.get('shoppingCart') != null) {
-            $scope.cart = localStorageService.get('shoppingCart').products;
-            $scope.dataCount = $scope.cart.length;
-            var total = 0;
-            for (var i = 0, len = $scope.cart.length; i < len; i++) {
-                total = total + $scope.cart[i].subTotal;
-            }
-            $scope.subTotal1 = total;
         }
+        
+        $scope.calculateCart = function () {
+            if (localStorageService.get('shoppingCart') != null) {
+                $scope.cart = localStorageService.get('shoppingCart').products;
+                $scope.dataCount = $scope.cart.length;
+                var total = 0;
+                for (var i = 0, len = $scope.cart.length; i < len; i++) {
+                    total = total + $scope.cart[i].subTotal;
+                }
+                $scope.subTotal1 = total;
+            }
+
+        };
+        $scope.calculateCart();
+        //if (localStorageService.get('shoppingCart') != null) {
+        //    $scope.cart = localStorageService.get('shoppingCart').products;
+        //    $scope.dataCount = $scope.cart.length;
+        //    var total = 0;
+        //    for (var i = 0, len = $scope.cart.length; i < len; i++) {
+        //        total = total + $scope.cart[i].subTotal;
+        //    }
+        //    $scope.subTotal1 = total;
+        //}
         $scope.isCreateExtenal = false;
         $scope.authentication = authService.authentication;
         $scope.isHomePage = false;
@@ -128,6 +143,7 @@
             var count = $scope.cart.length;
             $('[data-count]').attr('data-count', count);
             localStorageService.set('shoppingCart', { products: listProducts });
+            $scope.calculateCart();
             Notification.primary('Đã xóa khỏi giỏ hàng thành công');
         }
         var calculateTotals = function () {
@@ -209,7 +225,6 @@
         $scope.sampleGalery = [];
         $scope.step = 1;
         $scope.product = {};
-        $scope.stickers = [];
         $scope.price = 0;
         $scope.subTotal = 0;
         $scope.square = 0;
@@ -220,18 +235,29 @@
        
         $scope.selectedMaterial = '';
         $scope.fileUrl = [];
+        $scope.materials = [
+            { id:2,value: 'decalsua', label: 'Decal sữa' },
+            { id: 3,value: 'decaltrong', label: 'Decal trong' },
+            { id: 4,value: 'decalgiay', label: 'Decal giấy' },
+            { id: 5,value: 'decalkraft', label: 'Decal Kraft' },
+            { id: 6,value: 'decalxi', label: 'Decal xi bạc' },
+            { id: 7,value: 'decal7mau', label: 'Decal 7 màu' },
+            { id: 8,value: 'tembe', label: 'Tem bảo hành, tem vỡ,tem bế' },
+            { id: 20,value: 'decalsuacc', label: 'Decal sữa cao cấp' }
+        ];
         $scope.machinings = [
-            { value: 'canmangbong', label: 'Cán màng bóng' },
-            { value: 'canmangmo', label: 'Cán màng mờ' },
+            { value: 'canmang', label: 'Cán màng' },
             { value: 'khongcanmang', label: 'Không cán màng' },
         ];
+
         $scope.cuts = [
-            { value: 'bedemi', label: 'Bế demi' },
-            { value: 'khongbe', label: 'Không bế' },
+            { value: 'bethang', label: 'Bế thẳng' },
+            { value: 'bedd', label: 'Bế đặc biệt(hình tròn, hình khó)' },
         ];
         $scope.fileType = {
             name: 'design'
         };
+        $scope.shoppingCart.material = $scope.materials[0];
         $scope.shoppingCart.machining = $scope.machinings[0];
         $scope.shoppingCart.cut = $scope.cuts[0];
         $scope.settingModal = {
@@ -248,107 +274,68 @@
         function getA4quantity(width, height, quantity) {
             return Math.ceil(parseFloat((width * height / 60000 * quantity)).toFixed(2));
         }
+        $scope.materialChange = function () {
+            if ($scope.shoppingCart.material.value == 'tembe' || $scope.shoppingCart.material.value == 'decal7mau' || $scope.shoppingCart.material.value == 'decalxi' || $scope.shoppingCart.material.value == 'decalkraft') {
+                $scope.machining = [
+                    { value: 'khongcanmang', label: 'Không cán màng' },
+                ];
+            } else {
+                $scope.machining = [
+                    { value: 'canmang', label: 'Cán màng' },
+                    { value: 'khongcanmang', label: 'Không cán màng' },
+                ];
+            }
+            $scope.shoppingCart.machining = $scope.machining[0];
+        }
         var calculateTotals = function () {
-            $scope.invoicePrintPrice = '';
-            $scope.invoiceMachining = '';
-            $scope.invoiceCut = '';
-            $scope.subTotal = '';
-            $scope.price = $scope.subTotal / quantity;
             var sticker = {};
-            var invoicePrintPrice = 0;
-            var invoiceMachining = 0;
-            var invoiceCut = 0;
-            var invoiceMaterialPrice = $scope.shoppingCart.material.price;
             var width = isNaN(parseFloat($scope.shoppingCart.width)) ? 0 : parseFloat($scope.shoppingCart.width);
             var height = isNaN(parseFloat($scope.shoppingCart.height)) ? 0 : parseFloat($scope.shoppingCart.height);
             var quantity = isNaN(parseFloat($scope.shoppingCart.quantity)) ? 0 : parseFloat($scope.shoppingCart.quantity);
             if (width > 0 && height > 0 && quantity > 0) {
-                var a4quantity = getA4quantity(width, height, quantity);
-                sticker = $scope.stickers.find(function (element) {
-                    return element.quantity == a4quantity;
+                $scope.square = (width * height * quantity) / 1000000;
+                sticker = $scope.stickers.find(obj => {
+                    return obj.code === $scope.shoppingCart.material.value && obj.squareTo == 0
                 });
-                if (sticker == undefined) {
-                    invoicePrintPrice = 1320;
-                    invoiceCut = 1800;
-                    invoiceMachining = 330;
-                    invoiceMaterialPrice = $scope.shoppingCart.material.price;
+                if ($scope.square < sticker.squareFrom) {
+                    sticker = $scope.stickers.find(obj => {
+                        return obj.code === $scope.shoppingCart.material.value && obj.squareFrom <= $scope.square && $scope.square < obj.squareTo
+                    });
+                }
+                var curtainPrice = 0;
+                var nonCurtainPrice = 0;
+                if ($scope.shoppingCart.machining.value == "canmang") {
+                    curtainPrice = sticker.curtainPrice * $scope.square;
+                    $scope.price = sticker.curtainPrice;
                 } else {
-                    invoicePrintPrice = sticker.printPrice;
-                    invoiceCut = sticker.cutPrice;
-                    invoiceMachining = sticker.machiningPrice;
-                    invoiceMaterialPrice = $scope.shoppingCart.material.price;
+                    curtainPrice = 0;
                 }
                 if ($scope.shoppingCart.machining.value == "khongcanmang") {
-                    invoiceMachining = 0;
+                    var nonCurtainPrice = sticker.noneCurtainPrice * $scope.square;
+                    $scope.price = sticker.noneCurtainPrice;
+                } else {
+                    nonCurtainPrice = 0;
                 }
-                if ($scope.shoppingCart.cut.value == "khongbe") {
-                    invoiceCut = 0;
+                var specialPrice = $scope.shoppingCart.cut.value == "bedd" ? sticker.specialPrice * $scope.square : 0;
+                var noneDefaultPrice = curtainPrice + nonCurtainPrice + specialPrice;
+                if (sticker.defaultPrice) {
+                    $scope.subTotal = sticker.defaultPrice;
+                    $scope.price = sticker.defaultPrice;
+                } else {
+                    $scope.subTotal = noneDefaultPrice;
                 }
-                $scope.invoicePrintPrice = (invoicePrintPrice + invoiceMaterialPrice) * a4quantity;
-                $scope.invoiceMachining = invoiceMachining * a4quantity;
-                $scope.invoiceCut = invoiceCut * a4quantity;
-                $scope.subTotal = (invoicePrintPrice + invoiceMaterialPrice + invoiceMachining + invoiceCut) * a4quantity;
-                $scope.price = $scope.subTotal / quantity;
             }
         };
         $scope.$watch('shoppingCart', calculateTotals, true);
-        $scope.addToshoppingCartFromSample = function (fileId) {
-            if ($scope.cart.length >= 10) {
-                Notification.error("Không thể thêm dịch vụ.</br>Có quá nhiều dịch vụ trong đơn hàng này.");
-                return false;
-            }
-            var fv = $('#f2').data('formValidation');
-            var $container = $('#f2-step2');
-            fv.validateContainer($container);
-            var isValidStep = fv.isValidContainer($container);
-            if (isValidStep === false || isValidStep === null) {
-                return false;
-            }
-            $scope.product.transactionId = guid();
-            $scope.product.id = $scope.shoppingCart.material.id;
-            $scope.product.name = $scope.shoppingCart.material.name;
-            $scope.product.quantity = $scope.shoppingCart.quantity;
-            $scope.product.price = $scope.price;
-            $scope.product.subTotal = $scope.subTotal;
-            $scope.product.width = $scope.shoppingCart.width;
-            $scope.product.height = $scope.shoppingCart.height;
-            $scope.product.machining = $scope.shoppingCart.machining.label;
-            $scope.product.cut = $scope.shoppingCart.cut.label;
-            $scope.product.cutType = $scope.shoppingCart.cutType.label;
-            $scope.product.fileType = consSampple;
-            $scope.product.fileId = fileId;
-            $scope.product.fileDescription = '';
-            $scope.product.settingModal = JSON.stringify($scope.settingModal);
-            $scope.product.image = getSampleImageBySampleId(fileId).image;
-
-            var item = $scope.product;
-            $scope.cart.push(item);
-            var listProducts = $scope.cart;
-            var count = $scope.cart.length;
-            $('[data-count]').attr('data-count', count);
-            localStorageService.set('shoppingCart', { products: listProducts });
-            window.location.href = "/gio-hang";
-        };
         function getSampleImageBySampleId(sampleId) {
             return $scope.samples.find(function (element) {
                 return element.id == sampleId;
             });
         }
-        $scope.addToshoppingCartFromDesign = function () {
-            if ($scope.cart.length >= 10) {
-                Notification.error("Không thể thêm dịch vụ.</br>Có quá nhiều dịch vụ trong đơn hàng này.");
-                return false;
-            }
-            var fv = $('#f4').data('formValidation');
-            var $container = $('#f4-step2');
-            fv.validateContainer($container);
-            var isValidStep = fv.isValidContainer($container);
-            if (isValidStep === false || isValidStep === null) {
-                return false;
-            }
-            $scope.product.transactionId = guid();
+        $scope.addToshoppingCart = function () {
+            debugger;
             $scope.product.id = $scope.shoppingCart.material.id;
-            $scope.product.name = $scope.shoppingCart.material.name;
+            $scope.product.name = $scope.shoppingCart.material.label;
             $scope.product.quantity = $scope.shoppingCart.quantity;
             $scope.product.price = $scope.price;
             $scope.product.subTotal = $scope.subTotal;
@@ -356,50 +343,8 @@
             $scope.product.height = $scope.shoppingCart.height;
             $scope.product.machining = $scope.shoppingCart.machining.label;
             $scope.product.cut = $scope.shoppingCart.cut.label;
-            $scope.product.cutType = $scope.shoppingCart.cutType.label;
-            $scope.product.fileDescription = $scope.fileDescription;
-            $scope.product.fileType = consDesign;
-            $scope.product.settingModal = '';
-            $scope.product.image = '';
-
-            var item = $scope.product;
-            $scope.cart.push(item);
-            var design = {};
-            design.transactionId = $scope.product.transactionId;
-            design.id = 19;
-            design.name = 'Thiết Kế Theo Yêu Cầu';
-            design.quantity = 1;
-            design.price = 100000;
-            design.subTotal = 100000;
-            design.width = 0;
-            design.height = 0;
-            design.machining = '';
-            design.cut = '';
-            design.cutType = '';
-            design.fileDescription = '';
-            design.fileType = 2;
-            design.settingModal = '';
-
-            $scope.cart.push(design);
-            var listProducts = $scope.cart;
-            var count = $scope.cart.length;
-            $('[data-count]').attr('data-count', count);
-            localStorageService.set('shoppingCart', { products: listProducts });
-            window.location.href = "/gio-hang";
-        };
-        $scope.addToshoppingCartFromUpload = function () {
-            $scope.product.id = $scope.shoppingCart.material.id;
-            $scope.product.name = $scope.shoppingCart.material.name;
-            $scope.product.quantity = $scope.shoppingCart.quantity;
-            $scope.product.price = $scope.price;
-            $scope.product.subTotal = $scope.subTotal;
-            $scope.product.width = $scope.shoppingCart.width;
-            $scope.product.height = $scope.shoppingCart.height;
-            $scope.product.machining = $scope.shoppingCart.machining.label;
-            $scope.product.cut = $scope.shoppingCart.cut.label;
-            $scope.product.cutType = $scope.shoppingCart.cutType.label;
-            $scope.product.fileDescription = $scope.fileDescription;
-            $scope.product.fileType = consUpload;
+            $scope.product.fileDescription = '';
+            $scope.product.fileType = 1;
             $scope.product.fileId = 0;
             $scope.product.settingModal = '';
             $scope.product.image = '';
@@ -407,10 +352,11 @@
             var item = $scope.product;
             $scope.cart.push(item);
             var listProducts = $scope.cart;
-            var count = $scope.cart.length;
-            $('[data-count]').attr('data-count', count);
+            //var count = $scope.cart.length;
+            //$('[data-count]').attr('data-count', count);
             localStorageService.set('shoppingCart', { products: listProducts });
-            window.location.href = "/gio-hang";
+            //window.location.href = "/gio-hang";
+            $scope.calculateCart();
         };
         $scope.shopNow = function () {
             var fv = $('#f1').data('formValidation');
@@ -499,13 +445,6 @@
                 Notification.error("Không thể thêm dịch vụ.</br>Có quá nhiều dịch vụ trong đơn hàng này.");
                 return false;
             }
-            var fv = $('#f3').data('formValidation');
-            var $container = $('#f3-step2');
-            fv.validateContainer($container);
-            var isValidStep = fv.isValidContainer($container);
-            if (isValidStep === false || isValidStep === null) {
-                return false;
-            }
             $scope.product.transactionId = guid();
             $scope.uploading = true;
             showLoader();
@@ -522,7 +461,6 @@
                         Notification.error('Đã có lỗi xảy ra.');
                         console.log(data);
                     }
-                    $scope.addToshoppingCartFromUpload();
                 }, function (error) {
                     $scope.uploading = false;
                     Notification.error('Đã có lỗi xảy ra.');

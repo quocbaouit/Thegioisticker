@@ -15,10 +15,12 @@ namespace Thegioisticker.API.Controllers
     public class DecalPriceController : ApiController
     {
         private readonly IDecalPriceService decalPriceService;
+        private readonly IStickerService _stickerService;
 
-        public DecalPriceController(IDecalPriceService decalPriceService)
+        public DecalPriceController(IDecalPriceService decalPriceService, IStickerService stickerService)
         {
             this.decalPriceService = decalPriceService;
+            this._stickerService = stickerService;
         }
         [HttpGet]
         [Route("getDecalPrices")]
@@ -27,6 +29,15 @@ namespace Thegioisticker.API.Controllers
             var decalPrices = decalPriceService.GetDecalPrices();
             if (decalPrices != null)
                 return Ok(decalPrices);
+            return NotFound();
+        }
+        [HttpGet]
+        [Route("getAllSticker")]
+        public IHttpActionResult GetAllSticker()
+        {
+            var sticker = _stickerService.GetStickers();
+            if (sticker != null)
+                return Ok(sticker);
             return NotFound();
         }
         [HttpGet]
