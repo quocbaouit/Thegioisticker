@@ -2,138 +2,121 @@
     ViewBag.Title = "Thanh Toán";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<section ng-app="thegioistickerApp" ng-controller="shoppingCartController" class="organic-content">
-    <div class="container">
-        <div class="step-buy clearfix">
-            <div class="col-xs-4 step-shopping active">
-                <h3 class="step-number bg-setting bd-radius-100">01</h3>
-                <a href="javascript:void(0)" class="color-setting">GIỎ HÀNG</a>
-                <div class="step-hr-right bg-setting"></div>
-            </div>
-            <div class="col-xs-4 step-shopping active">
-                <h3 class="step-number bg-setting bd-radius-100">02</h3>
-                <a href="javascript:void(0)" class="color-setting">THANH TOÁN</a>
-                <div class="step-hr-left bg-setting"></div>
-                <div class="step-hr-right bg-setting"></div>
-            </div>
-            <div class="col-xs-4 step-shopping">
-                <h3 class="step-number bd-radius-100">03</h3>
-                <a href="javascript:void(0)">HOÀN TẤT ĐƠN HÀNG</a>
-                <div class="step-hr-left bg-setting"></div>
+<link href="~/Content/css/shop_styles.css" rel="stylesheet" />
+<link href="~/Content/css/shop_responsive.css" rel="stylesheet" />
+<link href="~/Content/css/contact_styles.css" rel="stylesheet" />
+<link href="~/Content/css/contact_responsive.css" rel="stylesheet" />
+<style>
+    .input-group-text {
+        min-width: 150px;
+    }
+
+    .row {
+        margin-bottom: 0px;
+    }
+
+    .form-control {
+        margin-left: 10px;
+    }
+
+    .cart_items {
+        margin-top: 10px !important;
+    }
+
+    .input-group {
+        padding: 10px;
+    }
+</style>
+<main ng-app="thegioistickerApp" ng-controller="shoppingCartController" class="organic-content">
+    <div class="cart_section">
+        <div class="container">
+            <div class="cart_title">Thông Tin Đặt Hàng</div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="cart_container">
+                        <div class="cart_items">
+                            <form action="#" id="contact_form">
+                                <div style="margin-bottom:20px" class="contact_form_text">
+                                    <input type="text" id="contact_form_name" class="input-group" placeholder="Tên" required="required" data-error="Name is required.">
+                                </div>
+                                <div style="margin-bottom:20px" class="contact_form_text">
+                                    <input type="text" id="contact_form_email" class="input-group p" placeholder="Email" required="required" data-error="Email is required.">
+                                </div>
+                                <div style="margin-bottom:20px" class="contact_form_text">
+                                    <input type="text" id="contact_form_phone" class="input-group p-10" placeholder="Số điện thoại">
+                                </div>
+                                <div style="margin-bottom:20px" class="contact_form_text">
+                                    <textarea id="contact_form_message" class="input-group p-10" name="message" rows="4" placeholder="Tin nhắn" required="required" data-error="Please, write us a message."></textarea>
+                                </div>
+                                <div class="contact_form_button">
+                                    <button type="submit" class="button contact_submit_button">Đặt In</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="cart_container">
+                        <div class="cart_items">
+                            <ul class="cart_list">
+                                <li class="cart_item clearfix">
+                                    <div class="product_content">
+                                        <h5>Mã Khuyến Mãi</h5>
+                                    </div>
+                                    <div class="input-group">
+                                        <input ng-model="shoppingCart.width" type="text" placeholder="" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-maxlength">
+                                    </div>
+                                    <div class="input-group">
+                                        <button style="margin-right:20px;margin-left:10px"  class="btn btn-primary btn-sm">Áp Dụng</button>
+                                        <button class="btn btn-secondary btn-sm">Gỡ Bỏ</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="cart_container">
+                        <div class="cart_items">
+                            <ul class="cart_list">
+                                <li class="cart_item clearfix  font-italic">
+                                    <div class="row">
+                                        <div class="col-md-6">Chất liệu</div>
+                                        <div class="col-md-3 ml-auto ng-binding">Decal sữa</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Kích thước tem nhãn</div>
+                                        <div class="col-md-3 ml-auto ng-binding">0mm X 0mm</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Số lượng in</div>
+                                        <div class="col-md-3 ml-auto ng-binding">0</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Gia công</div>
+                                        <div class="col-md-3 ml-auto ng-binding">Cán màng</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Bế</div>
+                                        <div class="col-md-3 ml-auto ng-binding">Bế thẳng</div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6">Thành tiền</div>
+                                        <div class="col-md-3 ml-auto ng-binding">0(vnd)</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
-        <form id='f1'>
-            <div class="check-out">
-                <div data-ng-hide="authentication.isAuth" class="click-here">
-                    <h3>Vui lòng <a data-ng-click="openLoginModal()" href="javascript:void(0)" class="color-setting">đăng nhập</a> để thanh toán.</h3>
-                </div>
-                <div data-ng-hide="!authentication.isAuth" class="row">
-                    <div id='f1-step1' class="col-md-7 col-lg-8">
-                        <div class="form-tax">
-                            <h4>Địa chỉ giao hàng</h4>
-                            <div class="billing-address">
-                                <div class="form-group billing-country">
-                                    <div class="billing-category">
-                                        <label>Họ Và Tên *</label>
-                                    </div>
-                                    <div class="billing-select">
-                                        <input name="fullName" ng-model="customer.fullName" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group billing-country">
-                                    <div class="billing-category">
-                                        <label>Địa Chỉ *</label>
-                                    </div>
-                                    <div class="billing-select">
-                                        <input name="address" ng-model="customer.address" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group billing-country">
-                                    <div class="billing-category">
-                                        <label>Email *</label>
-                                    </div>
-                                    <div class="billing-select">
-                                        <input name="email" ng-model="customer.email" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group billing-country">
-                                    <div class="billing-category">
-                                        <label>Số Điện Thoại *</label>
-                                    </div>
-                                    <div class="billing-select">
-                                        <input name="phoneNumber" ng-model="customer.phoneNumber" type="text">
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <div class="billing-order">
-                                        <label>Ghi Chú</label>
-                                    </div>
-                                    <div class="billing-full">
-                                        <input ng-model="note" type="text">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-lg-4">
-                        <div class="form-tax">
-                            <h4>Mã Khuyến Mãi</h4>
-                            <p class="form-text-one">Nhập mã khuyến mãi nếu có</p>
-                            <div class="form-subscribe">
-                                <div class="form-type">
-                                    <input ng-disabled="isApplyCoupon" ng-model="coupon" type="text" placeholder="nhập mã khuyến mãi">
-                                    <a ng-click="removeCoupon()" href="javascript:void(0)">gỡ bỏ</a>
-                                </div>
-                                <div style="margin-top:10px" class="form-type">
-                                    <button ng-disabled="coupon==''" ng-click="applyCoupon()" class="button btn-dark bd-color-dark bd-radius-50">Áp Dụng</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-tax">
-                            <h4>Đơn hàng của bạn</h4>
-                            <div class="cart-total1">
-                                <div class="form-total-title  clearfix">
-                                    <span class="pull-left">Sản Phẩm</span>
-                                    <span class="pull-right">Tổng Cộng</span>
-                                </div>
-                                <div ng-repeat="product in shoppingCart" class="form-total1 product-total">
-                                    <div class="combination">
-                                        <h5>{{product.name}}<br /><span ng-if="product.id!=19">({{product.width}}mmX{{product.height}}mm)</span></h5>
-                                        <span class="color-setting price-weight">{{product.subTotal | number}} VND</span>
-                                    </div>
-                                </div>
-                                <div ng-if="isApplyCoupon" class="form-total1 product-total">
-                                    <div class="combination">
-                                        <h5>{{couponLabel}}</h5>
-                                        <span class="color-setting price-weight">-{{couponValue | number}} {{couponText}}</span>
-                                    </div>
-                                </div>
-                                <div class="form-total1 product-total">
-                                    <div class="combination">
-                                        <h5>Tổng đơn hàng</h5>
-                                        <span class="color-setting price-weight">{{subTotal | number}} VND</span>
-                                    </div>
-                                </div>
-                                <div style="margin-top:5px" class="clearfix">
-                                    <div class="form-tax-country ">
-                                        <span>Thanh Toán:</span>
-                                    </div>
-                                    <div class="billing-select">
-                                        <select style="margin-left:5px"  ng-model="myselect" ng-options="o for o in options track by o">
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="place-porder">
-                                    <button ng-click="proccessOrder()" class="button  bd-radius-50 btn-setting bd-color-setting">ĐẶT HÀNG</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-
     </div>
-</section>
+
+</main>
 
