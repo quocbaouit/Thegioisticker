@@ -1,5 +1,5 @@
 ﻿'use strict';
-sieuvietApp.factory('companyService', ['$http', 'ngAuthSettings', function ($http, ngAuthSettings) {
+thegioistickerApp.factory('companyService', ['$http', 'ngAuthSettings', function ($http, ngAuthSettings) {
 
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
 

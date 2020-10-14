@@ -79,19 +79,15 @@ namespace Thegioisticker.Service
 
         public List<CategoryModel> GetProductCategory()
         {
-            var listCategory = new List<CategoryModel>() {new CategoryModel(){
-                Id = 0,
-                Name = "Tất Cả Sản Phẩm",
-                numberProduct = CountProduct()
-            }};
-            var productCategory =  _productCategoryRepository.GetAll().Select(
+            var listCategory =  _productCategoryRepository.GetAll().Select(
                 x => new CategoryModel()
                 {
                     Id = x.Id,
                     Name = x.Name,
+                    Image=x.Image,
+                    Url=x.Url,
                     numberProduct = x.Products.Count()
                 }).ToList();
-            listCategory.AddRange(productCategory);
             return listCategory;
         }
         public ProductPaging GetPagingProduct(int pageIndex, int pageSize, int categoryId)

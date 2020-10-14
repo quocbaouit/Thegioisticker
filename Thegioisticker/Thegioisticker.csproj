@@ -2085,6 +2085,7 @@
     <Content Include="Scripts\thegioistickerjs\services\productService.js" />
     <Content Include="Scripts\thegioistickerjs\services\ordersService.js" />
     <Content Include="Scripts\thegioistickerjs\services\settingService.js" />
+    <Content Include="Scripts\thegioistickerjs\services\shapeService.js" />
     <Content Include="Scripts\thegioistickerjs\services\tokensManagerService.js" />
     <Content Include="Scripts\formValidation.min.js" />
     <Content Include="Scripts\framework\bootstrap.js" />

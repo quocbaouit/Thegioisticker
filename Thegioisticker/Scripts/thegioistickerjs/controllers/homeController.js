@@ -6,13 +6,13 @@ thegioistickerApp.controller('homeController', ['$scope', 'blogService', '$timeo
     $scope.regularProducts = [];
     $scope.product = {};
     $scope.selectedSample = {};
+    $scope.productCategories = [];
     productService.getProductsRegular().then(function (results) {
         $scope.regularProducts = results.data;
     }, function (error) {
     });
     blogService.getBlogForHomePage().then(function (results) {
-        $scope.blog1 = results.data[0];
-        $scope.blog2 = results.data[1];
+        $scope.blogs = results.data;
     }, function (error) {
     });
     $scope.testimonials = [
@@ -89,6 +89,11 @@ thegioistickerApp.controller('homeController', ['$scope', 'blogService', '$timeo
     sampleService.getAllSample().then(function (results) {
         $scope.samples = results.data;
         $scope.products = $scope.samples;
+    }, function (error) {
+    });
+    productService.getProductCategory().then(function (results) {
+        debugger;
+        $scope.productCategories = results.data;
     }, function (error) {
     });
     $scope.searchByCategory = function (event, categoryId) {

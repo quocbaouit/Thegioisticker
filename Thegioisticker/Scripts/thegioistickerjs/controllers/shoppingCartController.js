@@ -35,7 +35,7 @@ thegioistickerApp.controller('shoppingCartController', ['$scope', '$timeout', 'c
                 phoneNumber: response.data.phoneNumber,
             };
         }
-        hideLoader();
+        //hideLoader();
     },
         function (err) {
             Notification.error('Vui lòng kiểm tra lại');
@@ -119,7 +119,7 @@ thegioistickerApp.controller('shoppingCartController', ['$scope', '$timeout', 'c
         },
             function (err) {
                 Notification.error('Vui lòng kiểm tra lại đơn hàng.');
-                hideLoader();
+                //hideLoader();
             });
     }
 

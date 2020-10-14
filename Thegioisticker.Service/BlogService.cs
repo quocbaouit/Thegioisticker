@@ -55,7 +55,7 @@ namespace Thegioisticker.Service
         public IEnumerable<Blog> GetBlogForHomePage()
         {
 
-            var datas = BlogsRepository.GetMany(x => !x.isDelete).Select(x => new { x.Id, x.Image, x.Title, x.Author, x.Description,x.SeoUrl, x.MetaTitle, x.MetaDescription }).ToList();
+            var datas = BlogsRepository.GetMany(x => !x.isDelete &&x.isInHomePage).Select(x => new { x.Id, x.Image, x.Title, x.Author, x.Description,x.SeoUrl, x.MetaTitle, x.MetaDescription }).ToList();
             var Blogs = datas.Select(y => new Blog()
             {
                 Id = y.Id,

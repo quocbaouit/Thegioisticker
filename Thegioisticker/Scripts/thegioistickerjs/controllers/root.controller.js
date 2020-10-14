@@ -22,28 +22,6 @@
             if (baseUrl.toLowerCase() == url.toLowerCase()) return true;
             return false;  
         };
-        $scope.menus = [
-            {
-                name: 'CÁC SẢN PHẨM TEM', url: '/san-pham-tem', childs: [
-                    { name: 'Tem nhãn decal giấy', url: '/chi-tiet-san-pham/decal-giay' },
-                    { name: 'Tem nhãn decal giấy kraft', url: '/chi-tiet-san-pham/decal-draft' },
-                    { name: 'Tem nhãn decal nhựa sữa', url: '/chi-tiet-san-pham/decal-nhua-sua' },
-                    { name: 'Tem nhãn decal nhựa sữa cao cấp', url: '/chi-tiet-san-pham/decal-nhua-cao-cap' },
-                    { name: 'Tem nhãn decal nhựa trong', url: '/chi-tiet-san-pham/decal-nhua-trong' },
-                    { name: 'Tem nhãn decal xi bạc', url: '/chi-tiet-san-pham/decal-xi-bac' },
-                    { name: 'Tem nhãn decal xi vàng', url: '/chi-tiet-san-pham/decal-xi-vang' },
-                    { name: 'Tem nhãn decal bảy màu', url: '/chi-tiet-san-pham/decal-bay-mau' },
-                    { name: 'Tem bảo hành-tem bể-tem vỡ', url: '/chi-tiet-san-pham/tem-bao-hanh' },
-                    { name: 'Decal metalize', url: '/chi-tiet-san-pham/decal-metalize' },
-                    { name: 'Tem nhãn decal 1 màu đen', url: '/chi-tiet-san-pham/decal-mau-den' }
-                ]
-            },
-            { name: 'THƯ VIỆN ONLINE', url: '/thu-vien-decal', childs: [] },
-            { name: 'CÁC SẢN PHẨM KHÁC', url: '/san-pham', childs: [{ name: 'Túi giấy', url: '/chi-tiet-san-pham/tui-giay' }, { name: 'In pp', url: '/chi-tiet-san-pham/in-pp' }] },
-            { name: 'KHUYẾN MÃI', url: '/cong-ty/khuyen-mai', childs: [] },
-            { name: 'THÔNG TIN', url: '/thong-tin', childs: [] },
-            { name: 'LIÊN HỆ', url: '/lien-he', childs: [] }
-        ];
         $scope.numPerPage = 8;
         $scope.noOfPages = 1;
         $scope.currentPage = 1;
@@ -108,28 +86,19 @@
                 , { id: 12, name: 'Hình Mẫu 2', code: 'hinhmau2', image: '/images/shapes/hinhmau2.png' }
                 , { id: 13, name: 'Hình Mẫu 3', code: 'hinhmau3', image: '/images/shapes/hinhmau3.png' }
                 , { id: 14, name: 'Hình Mẫu 4', code: 'hinhmau4', image: '/images/shapes/hinhmau4.png' }
-                //, { id: 15, name: 'Hình Mẫu 5', code: 'hinhmau5', image: '/images/shapes/hinhmau5.png' }
-                //, { id: 16, name: 'Hình Mẫu 6', code: 'hinhmau6', image: '/images/shapes/hinhmau6.png' }
                 ]
-            //shapeService.getShapes().then(function (results) {
-            //    $scope.shapes = results.data;
-            //}, function (error) {
-            //    //alert(error.data.message);
-            //});
         }
         function getInvoice() {
             invoiceService.getInvoices().then(function (results) {
                 $scope.stickers = results.data;
                 calculateTotals();
             }, function (error) {
-                //alert(error.data.message);
             });
         }    
         function getSample() {
             sampleService.getAllSample().then(function (results) {
                 $scope.samples = results.data;
             }, function (error) {
-                //alert(error.data.message);
             });
 
         } 

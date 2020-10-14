@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Giỏ Hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/css/cart_responsive.css" rel="stylesheet" />
     <style>
         .detail-slider img {
             margin: 0 auto;
@@ -23,70 +24,57 @@
         }
     </style>
 }
-<section ng-app="thegioistickerApp" ng-controller="shoppingCartController" class="organic-content">
-    <div class="container">
-        <div class="step-buy clearfix">
-            <div class="col-xs-4 step-shopping active">
-                <h3 class="step-number bg-setting bd-radius-100">01</h3>
-                <a href="javascript:void(0)" class="color-setting">GIỎ HÀNG</a>
-                <div class="step-hr-right bg-setting"></div>
-            </div>
-            <div class="col-xs-4 step-shopping">
-                <h3 class="step-number bd-radius-100">02</h3>
-                <a href="javascript:void(0)">THANH TOÁN</a>
-                <div class="step-hr-left bg-setting"></div>
-                <div class="step-hr-right"></div>
-            </div>
-            <div class="col-xs-4 step-shopping">
-                <h3 class="step-number bd-radius-100">03</h3>
-                <a href="javascript:void(0)">HOÀN TẤT ĐƠN HÀNG</a>
-                <div class="step-hr-left"></div>
-            </div>
-        </div>
-        <div class="shopping-cart">
-            <table class="table table-condensed">
-                <thead>
-                    <tr class="cart-product">
-                        <th>Sản Phẩm</th>
-                        <th>Số Lượng In</th>
-                        <th>Đơn Giá(VND)</th>
-                        <th>File In</th>
-                        <th>Thành Tiền(VND)</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="text-align:end" ng-if="shoppingCart.length==0"><td>Không có sản phẩm nào trong giỏ hàng</td></tr>
-                    <tr ng-if="shoppingCart.length!=0" ng-repeat="product in shoppingCart" class="cart-product">
-                        <td ng-if="product.id==19" class="cart-product-one">{{product.name}}</td>
-                        <td ng-if="product.id!=19" class="cart-product-one">{{product.name}}({{product.width}}mmX{{product.height}}mm)<br /><span>{{product.machining}}</span><br /><span>{{product.cut}}</span></td>
-                        <td class="color-setting price-size"><span class="color-setting price-size">{{product.quantity | number}}</span></td>
-                        <td class="color-setting price-size"><span class="color-setting price-size">{{product.price | number}}</span></td>
-                        <td style="cursor:pointer" ng-if="product.id!=19" ng-click="showFilePopup(product)" class="color-setting price-size"><span class="color-setting price-size">Thông tin file in</span></td>
-                        <td ng-if="product.id==19" class="color-setting price-size"><span class="color-setting price-size"></span></td>
-                        <td><span class="color-setting price-size">{{product.subTotal | number}}</span></td>
-                        <td><a ng-hide="product.id==19" ng-click="removeShopping(product)" href="javascript:void(0)"><i class="fa fa-times"></i></a></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="row form-table">
-                <div class="col-lg-4" style="float:right">
-                    <div class="form-tax">
-                        <h4>Giỏ Hàng</h4>
-                        <div class="cart-total">
-                            <div class="form-total">
-                                <h5>Tổng Cộng(VND):</h5>
-                                <span class="color-setting price-size">{{subTotal | number}}</span>
+<main ng-app="thegioistickerApp" ng-controller="shoppingCartController" class="organic-content">
+    <div class="cart_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cart_container">
+                        <div class="cart_title">Shopping Cart</div>
+                        <div class="cart_items">
+                            <ul class="cart_list">
+                                <li class="cart_item clearfix">
+                                    <div class="cart_item_image"><img src="images/shopping_cart.jpg" alt=""></div>
+                                    <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                        <div class="cart_item_name cart_info_col">
+                                            <div class="cart_item_title">Name</div>
+                                            <div class="cart_item_text">MacBook Air 13</div>
+                                        </div>
+                                        <div class="cart_item_color cart_info_col">
+                                            <div class="cart_item_title">Color</div>
+                                            <div class="cart_item_text"><span style="background-color:#999999;"></span>Silver</div>
+                                        </div>
+                                        <div class="cart_item_quantity cart_info_col">
+                                            <div class="cart_item_title">Quantity</div>
+                                            <div class="cart_item_text">1</div>
+                                        </div>
+                                        <div class="cart_item_price cart_info_col">
+                                            <div class="cart_item_title">Price</div>
+                                            <div class="cart_item_text">$2000</div>
+                                        </div>
+                                        <div class="cart_item_total cart_info_col">
+                                            <div class="cart_item_title">Total</div>
+                                            <div class="cart_item_text">$2000</div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Order Total -->
+                        <div class="order_total">
+                            <div class="order_total_content text-md-right">
+                                <div class="order_total_title">Order Total:</div>
+                                <div class="order_total_amount">$2000</div>
                             </div>
-                            <div class="form-button-one">
-                                <button ng-disabled="shoppingCart.length==0" onclick="window.location.href='/thanh-toan'" class="button btn-light bd-color-dark bd-radius-50">Thanh Toán</button>
-                            </div>
+                        </div>
+
+                        <div class="cart_buttons">
+                            <button type="button" class="button cart_button_clear">Add to Cart</button>
+                            <button type="button" class="button cart_button_checkout">Add to Cart</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="button-cart clearfix">
-                <button onclick="window.location.href='/thu-vien-decal'" class="button bd-radius-50 btn-setting bd-color-setting pull-right shopping-cart-update">Tiếp Tục Mua Hàng</button>
             </div>
         </div>
     </div>
@@ -219,4 +207,4 @@
         </div>
     </div>
     <!-- End UPLOAD PUPUP -->
-</section>
+</main>

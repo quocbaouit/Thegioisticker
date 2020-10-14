@@ -1,5 +1,5 @@
 ﻿'use strict';
-sieuvietApp.factory('shapeService', ['$http', 'ngAuthSettings', '$q', function ($http, ngAuthSettings, $q) {
+thegioistickerApp.factory('shapeService', ['$http', 'ngAuthSettings', '$q', function ($http, ngAuthSettings, $q) {
 
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
 

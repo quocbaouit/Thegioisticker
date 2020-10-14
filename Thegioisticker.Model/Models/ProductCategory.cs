@@ -16,6 +16,7 @@ namespace Thegioisticker.Model
         [MaxLength(500)]
         public string Description { get; set; }
         public string Image { get; set; }
+        public string Url { get; set; }
         [DefaultValue("true")]
         public bool IsActive { get; set; }
         public DateTime? DateCreated { get; set; }
