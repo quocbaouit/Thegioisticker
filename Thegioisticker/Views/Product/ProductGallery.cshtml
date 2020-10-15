@@ -132,10 +132,10 @@
                             <div class="card">
                                 <img class="card-img-top" ng-src="{{product.image}}" alt="Card image cap">
                                 <div class="card-body">
-                                    <h4 class="card-title"><a href="/chi-tiet-san-pham/{{product.seoUrl}}" title="View Product">{{product.name}}</a></h4>
+                                    <h4 class="card-title"><a href="javascript:void(0)">{{product.name}}</a></h4>
                                     <div class="row">
                                         <div class="col">
-                                            <a href="/chi-tiet-san-pham/{{product.seoUrl}}" class="btn btn-success btn-block">Xem chi tiết</a>
+                                            <button ng-click="selectSample(product)" class="btn btn-success btn-block">Dùng mẫu này</button>
                                         </div>
                                     </div>
                                 </div>

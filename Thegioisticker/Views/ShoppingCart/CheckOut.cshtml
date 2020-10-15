@@ -37,16 +37,16 @@
                         <div class="cart_items">
                             <form action="#" id="contact_form">
                                 <div style="margin-bottom:20px" class="contact_form_text">
-                                    <input ng-model="customer.fullName" type="text" id="contact_form_name" class="input-group" placeholder="Họ Và Tên" required="required" data-error="Vui lòng nhập tên.">
+                                    <input autocomplete="off" ng-model="customer.fullName" type="text" id="contact_form_name" class="input-group" placeholder="Họ Và Tên" required="required" data-error="Vui lòng nhập tên.">
                                 </div>
                                 <div style="margin-bottom:20px" class="contact_form_text">
-                                    <input ng-model="customer.address" type="text" id="contact_form_address" class="input-group p" placeholder="Địa Chỉ" required="required" data-error="Vui lòng nhập địa chỉ.">
+                                    <input autocomplete="off" ng-model="customer.address" type="text" id="contact_form_address" class="input-group p" placeholder="Địa Chỉ" required="required" data-error="Vui lòng nhập địa chỉ.">
                                 </div>
                                 <div style="margin-bottom:20px" class="contact_form_text">
-                                    <input ng-model="customer.email" type="text" id="contact_form_email" class="input-group p" placeholder="Email" required="required" data-error="Vui lòng nhập email.">
+                                    <input autocomplete="off" ng-model="customer.email" type="text" id="contact_form_email" class="input-group p" placeholder="Email" required="required" data-error="Vui lòng nhập email.">
                                 </div>
                                 <div style="margin-bottom:20px" class="contact_form_text">
-                                    <input  ng-model="customer.phoneNumber"  type="text" id="contact_form_phone" class="input-group p-10" placeholder="Số điện thoại" required="required" data-error="Vui lòng nhập số đt.">
+                                    <input autocomplete="off"  ng-model="customer.phoneNumber"  type="text" id="contact_form_phone" class="input-group p-10" placeholder="Số điện thoại" required="required" data-error="Vui lòng nhập số đt.">
                                 </div>
                                 <div style="margin-bottom:20px" class="contact_form_text">
                                     <textarea ng-model="note" id="contact_form_message" class="input-group p-10" name="message" rows="2" placeholder="Ghi chú"></textarea>
@@ -67,7 +67,7 @@
                                         <h5>Mã Khuyến Mãi</h5>
                                     </div>
                                     <div class="input-group">
-                                        <input ng-disabled="isApplyCoupon" ng-model="coupon" type="text" placeholder="" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-maxlength">
+                                        <input autocomplete="off" ng-disabled="isApplyCoupon" ng-model="coupon" type="text" placeholder="" class="form-control">
                                     </div>
                                     <div class="input-group">
                                         <button ng-disabled="coupon==''" ng-click="applyCoupon()" style="margin-right:20px;margin-left:10px" class="btn btn-primary btn-sm">Áp Dụng</button>
