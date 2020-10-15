@@ -2,7 +2,7 @@
 thegioistickerApp.controller('blogController', ['$scope', '$timeout', 'blogService', 'localStorageService', 'Notification', function ($scope, $timeout, blogService, localStorageService, Notification) {
     $scope.blogs = [];
     $scope.recentProducts = [];
-    $scope.numPerPage = 9;
+    $scope.numPerPage = 8;
     $scope.noOfPages = 1;
     $scope.currentPage = 1;
     $scope.setPage = function () {

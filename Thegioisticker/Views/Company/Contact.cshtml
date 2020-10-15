@@ -4,9 +4,8 @@
 }
 <link href="~/Content/css/contact_styles.css" rel="stylesheet" />
 <link href="~/Content/css/contact_responsive.css" rel="stylesheet" />
-<main>
+<main ng-app="sieuvietApp" ng-controller="companyController">
     <!-- Contact Info -->
-
     <div class="contact_info">
         <div class="container">
             <div class="row">
@@ -65,7 +64,7 @@
                                 <textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Tin nhắn" required="required" data-error="Please, write us a message."></textarea>
                             </div>
                             <div class="contact_form_button">
-                                <button type="submit" class="button contact_submit_button">Gởi Tin Nhắn</button>
+                                <button ng-click="sendContact()" type="submit" class="button contact_submit_button">Gởi Tin Nhắn</button>
                             </div>
                         </form>
 
@@ -75,13 +74,4 @@
         </div>
         <div class="panel"></div>
     </div>
-    <!-- Map -->
-
-    @*<div class="contact_map">
-        <div id="google_map" class="google_map">
-            <div class="map_container">
-                <div id="map"></div>
-            </div>
-        </div>
-    </div>*@
 </main>

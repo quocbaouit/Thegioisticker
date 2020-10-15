@@ -34,13 +34,13 @@ thegioistickerApp.controller('galleryController', ['$scope', '$timeout', 'produc
         $(this).addClass('active');
     });
     $scope.setPage = function () {
-        showLoader();
+        //showLoader();
         sampleService.getSamples($scope.currentPage, $scope.numPerPage, $scope.currentCategory).then(function (results) {
             $scope.noOfPages = results.data.pager.totalPages;
             $scope.totalProduct = results.data.pager.totalItems;
             $scope.products = results.data.items;
             $("html, body").animate({ scrollTop: 0 }, "slow");
-            hideLoader();
+            //hideLoader();
         }, function (error) {
         });
 
