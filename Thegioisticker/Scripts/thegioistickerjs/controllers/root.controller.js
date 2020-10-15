@@ -288,13 +288,35 @@
             }
         };
         $scope.$watch('shoppingCart', calculateTotals, true);
+        function validateCart(cart) {
+            var errorMessage = '';
+            if (cart.width == 0 || cart.width === '') {
+                if (errorMessage != '') {
+                    errorMessage = errorMessage + '<br/>';
+                }
+                errorMessage = errorMessage + 'vui lòng nhập chiều ngang';
+            }
+            if (cart.height == 0 || cart.height === '') {
+                if (errorMessage != '') {
+                    errorMessage = errorMessage + '<br/>';
+                }
+                errorMessage = errorMessage + 'vui lòng nhập chiều cao';
+            }
+            if (cart.quantity == 0 || cart.quantity === '') {
+                if (errorMessage != '') {
+                    errorMessage = errorMessage + '<br/>';
+                }
+                errorMessage = errorMessage + 'vui lòng nhập số lượng';
+            }
+            if (errorMessage != '') {
+                showAlert(errorMessage);
+                return false;
+            }
+            hideAlert();
+            return true;
+        }
         $scope.addToshoppingCart = function () {
-            debugger;
-            var fv = $('#form-validate').data('formValidation');
-            var $container = $('#form-validate-step');
-            fv.validateContainer($container);
-            var isValidStep = fv.isValidContainer($container);
-            if (isValidStep === false || isValidStep === null) {
+            if (!validateCart($scope.shoppingCart)) {
                 return false;
             }
             $scope.product.transactionId = guid();
@@ -388,66 +410,4 @@
 
         };
         //End File
-        //validation
-        initValidate();
-        function initValidate() {
-            $timeout(function () {
-                $('#form-validate').on('init.field.fv', function (e, data) {
-                    var $parent = data.element.parents('.form-group'),
-                        $icon = data.element.data('fv.icon'),
-                        $label = $parent.children('label');
-                    $icon.insertAfter($label);
-                });
-                $('#form-validate').formValidation({
-                    icon: {
-                        valid: 'fa fa-check',
-                        invalid: 'fa fa-times',
-                        validating: 'fa fa-refresh'
-                    },
-                    excluded: ':disabled',
-                    live: 'disabled',
-                    fields: {
-                        width: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập chiều ngang' }
-                            }
-                        },
-                        height: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập chiều cao' }
-                            }
-                        },
-                        quantity: {
-                            validators: {
-                                notEmpty: { message: 'Vui lòng nhập số lượng' },
-                                callback: {
-                                    message: 'Số lượng tối thiểu là 100.',
-                                    callback: function (value, validator, $field) {
-                                        if (parseFloat(value) >= 100) {
-                                            return true;
-                                        }
-                                        return false;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                })
-                    .on('err.field.fv', function (e, data) {
-                        data.fv.disableSubmitButtons(false);
-                    })
-                    .on('err.validator.fv', function (e, data) {
-                        data.element.data('fv.messages')
-                            .find('.help-block[data-fv-for="' + data.field + '"]').hide()
-                            .filter('[data-fv-validator="' + data.validator + '"]').show();
-                    })
-                    .on('success.field.fv', function (e, data) {
-                        data.fv.disableSubmitButtons(false);
-                    })
-                    .on('success.form.fv', function (e) {
-                        e.preventDefault();
-                    });              
-            })
-        }
-        //end validation
     }]);

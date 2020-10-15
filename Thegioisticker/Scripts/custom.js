@@ -84,6 +84,7 @@ $(document).ready(function()
 	2. Set Header
 
 	*/
+	
 
 	function setHeader()
 	{
@@ -1041,3 +1042,11 @@ $(document).ready(function()
     	}	
     }
 });
+function showAlert(message) {
+	$('.alert').html(message);
+	$('.alert').show();
+}
+function hideAlert(message) {
+	$('.alert').html('');
+	$('.alert').hide();
+}

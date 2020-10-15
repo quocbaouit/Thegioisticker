@@ -176,10 +176,11 @@
                 <div class="col-lg-7">
                     <div class="cart_container">
                         <div class="cart_items">
-                            <form id='form-validate'>
-                                <ul id="form-validate-step" class="cart_list">
+                            <form>
+                                <ul class="cart_list">
                                     <li class="cart_item clearfix">
-                                        <h5>Vui lòng chọn loại chất liệu và nhập kích thước, số lượng</h5>
+                                        <div style="display:none" class="alert alert-danger alert-dismissible fade show" role="alert">                                                               
+                                        </div>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="">Chất Liệu</span>
@@ -200,7 +201,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="">Số Lượng</span>
                                             </div>
-                                            <input name="quantity" number-input  maxlength="9" ng-model="shoppingCart.quantity" type="text" placeholder="nhập số lượng cần in" class="form-control">
+                                            <input name="quantity" number-input maxlength="9" ng-model="shoppingCart.quantity" type="text" placeholder="nhập số lượng cần in" class="form-control">
                                         </div>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -227,11 +228,9 @@
                                         <button ng-click="addToshoppingCart()" style="margin-left:10px" class="btn  btn-success btn-sm" tabindex="1">Thêm vào giỏ hàng &nbsp</button>
                                         <button style="min-width:400px" class="btn  btn-primary btn-sm" tabindex="3">Xem mẫu online</button>
                                     </li>
-
                                 </ul>
                             </form>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-lg-5">
