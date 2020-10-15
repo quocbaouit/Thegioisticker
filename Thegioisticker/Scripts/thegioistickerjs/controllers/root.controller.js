@@ -249,6 +249,7 @@
             $scope.shoppingCart.machining = $scope.machining[0];
         }
         var calculateTotals = function () {
+            //validateCart($scope.shoppingCart);
             var sticker = {};
             var width = isNaN(parseFloat($scope.shoppingCart.width)) ? 0 : parseFloat($scope.shoppingCart.width);
             var height = isNaN(parseFloat($scope.shoppingCart.height)) ? 0 : parseFloat($scope.shoppingCart.height);

@@ -78,18 +78,11 @@ thegioistickerApp.controller('shoppingCartController', ['$scope', '$timeout', 'c
 
     };
     $scope.proccessOrder = function () {
-        var fv = $('#f1').data('formValidation');
-        var $container = $('#f1-step1');
-        fv.validateContainer($container);
-        var isValidStep = fv.isValidContainer($container);
-        if (isValidStep === false || isValidStep === null) {
-            return false;
-        }
         if ($scope.shoppingCart.length == 0) {
             Notification.error('không có sản phẩm nào trong giỏ hàng');
-            return;
+            return false;
         }
-        showLoader();
+        //showLoader();
         var orders = {
             customer: $scope.customer,
             note: $scope.note,
@@ -117,61 +110,6 @@ thegioistickerApp.controller('shoppingCartController', ['$scope', '$timeout', 'c
                 //hideLoader();
             });
     }
-
-    $timeout(function () {
-        $('#f1').on('init.field.fv', function (e, data) {
-            var $parent = data.element.parents('.form-group'),
-                $icon = data.element.data('fv.icon'),
-                $label = $parent.children('label');
-            $icon.insertAfter($label);
-        });
-
-        $('#f1').formValidation({
-            icon: {
-                valid: 'fa fa-check',
-                invalid: 'fa fa-times',
-                validating: 'fa fa-refresh'
-            },
-            excluded: ':disabled',
-            live: 'disabled',
-            fields: {
-                fullName: {
-                    validators: {
-                        notEmpty: { message: 'Vui òng điền họ và tên' }
-                    }
-                },
-                address: {
-                    validators: {
-                        notEmpty: { message: 'Vui lòng điền địa chỉ' }
-                    }
-                },
-                email: {
-                    validators: {
-                        notEmpty: { message: 'Vui lòng điền email' }
-                    }
-                },
-                phoneNumber: {
-                    validators: {
-                        notEmpty: { message: 'Vui lòng điền số điện thoại' }
-                    }
-                }
-            }
-        })
-            .on('err.field.fv', function (e, data) {
-                data.fv.disableSubmitButtons(false);
-            })
-            .on('err.validator.fv', function (e, data) {
-                data.element.data('fv.messages')
-                    .find('.help-block[data-fv-for="' + data.field + '"]').hide()
-                    .filter('[data-fv-validator="' + data.validator + '"]').show();
-            })
-            .on('success.field.fv', function (e, data) {
-                data.fv.disableSubmitButtons(false);
-            })
-            .on('success.form.fv', function (e) {
-                e.preventDefault();
-            });
-    })
     $scope.applyCoupon = function () {
         couponService.applyCounpon($scope.coupon).then(function (response) {
             if (response.status == 200 && response.data != null) {

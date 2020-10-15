@@ -84,6 +84,10 @@ namespace Thegioisticker.Service
                 customer.PhoneNumber = orderModel.Customer.PhoneNumber;
                 _customerService.CreateCustomer(customer);
             }
+            if (orderModel.DiscountValue == 0)
+            {
+                orderModel.CouponName = "";
+            }
             var order = new Order()
             {
                 CustomerId = customer.Id,

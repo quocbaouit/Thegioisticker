@@ -4,108 +4,98 @@
 }
 <link href="~/Scripts/assets/vendor/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" />
 <style>
-    div[data-toggle="collapse"] {
-        cursor: pointer;
-    }
-    .modal-body {
-        min-height: 400px;
+    .input-group-text {
+        min-width: 150px;
     }
 
-    textarea {
-        width: 100%;
+    .row {
+        margin-bottom: 0px;
     }
 
-    .textwrapper {
-        border: 1px solid #999999;
-        margin: 5px 0;
-        padding: 3px;
+    .form-control {
+        margin-left: 5px;
     }
+
+    .cart_items {
+        margin-top: 10px !important;
+    }
+
+    .input-group {
+        padding: 10px;
+    }
+
+
 </style>
 <section ng-app="thegioistickerApp" ng-controller="userController" class="organic-content">
     <div data-ng-hide="!authentication.isAuth" class="container">
-        <form id='f1'>
-            <div class="check-out">
+        <div style="margin-bottom:50px" class="row">
+            <div class="col-lg-6">
+                <div class="cart_container">
+                    <div class="cart_items">
+                            <ul class="cart_list">
+                                <li class="cart_item clearfix">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Họ Và Tên *</span>
+                                        </div>
+                                        <input name="name" ng-model="customer.fullName" type="text" placeholder="họ và tên" class="form-control">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Địa Chỉ *</span>
+                                        </div>
+                                        <input name="address" ng-model="customer.address" type="text" placeholder="địa chỉ" class="form-control">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Email *</span>
+                                        </div>
+                                        <input name="address" ng-model="customer.email" type="text" placeholder="email" class="form-control">
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Điện Thoại *</span>
+                                        </div>
+                                        <input name="phoneNumber" ng-model="customer.phoneNumber" type="text" placeholder="điện thoại" class="form-control">
+                                    </div>
 
-                <div data-ng-hide="!authentication.isAuth" class="row">
-                    <div id='f1-step1' class="col-md-12 col-lg-12">
-                        <div class="form-tax">
-                            <h4>Thông Tin Cá Nhân</h4>
-                            <div class="billing-address">
-                                <div class="form-group billing-country">
-                                    <div class="billing-category">
-                                        <label>Họ Và Tên *</label>
-                                    </div>
-                                    <div class="billing-select">
-                                        <input name="fullName" ng-model="customer.fullName" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group billing-country">
-                                    <div class="billing-category">
-                                        <label>Địa Chỉ *</label>
-                                    </div>
-                                    <div class="billing-select">
-                                        <input name="address" ng-model="customer.address" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group billing-country">
-                                    <div class="billing-category">
-                                        <label>Email *</label>
-                                    </div>
-                                    <div class="billing-select">
-                                        <input name="email" ng-model="customer.email" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group billing-country">
-                                    <div class="billing-category">
-                                        <label>Số Điện Thoại *</label>
-                                    </div>
-                                    <div class="billing-select">
-                                        <input name="phoneNumber" ng-model="customer.phoneNumber" type="text">
-                                    </div>
-                                </div>
-                                <button style="min-width:250px" ng-click="updateCustomer()" class="button  bd-radius-50 btn-setting bd-color-setting">Cật Nhật Thông Tin</button>
-                            </div>
-                        </div>
+                                    <button ng-click="updateCustomer()" style="min-width:400px" class="btn  btn-primary btn-sm" tabindex="3">Cật Nhật Thông Tin</button>
+                                </li>
+                            </ul>
                     </div>
                 </div>
             </div>
-            <div class="check-out">
-                <div data-ng-hide="!authentication.isAuth" class="row">
-                    <div id='f1-step2' class="col-md-12 col-lg-12">
-                        <div class="form-tax">
-                            <h4>Đổi Mật Khẩu</h4>
-                            <div class="billing-address">
-                                <div class="form-group billing-country">
-                                    <div class="billing-category">
-                                        <label>Mật Khẩu Cũ *</label>
+            <div class="col-lg-6">
+                <div class="cart_container">
+                    <div class="cart_items">         
+                            <ul class="cart_list">
+                                <li class="cart_item clearfix">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Mật Khẩu Cũ *</span>
+                                        </div>
+                                        <input name="curentPassWord" ng-model="changePassWord.curentPassWord" type="text" placeholder="" class="form-control">
                                     </div>
-                                    <div class="billing-select">
-                                        <input name="currentPassworld" ng-model="changePassWord.curentPassWord" type="password">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Mật Khẩu Mới *</span>
+                                        </div>
+                                        <input name="newPassword" ng-model="customer.newPassword" type="text" placeholder="" class="form-control">
                                     </div>
-                                </div>
-                                <div class="form-group billing-country">
-                                    <div class="billing-category">
-                                        <label>Mật Khẩu Mới *</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Xác Nhận Lại*</span>
+                                        </div>
+                                        <input name="address" ng-model="changePassWord.confirmNewPassword" type="text" placeholder="" class="form-control">
                                     </div>
-                                    <div class="billing-select">
-                                        <input name="newPassword" ng-model="changePassWord.newPassword" type="password">
-                                    </div>
-                                </div>
-                                <div class="form-group billing-country">
-                                    <div class="billing-category">
-                                        <label>Xác Nhận Mật Khẩu Mới *</label>
-                                    </div>
-                                    <div class="billing-select">
-                                        <input name="confirmNewpasword" ng-model="changePassWord.confirmNewPassword" type="password">
-                                    </div>
-                                </div>
-                                <button style="min-width:250px" ng-click="changePassword()" class="button  bd-radius-50 btn-setting bd-color-setting">Đổi Mật Khẩu</button>
-                            </div>
-                        </div>
+               
+                                    <button ng-click="changePassword()" style="min-width:400px" class="btn  btn-primary btn-sm" tabindex="3">Đổi Mật Khẩu</button>
+                                </li>
+                            </ul>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
         <table id="order-table" class="table dataTable">
             <thead>
                 <tr>
