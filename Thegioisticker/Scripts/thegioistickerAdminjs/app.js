@@ -130,7 +130,7 @@ thegioistickerAdmin.config(['$httpProvider', '$locationProvider', '$urlRouterPro
     }]);
 var serviceBase = '';
 if (window.location.port == '') {
-    serviceBase = 'https://vinasticker.com/';
+    serviceBase = 'http://thegioisticker.com/';
 } else {
     serviceBase = 'https://localhost:44337/';
 }
