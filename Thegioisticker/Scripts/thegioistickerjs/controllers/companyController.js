@@ -2,31 +2,8 @@
 thegioistickerApp.controller('companyController', ['$scope', '$timeout', 'companyService', 'localStorageService', 'Notification', function ($scope, $timeout, companyService, localStorageService, Notification) {
     $scope.company = [];
     if (window.location.pathname != '/lien-he') {
-        getAllContentPages();
     }
     initValidateContact();
-    function getAllContentPages() {
-        showLoader();
-        companyService.getAllContentPages().then(function (results) {
-            $("#gioithieu").empty();
-            $("#gioithieu").append(results.data[0].content);
-
-            $("#tuyendung").empty();
-            $("#tuyendung").append(results.data[1].content);
-
-            $("#quydinhchung").empty();
-            $("#quydinhchung").append(results.data[2].content);
-
-            $("#thanhtoangiaohang").empty();
-            $("#thanhtoangiaohang").append(results.data[3].content);
-
-            $("#baomat").empty();
-            $("#baomat").append(results.data[4].content);
-            hideLoader();
-        }, function (error) {
-            //alert(error.data.message);
-        });
-    }
    
     $scope.sendContact = function () {
         var fv = $('#f11').data('formValidation');

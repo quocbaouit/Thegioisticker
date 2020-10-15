@@ -346,7 +346,7 @@ thegioistickerApp.controller('userController', ['$scope', 'customerService', '$t
             responsive: true,
             autoWidth: false
         });
-        hideLoader();
+        //hideLoader();
     }
 
     $('body').delegate('.edit-user', 'click', function (e) {
@@ -391,7 +391,7 @@ thegioistickerApp.controller('userController', ['$scope', 'customerService', '$t
         },
             function (err) {
                 Notification.error('Vui lòng kiểm tra lại.');
-                hideLoader();
+                //hideLoader();
             });
     }
 

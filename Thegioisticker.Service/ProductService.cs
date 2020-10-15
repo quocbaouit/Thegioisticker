@@ -167,14 +167,14 @@ namespace Thegioisticker.Service
         }
         public Product GetProductBySeoUrl(string seoUrl)
         {
-            var allData = _productsRepository.GetMany(x => !x.isDelete && x.SeoUrl == seoUrl).Select(x => new { x.Id, x.Code, x.regularProducts, x.Image, x.MetaTitle, x.Name, x.Price, x.ProductCategoryId, x.IsActive, x.SeoUrl, x.MetaDescription }).ToList();
+            var allData = _productsRepository.GetMany(x => !x.isDelete && x.SeoUrl == seoUrl).Select(x => new { x.Id,x.Description, x.Code, x.regularProducts, x.Image, x.MetaTitle, x.Name, x.Price, x.ProductCategoryId, x.IsActive, x.SeoUrl, x.MetaDescription }).ToList();
             var Product = allData.Select(y => new Product()
             {
                 Id = y.Id,
                 Code = y.Code,
                 Name = y.Name,
                 Image = y.Image,
-                Description = "",
+                Description = y.Description,
                 MetaTitle = y.MetaTitle,
                 Price = y.Price,
                 IsActive = y.IsActive,

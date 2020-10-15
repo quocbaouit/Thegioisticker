@@ -9,8 +9,6 @@
 }
 @*<link href="~/Content/css/product_styles.css" rel="stylesheet" />*@
 <link href="~/Content/css/product_responsive.css" rel="stylesheet" />
-<link href="~/Content/css/blog_single_styles.css" rel="stylesheet" />
-<link href="~/Content/css/blog_single_responsive.css" rel="stylesheet" />
 <style>
     .input-group-text {
         min-width: 150px;
@@ -37,20 +35,19 @@
 
     <div class="single_product">
         <div class="container">
+            <div style="font-size:24px;font-weight:500">{{product.name}}</div>
             <div class="row">
 
                 <!-- Images -->
                 <div class="col-lg-2 order-lg-1 order-2">
                     <ul class="image_list">
-                        <li data-image="/images/single_4.jpg"><img src="/images/single_4.jpg" alt=""></li>
-                        <li data-image="/images/single_2.jpg"><img src="/images/single_2.jpg" alt=""></li>
-                        <li data-image="/images/single_3.jpg"><img src="/images/single_3.jpg" alt=""></li>
+                        <li ng-repeat="product in products" data-image="{{product.image}}"><img ng-src="{{product.image}}" alt=""></li>
                     </ul>
                 </div>
 
                 <!-- Selected Image -->
                 <div class="col-lg-5 order-lg-2 order-1">
-                    <div class="image_selected"><img src="/images/single_4.jpg" alt=""></div>
+                    <div class="image_selected"><img ng-src="{{products[0].image}}" alt=""></div>
                 </div>
 
                 <!-- Description -->
@@ -106,7 +103,6 @@
     <!-- invoice -->
     <div class="invoice" style="width:100%;">
         <div class="container">
-            @*<h3>BÁO GIÁ TEM NHÃN STICKER ONLINE</h3>*@
             <div style="font-size:24px;font-weight:500">Tiến Hành Đặt Hàng Online</div>
             <div class="row">
                 <div class="col-lg-7">
@@ -114,43 +110,54 @@
                         <div class="cart_items">
                             <ul class="cart_list">
                                 <li class="cart_item clearfix">
-                                    <h5>Vui lòng chọn loại chất liệu và nhập kích thước, số lượng</h5>
+                                    <div style="display:none" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    </div>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="">Chất Liệu</span>
                                         </div>
-                                        <select ng-change="materialChange()" class="form-control classic ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="shoppingCart.material" ng-options="opt as opt.label for opt in options"><option label="Decal sữa" value="object:6" selected="selected">Decal sữa</option><option label="Decal trong" value="object:7">Decal trong</option><option label="Decal giấy" value="object:8">Decal giấy</option><option label="Decal Kraft" value="object:9">Decal Kraft</option><option label="Decal xi bạc" value="object:10">Decal xi bạc</option><option label="Decal 7 màu" value="object:11">Decal 7 màu</option><option label="Tem bảo hành, tem vỡ,tem bế" value="object:12">Tem bảo hành, tem vỡ,tem bế</option><option label="Decal sữa cao cấp" value="object:13">Decal sữa cao cấp</option></select>
+                                        <select class="form-control classic" ng-model="shoppingCart.material"
+                                                ng-options="opt as opt.label for opt in materials">
+                                        </select>
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="">Nhập kích thước</span>
                                         </div>
-                                        <input num-only="" maxlength="9" ng-model="shoppingCart.width" type="text" placeholder="ngang(mm)" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-maxlength">
-                                        <input num-only="" maxlength="9" ng-model="shoppingCart.height" type="text" placeholder="cao(mm)" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-maxlength">
+                                        <input autocomplete="off" name="width" number-input maxlength="9" ng-model="shoppingCart.width" type="text" placeholder="ngang(mm)" class="form-control">
+                                        <input autocomplete="off" name="height" number-input maxlength="9" ng-model="shoppingCart.height" type="text" placeholder="cao(mm)" class="form-control">
                                     </div>
 
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="">Số Lượng</span>
                                         </div>
-                                        <input num-only="" maxlength="9" ng-model="shoppingCart.quantity" type="text" placeholder="nhập số lượng cần in" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-maxlength">
+                                        <input autocomplete="off" name="quantity" number-input maxlength="9" ng-model="shoppingCart.quantity" type="text" placeholder="nhập số lượng cần in" class="form-control">
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="">Chọn Gia Công</span>
                                         </div>
-                                        <select class="form-control classic ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="shoppingCart.machining" ng-options="opt as opt.label for opt in options1"><option label="Cán màng" value="object:14" selected="selected">Cán màng</option><option label="Không cán màng" value="object:15">Không cán màng</option></select>
+                                        <select class="form-control classic" ng-model="shoppingCart.machining"
+                                                ng-options="opt as opt.label for opt in machinings">
+                                        </select>
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="">Chọn Bế</span>
                                         </div>
-                                        <select class="form-control classic ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="shoppingCart.cut" ng-options="opt as opt.label for opt in options2"><option label="Bế thẳng" value="object:16" selected="selected">Bế thẳng</option><option label="Bế đặc biệt(hình tròn, hình khó)" value="object:17">Bế đặc biệt(hình tròn, hình khó)</option></select>
+                                        <select class="form-control classic" ng-model="shoppingCart.cut"
+                                                ng-options="opt as opt.label for opt in cuts">
+                                        </select>
                                     </div>
-                                    <button style="margin-left:10px" class="btn  btn-success btn-sm" tabindex="1">Tiến hành đặt hàng &nbsp</button>
-                                    <button class="btn  btn-primary btn-sm" tabindex="2">Up load file in</button>
-                                    <button class="btn  btn-primary btn-sm" tabindex="3">Xem mẫu online</button>
-                                    <button class="btn  btn-primary btn-sm" tabindex="4">Làm mới</button>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Upload File</span>
+                                        </div>
+                                        <input class="form-control classic btn  btn-info btn-sm" name="file" type="file" multiple my-directory="getFiles(file)" accept=".png,.jpg,.tif,.gif,.tiff,.bmp,.pdf" ng-disabled="uploading" />
+                                    </div>
+                                    <button ng-click="addToshoppingCart()" style="margin-left:10px" class="btn  btn-success btn-sm" tabindex="1">Thêm vào giỏ hàng &nbsp</button>
+                                    <button style="min-width:400px" class="btn  btn-primary btn-sm" tabindex="3">Xem mẫu online</button>
                                 </li>
                             </ul>
                         </div>
@@ -164,42 +171,42 @@
                                 <li class="cart_item clearfix  font-italic">
                                     <div class="row">
                                         <div class="col-md-6">Chất liệu</div>
-                                        <div class="col-md-3 ml-auto ng-binding">Decal sữa</div>
+                                        <div class="col-md-3 ml-auto">{{shoppingCart.material.label}}</div>
                                     </div>
-                                    <hr>
+                                    <hr />
                                     <div class="row">
                                         <div class="col-md-6">Kích thước tem nhãn</div>
-                                        <div class="col-md-3 ml-auto ng-binding">0mm X 0mm</div>
+                                        <div class="col-md-3 ml-auto">{{shoppingCart.width==''?0:shoppingCart.width}}mm X {{shoppingCart.height==''?0:shoppingCart.height}}mm</div>
                                     </div>
-                                    <hr>
+                                    <hr />
                                     <div class="row">
                                         <div class="col-md-6">Số lượng in</div>
-                                        <div class="col-md-3 ml-auto ng-binding">0</div>
+                                        <div class="col-md-3 ml-auto">{{shoppingCart.quantity==''?0:shoppingCart.quantity}}</div>
                                     </div>
-                                    @*<hr>*@
-                                    @*<div class="row">
-                                            <div class="col-md-6">Diện tích bằng mét vuông.</div>
-                                            <div class="col-md-3 ml-auto ng-binding">0(mét vuông)</div>
-                                        </div>*@
-                                    <hr>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-6">Diện tích bằng mét vuông.</div>
+                                        <div class="col-md-3 ml-auto">{{square}}(m2)</div>
+                                    </div>
+                                    <hr />
                                     <div class="row">
                                         <div class="col-md-6">Gia công</div>
-                                        <div class="col-md-3 ml-auto ng-binding">Cán màng</div>
+                                        <div class="col-md-3 ml-auto">{{shoppingCart.machining.label}}</div>
                                     </div>
-                                    <hr>
+                                    <hr />
                                     <div class="row">
                                         <div class="col-md-6">Bế</div>
-                                        <div class="col-md-3 ml-auto ng-binding">Bế thẳng</div>
+                                        <div class="col-md-3 ml-auto">{{shoppingCart.cut.label}}</div>
                                     </div>
-                                    @*<hr>*@
-                                    @*<div class="row">
-                                            <div class="col-md-6">Đơn giá</div>
-                                            <div class="col-md-3 ml-auto ng-binding">0(vnd)</div>
-                                        </div>*@
-                                    <hr>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-6">Đơn giá</div>
+                                        <div class="col-md-3 ml-auto">{{price | number}}(vnd)</div>
+                                    </div>
+                                    <hr />
                                     <div class="row">
                                         <div class="col-md-6">Thành tiền</div>
-                                        <div class="col-md-3 ml-auto ng-binding">0(vnd)</div>
+                                        <div class="col-md-3 ml-auto">{{subTotalProduct | number}}(vnd)</div>
                                     </div>
                                 </li>
                             </ul>
@@ -215,18 +222,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <div class="single_post_title">Vivamus sed nunc in arcu cursus mollis quis et orci. Interdum et malesuada</div>
-                    <div class="single_post_text">
-                        <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis ac eu nisi. In accumsan tellus ut dapibus blandit.</p>
-
-                        <div class="single_post_quote text-center">
-                            <div class="quote_image"><img src="/images/quote.png" alt=""></div>
-                            <div class="quote_text">Quisque sagittis non ex eget vestibulum. Sed nec ultrices dui. Cras et sagittis erat. Maecenas pulvinar, turpis in dictum tincidunt, dolor nibh lacinia lacus.</div>
-                            <div class="quote_name">Liam Neeson</div>
-                        </div>
-
-                        <p>Praesent ac magna sed massa euismod congue vitae vitae risus. Nulla lorem augue, mollis non est et, eleifend elementum ante. Nunc id pharetra magna.  Praesent vel orci ornare, blandit mi sed, aliquet nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
-                    </div>
+                    @Html.Raw(ViewBag.description)
                 </div>
             </div>
         </div>
