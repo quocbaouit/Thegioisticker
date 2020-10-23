@@ -5,9 +5,7 @@
 <link href="~/Content/css/shop_styles.css" rel="stylesheet" />
 <link href="~/Content/css/shop_responsive.css" rel="stylesheet" />
 <style>
-    .input-group-text {
-        min-width: 150px;
-    }
+    
 
     .row {
         margin-bottom: 0px;
@@ -61,7 +59,7 @@
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="">Nhập kích thước</span>
+                                            <span class="input-group-text" id="">Kích thước</span>
                                         </div>
                                         <input autocomplete="off" name="width" number-input maxlength="9" ng-model="shoppingCart.width" type="text" placeholder="ngang(mm)" class="form-control">
                                         <input autocomplete="off" name="height" number-input maxlength="9" ng-model="shoppingCart.height" type="text" placeholder="cao(mm)" class="form-control">
@@ -75,7 +73,7 @@
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="">Chọn Gia Công</span>
+                                            <span class="input-group-text" id="">Gia Công</span>
                                         </div>
                                         <select class="form-control classic" ng-model="shoppingCart.machining"
                                                 ng-options="opt as opt.label for opt in machinings">

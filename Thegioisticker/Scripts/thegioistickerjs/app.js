@@ -15,7 +15,7 @@ var serviceBase = '';
 if (window.location.port == '') {
     serviceBase = 'http://thegioisticker.com/';
 } else {
-    serviceBase = 'https://localhost:44337/';
+    serviceBase = 'http://thegioisticker.com/';
 }
 thegioistickerApp.constant('ngAuthSettings', {
 	apiServiceBaseUri: serviceBase,
