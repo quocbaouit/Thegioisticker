@@ -1972,6 +1972,7 @@
     <Content Include="Scripts\assets\vendor\pnotify\pnotify.custom.min.js" />
     <Content Include="Scripts\assets\vendor\popper.js\index.js" />
     <Content Include="Scripts\bootstrap-select.js" />
+    <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\datetime.js" />
     <Content Include="Scripts\directives\numberInput.js" />
     <Content Include="Scripts\directives\numberInput1.js" />
