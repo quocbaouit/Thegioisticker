@@ -22,26 +22,21 @@
     .input-group {
         padding: 10px;
     }
-
-    *****************************************
-    ! BANNER SLIDER ! ----------------------*
-    *****************************************
-    */
-    /*reset*/
     ul.bannerSlider {
         padding-left: 0;
     }
+    .slick-slide {
+        height: 300px;
+    }
 
     .bannerSlider {
-        height: 450px;
+        height: 300px;
     }
 
         .bannerSlider .slide__image::before {
             content: "";
             position: absolute;
             width: 100%;
-            height: 450px;
-            /*                background: rgba(33,33,33,.7);*/
         }
 
         .bannerSlider .slick-slide {
@@ -50,7 +45,6 @@
 
         .bannerSlider .slide__image img {
             width: 100%;
-            height: 450px;
             object-fit: cover;
         }
 
@@ -73,8 +67,6 @@
             color: #fff;
         }
 </style>
-@*<link href="~/Content/css/blog_styles.css" rel="stylesheet" />*@
-<link href="~/Content/css/blog_responsive.css" rel="stylesheet" />
 <main ng-app="thegioistickerApp" ng-controller="homeController">
     <div class="banner_2">
         <div class="banner_2_container">
@@ -91,7 +83,7 @@
                                         @*<h2>This is the otter.</h2>*@
                                     </div>
                                     <div class="slide__image">
-                                        <img src="~/images/slider1.jpg" />
+                                        <img style="height:300px" src="~/images/slider1.jpg" />
                                     </div>
                                 </a>
                             </li>
@@ -102,7 +94,7 @@
                                         @*<h2>Otters are cool. </h2>*@
                                     </div>
                                     <div class="slide__image">
-                                        <img src="~/images/slider2.jpg" />
+                                        <img style="height:300px" src="~/images/slider2.jpg" />
                                     </div>
                                 </a>
                             </li>
@@ -113,7 +105,7 @@
                                         @* <h2>They swim, eat and sleep.</h2>*@
                                     </div>
                                     <div class="slide__image">
-                                        <img src="~/images/slider3.jpg" />
+                                        <img style="height:300px" src="~/images/slider3.jpg" />
                                     </div>
                                 </a>
                             </li>
@@ -319,7 +311,7 @@
             </div>
         </div>
     </div>
-    <div class="adverts">
+    <div ng-if="blogs.length>0" class="adverts">
         <div class="container">
             <div class="row">
 
