@@ -7,54 +7,54 @@ using System.Linq;
 namespace Thegioisticker.Service
 {
     // operations you want to expose
-    public interface ICategoryService
+    public interface IPageService
     {
-        IEnumerable<Category> GetCategories(string name = null);
-        Category GetCategory(int id);
-        Category GetCategory(string name);
-        void CreateCategory(Category category);
-        void SaveCategory();
+        IEnumerable<Page> GetCategories(string name = null);
+        Page GetPage(int id);
+        Page GetPage(string name);
+        void CreatePage(Page Page);
+        void SavePage();
     }
 
-    public class CategoryService : ICategoryService
+    public class PageService : IPageService
     {
-        private readonly ICategoryRepository categorysRepository;
+        private readonly IPageRepository PagesRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public CategoryService(ICategoryRepository categorysRepository, IUnitOfWork unitOfWork)
+        public PageService(IPageRepository PagesRepository, IUnitOfWork unitOfWork)
         {
-            this.categorysRepository = categorysRepository;
+            this.PagesRepository = PagesRepository;
             this.unitOfWork = unitOfWork;
         }
 
-        #region ICategoryService Members
+        #region IPageService Members
 
-        public IEnumerable<Category> GetCategories(string name = null)
+        public IEnumerable<Page> GetCategories(string name = null)
         {
             if (string.IsNullOrEmpty(name))
-                return categorysRepository.GetAll();
+                return PagesRepository.GetAll();
             else
-                return categorysRepository.GetAll().Where(c => c.Name == name);
+                return PagesRepository.GetAll().Where(c => c.Name == name);
         }
 
-        public Category GetCategory(int id)
+        public Page GetPage(int id)
         {
-            var category = categorysRepository.GetById(id);
-            return category;
+            var Page = PagesRepository.GetById(id);
+            return Page;
         }
 
-        public Category GetCategory(string name)
+        public Page GetPage(string name)
         {
-            var category = categorysRepository.GetCategoryByName(name);
-            return category;
+            var Page = PagesRepository.GetPageByName(name);
+            return Page;
         }
 
-        public void CreateCategory(Category category)
+        public void CreatePage(Page Page)
         {
-            categorysRepository.Add(category);
+            PagesRepository.Add(Page);
         }
 
-        public void SaveCategory()
+        public void SavePage()
         {
             unitOfWork.Commit();
         }

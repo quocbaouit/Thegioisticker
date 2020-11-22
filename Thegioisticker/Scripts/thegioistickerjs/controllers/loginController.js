@@ -27,10 +27,10 @@ thegioistickerApp.controller('loginController', ['$scope', '$timeout', 'Notifica
 	        $scope.shakeModal("Vui lòng nhập họ và tên");
 	        return;
 		}
-		if ($scope.registration.email == '') {
-			$scope.shakeModal("Vui lòng nhập email");
-			return;
-		}
+		//if ($scope.registration.email == '') {
+		//	$scope.shakeModal("Vui lòng nhập email");
+		//	return;
+		//}
 		if ($scope.registration.password == '') {
 			$scope.shakeModal("Vui lòng nhập mật khẩu");
 			return;

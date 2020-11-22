@@ -12,7 +12,7 @@ namespace Thegioisticker.API.Mappings
     {
         public AutoMapperProfile()
         {
-            CreateMap<Category, CategoryViewModel>();
+            CreateMap<Page, CategoryViewModel>();
         }
 
     }

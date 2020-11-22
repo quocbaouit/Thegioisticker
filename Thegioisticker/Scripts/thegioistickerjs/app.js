@@ -13,9 +13,9 @@ thegioistickerApp.config(['NotificationProvider',function (NotificationProvider)
 }]);
 var serviceBase = '';
 if (window.location.port == '') {
-    serviceBase = 'http://thegioisticker.com/';
+    serviceBase = 'https://thegioisticker.com/';
 } else {
-    serviceBase = 'http://thegioisticker.com/';
+    serviceBase = 'https://localhost:44337/';
 }
 thegioistickerApp.constant('ngAuthSettings', {
 	apiServiceBaseUri: serviceBase,

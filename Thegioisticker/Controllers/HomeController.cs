@@ -13,27 +13,27 @@ namespace Thegioisticker.Controllers
     [AllowSameSite]
     public class HomeController : Controller
     {
-        private readonly ICategoryService categoryService;
+        private readonly IPageService PageService;
 
-        public HomeController(ICategoryService categoryService)
+        public HomeController(IPageService PageService)
         {
-            this.categoryService = categoryService;
+            this.PageService = PageService;
         }
 
         //[OutputCache(Duration = 3600, VaryByParam = "none")]
         // GET: Home
-        public ActionResult Index(string category = null)
+        public ActionResult Index(string Page = null)
         {
             IEnumerable<CategoryViewModel> viewModelGadgets;
-            IEnumerable<Category> categories;
+            IEnumerable<Page> categories;
 
-            categories = categoryService.GetCategories(category).ToList();
+            categories = PageService.GetCategories(Page).ToList();
 
-            viewModelGadgets = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryViewModel>>(categories);
+            viewModelGadgets = Mapper.Map<IEnumerable<Page>, IEnumerable<CategoryViewModel>>(categories);
             return View(viewModelGadgets);
         }
 
-        public ActionResult Filter(string category, string gadgetName)
+        public ActionResult Filter(string Page, string gadgetName)
         {
             return View();
         }
@@ -49,8 +49,8 @@ namespace Thegioisticker.Controllers
                 newGadget.File.SaveAs(path);
             }
 
-            var category = categoryService.GetCategory(newGadget.GadgetCategory);
-            return RedirectToAction("Index", new { category = category.Name });
+            var Page = PageService.GetPage(newGadget.GadgetCategory);
+            return RedirectToAction("Index", new { Page = Page.Name });
         }
     }
 }

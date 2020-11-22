@@ -43,6 +43,14 @@ namespace Thegioisticker.Model
         [Required]
         [DataType("decimal(8,2)")]
         public decimal SubTotal { get; set; }
+
+        public string Note { get; set; }
+        public int DeliveryDate { get; set; }
+        public string CouponName { get; set; }
+        public int CouponType { get; set; }
+        public float CouponValue { get; set; }
+        public float DiscountValue { get; set; }
+
         public DateTime? StartContract { get; set; }
         public DateTime? EndContract { get; set; }
         public DateTime? DateCreated { get; set; }

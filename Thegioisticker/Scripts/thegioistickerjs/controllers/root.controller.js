@@ -41,7 +41,19 @@
             machining: {},
             cut: {},
             cutType: '',
-            file: ''
+            file: '',
+            note: '',
+            deliveryDate: 2,
+            couponName: '',
+            couponType: 0,
+            couponValue: 0,
+            discountValue:0,
+
+        };
+        $rootScope.selectedSample = {
+            id: 0,
+            name:'',
+            image:'/images/noproduct.png'
         };
         function guid() {
             function s4() {
@@ -227,7 +239,9 @@
                 machining: {},
                 cut: {},
                 cutType: '',
-                file: ''
+                file: '',
+                note: '',
+                deliveryDate:2
             };
             $scope.shoppingCart.material = $scope.materials[0];
             $scope.shoppingCart.machining = $scope.machinings[0];
@@ -330,18 +344,27 @@
             $scope.product.height = $scope.shoppingCart.height;
             $scope.product.machining = $scope.shoppingCart.machining.label;
             $scope.product.cut = $scope.shoppingCart.cut.label;
+
+            $scope.product.note = $scope.shoppingCart.note;
+            $scope.product.deliveryDate = $scope.shoppingCart.deliveryDate;
+            $scope.product.couponName = $scope.shoppingCart.couponName;
+            $scope.product.couponType = $scope.shoppingCart.couponType;
+            $scope.product.couponValue = $scope.shoppingCart.couponValue;
+            $scope.product.discountValue = $scope.shoppingCart.discountValue;
+
             $scope.product.fileDescription = '';
             $scope.product.fileType = 1;
-            $scope.product.fileId = 0;
+            $scope.product.fileId = $rootScope.selectedSample.id;
             $scope.product.settingModal = '';
-            $scope.product.image = '';
+            $scope.product.image = $rootScope.selectedSample.image;
             var item = $scope.product;
             $scope.cart.push(item);
             var listProducts = $scope.cart;
             localStorageService.set('shoppingCart', { products: listProducts });
-            Notification.success("Thêm vào giỏ hàng thành công");
+            Notification.success("Thêm vào giỏ hàng thành công");       
             $scope.calculateCart();
             resetShoppingCart();
+            window.location.href = "/gio-hang";
         };
         //End To Shopping Card
         //File

@@ -24,13 +24,13 @@ namespace Thegioisticker.Service
     public class BlogService : IBlogService
     {
         private readonly IBlogRepository BlogsRepository;
-        private readonly ICategoryRepository categoryRepository;
+        private readonly IPageRepository PageRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public BlogService(IBlogRepository BlogsRepository, ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+        public BlogService(IBlogRepository BlogsRepository, IPageRepository PageRepository, IUnitOfWork unitOfWork)
         {
             this.BlogsRepository = BlogsRepository;
-            this.categoryRepository = categoryRepository;
+            this.PageRepository = PageRepository;
             this.unitOfWork = unitOfWork;
         }
 

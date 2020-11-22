@@ -5,27 +5,27 @@ using System.Linq;
 
 namespace Thegioisticker.Data.Repositories
 {
-    public class CategoryRepository : RepositoryBase<Category>, ICategoryRepository
+    public class PageRepository : RepositoryBase<Page>, IPageRepository
     {
-        public CategoryRepository(IDbFactory dbFactory)
+        public PageRepository(IDbFactory dbFactory)
             : base(dbFactory) { }
 
-        public Category GetCategoryByName(string categoryName)
+        public Page GetPageByName(string PageName)
         {
-            var category = this.DbContext.Categories.Where(c => c.Name == categoryName).FirstOrDefault();
+            var Page = this.DbContext.Categories.Where(c => c.Name == PageName).FirstOrDefault();
 
-            return category;
+            return Page;
         }
 
-        public override void Update(Category entity)
+        public override void Update(Page entity)
         {
             entity.DateUpdated = DateTime.Now;
             base.Update(entity);
         }
     }
 
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IPageRepository : IRepository<Page>
     {
-        Category GetCategoryByName(string categoryName);
+        Page GetPageByName(string PageName);
     }
 }

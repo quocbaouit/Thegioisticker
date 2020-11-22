@@ -21,13 +21,13 @@ namespace Thegioisticker.Service
     public class CouponService : ICouponService
     {
         private readonly ICouponRepository CouponsRepository;
-        private readonly ICategoryRepository categoryRepository;
+        private readonly IPageRepository PageRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public CouponService(ICouponRepository CouponsRepository, ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+        public CouponService(ICouponRepository CouponsRepository, IPageRepository PageRepository, IUnitOfWork unitOfWork)
         {
             this.CouponsRepository = CouponsRepository;
-            this.categoryRepository = categoryRepository;
+            this.PageRepository = PageRepository;
             this.unitOfWork = unitOfWork;
         }
 

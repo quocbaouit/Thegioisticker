@@ -20,6 +20,9 @@
     .input-group {
         padding: 10px;
     }
+    .input-group-text {
+        min-width: 120px !important;
+    }
 </style>
 <main ng-app="sieuvietApp" ng-controller="galleryController">
     <!-- Shop -->
@@ -34,10 +37,10 @@
 
                                     <div style="display:none" class="alert alert-danger alert-dismissible fade show" role="alert">
                                     </div>
-                                    <h5>Sản phẩm được chọn</h5>
-                                    <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="~/images/noproduct.png" alt=""></div>
+                                    <h5>Mẫu được chọn</h5>
+                                    <div style="height:unset !important" class="product_image d-flex flex-column align-items-center justify-content-center"><img ng-src="{{selectedSample.image}}" alt=""></div>
                                     <div class="product_content">
-                                        <div style="margin-left:10px" class="product_name"><div>Canon IXUS 175...</div></div>
+                                        <div style="margin-left:10px" class="product_name"><div>{{selectedSample.name}}</div></div>
                                     </div>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -77,58 +80,55 @@
                                                 ng-options="opt as opt.label for opt in cuts">
                                         </select>
                                     </div>
-                                    <button ng-click="addToshoppingCart()" style="margin-left:10px" class="btn  btn-success btn-sm" tabindex="1">Thêm vào giỏ hàng &nbsp</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="cart_container">
-                        <div class="cart_items">
-                            <ul class="cart_list">
-                                <li class="cart_item clearfix  font-italic">
-                                    <div class="row">
-                                        <div class="col-md-6">Chất liệu</div>
-                                        <div class="col-md-3 ml-auto">{{shoppingCart.material.label}}</div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Ghi Chú</span>
+                                        </div>
+                                        <textarea ng-model="shoppingCart.note" rows="3" placeholder="" class="form-control"></textarea>
                                     </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-6">Kích thước tem nhãn</div>
-                                        <div class="col-md-3 ml-auto">{{shoppingCart.width==''?0:shoppingCart.width}}mm X {{shoppingCart.height==''?0:shoppingCart.height}}mm</div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Lấy hàng sau</span>
+                                        </div>
+                                        <div style="margin-left:10px" class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input ng-model="shoppingCart.deliveryDate" value="2" type="radio" class="form-check-input" name="optradio">2 ngày
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input ng-model="shoppingCart.deliveryDate" value="3" type="radio" class="form-check-input" name="optradio">3 ngày
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline disabled">
+                                            <label class="form-check-label">
+                                                <input ng-model="shoppingCart.deliveryDate" value="4" type="radio" class="form-check-input" name="optradio">4 ngày
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline disabled">
+                                            <label class="form-check-label">
+                                                <input ng-model="shoppingCart.deliveryDate" value="5" type="radio" class="form-check-input" name="optradio">5 ngày
+                                            </label>
+                                        </div>
                                     </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-6">Số lượng in</div>
-                                        <div class="col-md-3 ml-auto">{{shoppingCart.quantity==''?0:shoppingCart.quantity}}</div>
-                                    </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-6">Diện tích bằng mét vuông.</div>
-                                        <div class="col-md-3 ml-auto">{{square}}(m2)</div>
-                                    </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-6">Gia công</div>
-                                        <div class="col-md-3 ml-auto">{{shoppingCart.machining.label}}</div>
-                                    </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-6">Bế</div>
-                                        <div class="col-md-3 ml-auto">{{shoppingCart.cut.label}}</div>
-                                    </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-6">Đơn giá</div>
-                                        <div class="col-md-3 ml-auto">{{price | number}}(vnd)</div>
-                                    </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-6">Thành tiền</div>
-                                        <div class="col-md-3 ml-auto">{{subTotalProduct | number}}(vnd)</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
 
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Khuyến mãi</span>
+                                        </div>
+                                        <input autocomplete="off" name="coupon" ng-model="shoppingCart.couponName" type="text" placeholder="" class="form-control">
+                                        <button ng-disabled="shoppingCart.couponName==''" ng-click="applyCoupon()" style="margin-right:20px;margin-left:10px" class="btn btn-primary btn-sm" disabled="disabled">Áp Dụng</button>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Thành tiền</span>
+                                        </div>
+                                        <div style="font-size:large" class="col-md-3 mr-auto">{{subTotalProduct | number}}(vnd)</div>
+                                    </div>
+                                    <button ng-click="addToshoppingCart()" style="margin-left:10px;width:95%" class="btn  btn-success btn-sm" tabindex="1">Thêm vào giỏ hàng &nbsp</button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-9">

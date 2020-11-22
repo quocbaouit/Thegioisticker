@@ -20,13 +20,13 @@ namespace Thegioisticker.Service
     public class CommonService : ICommonService
     {
         private readonly IProductRepository ProductsRepository;
-        private readonly ICategoryRepository categoryRepository;
+        private readonly IPageRepository PageRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public CommonService(IProductRepository ProductsRepository, ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+        public CommonService(IProductRepository ProductsRepository, IPageRepository PageRepository, IUnitOfWork unitOfWork)
         {
             this.ProductsRepository = ProductsRepository;
-            this.categoryRepository = categoryRepository;
+            this.PageRepository = PageRepository;
             this.unitOfWork = unitOfWork;
         }
 

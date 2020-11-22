@@ -4,7 +4,6 @@ thegioistickerApp.controller('homeController', ['$scope', 'blogService', '$timeo
     $scope.products = [];
     $scope.regularProducts = [];
     $scope.product = {};
-    $scope.selectedSample = {};
     $scope.productCategories = [];
     productService.getProductsRegular().then(function (results) {
         $scope.regularProducts = results.data;

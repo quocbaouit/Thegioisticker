@@ -1,7 +1,7 @@
 ﻿'use strict';
-thegioistickerApp.controller('galleryController', ['$scope', '$timeout', 'productService', 'localStorageService', 'Notification', 'sampleService', '$compile', 'invoiceService', function ($scope, $timeout, productService, localStorageService, Notification, sampleService, $compile, invoiceService) {
+thegioistickerApp.controller('galleryController', ['$scope', '$rootScope', '$timeout', 'productService', 'localStorageService', 'Notification', 'sampleService', '$compile', 'invoiceService', function ($scope, $rootScope, $timeout, productService, localStorageService, Notification, sampleService, $compile, invoiceService) {
     $scope.products = [];
-    $scope.numPerPage = 12;
+    $scope.numPerPage = 8;
     $scope.noOfPages = 1;
     $scope.currentPage = 1;
     $scope.currentCategory = 1;
@@ -58,7 +58,11 @@ thegioistickerApp.controller('galleryController', ['$scope', '$timeout', 'produc
         var products = localStorageService.get('recentProducts').recentProducts;
         $scope.recentProducts = products;
     }
+
     $scope.viewDetail = function (Id) {
         window.location.href = '/chi-tiet-san-pham/' + Id;
+    };
+    $scope.selectSample = function (sample) {
+        $rootScope.selectedSample = sample;
     };
 }]);

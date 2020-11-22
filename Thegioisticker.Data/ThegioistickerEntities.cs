@@ -8,7 +8,7 @@ namespace Thegioisticker.Data
     {
         public ThegioistickerEntities() : base("ThegioistickerManagerment") { }
 
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Page> Categories { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Product> Products { get; set; }

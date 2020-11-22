@@ -30,6 +30,15 @@ namespace Thegioisticker.Service
         public string Image { get; set; }
 
         public decimal SubTotal { get; set; }
+
+        public string Note { get; set; }
+        public int DeliveryDate { get; set; }
+        public string CouponName { get; set; }
+        public int CouponType { get; set; }
+        public float CouponValue { get; set; }
+        public float DiscountValue { get; set; }
+
+       
     }
     public class CustomerModel
     {

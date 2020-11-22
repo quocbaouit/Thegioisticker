@@ -118,6 +118,13 @@ namespace Thegioisticker.Service
                 orderDetail.FileDescription = product.FileDescription;
                 orderDetail.TransactionId = product.TransactionId;
 
+                orderDetail.Note = product.Machining;
+                orderDetail.DeliveryDate = product.DeliveryDate;
+                orderDetail.CouponName = product.CouponName;
+                orderDetail.CouponType = product.CouponType;
+                orderDetail.CouponValue = product.CouponValue;
+                orderDetail.DiscountValue = product.DiscountValue;
+
                 orderDetail.FileType = product.FileType;
                 orderDetail.FileId = product.FileId;
                 orderDetail.SettingModal = product.SettingModal;

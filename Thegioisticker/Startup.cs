@@ -44,11 +44,11 @@ namespace Thegioisticker.API
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
             //// Repositories
-            builder.RegisterAssemblyTypes(typeof(CategoryRepository).Assembly)
+            builder.RegisterAssemblyTypes(typeof(PageRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
             // Services
-            builder.RegisterAssemblyTypes(typeof(CategoryService).Assembly)
+            builder.RegisterAssemblyTypes(typeof(PageService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();
             IContainer container = builder.Build();
