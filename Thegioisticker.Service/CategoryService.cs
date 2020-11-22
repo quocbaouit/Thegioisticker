@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace Thegioisticker.Service
 {
-    // operations you want to expose
     public interface IPageService
     {
         IEnumerable<Page> GetCategories(string name = null);
