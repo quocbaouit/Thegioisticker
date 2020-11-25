@@ -19,6 +19,7 @@ using System.Web.Http;
 using System.Web.Routing;
 using System.Configuration;
 using Hangfire;
+using System.Web.Optimization;
 
 [assembly: OwinStartup(typeof(Thegioisticker.API.Startup))]
 
@@ -65,6 +66,7 @@ namespace Thegioisticker.API
 
             WebApiConfig.Register(config);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<StoreEntities, Thegioisticker.Data.Migrations.Configuration>());

@@ -2264,6 +2264,7 @@
     <Compile Include="ApiControllers\ProductController.cs" />
     <Compile Include="App_Start\AllowSameSiteAttribute.cs" />
     <Compile Include="App_Start\Bootstrapper.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ApiControllers\AccountController.cs" />
